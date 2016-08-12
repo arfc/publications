@@ -32,8 +32,11 @@ Each distinct publication will be generated in a separate bare branch. The
 naming convention for branches should be **YYYY-author-keyword-venue** where:
 
 YYYY = the year of submission. 
+
 author = the last name of the first author, lower case
+
 keyword = the first word of the title or a distinguishing keyword, lower case
+
 venue = (optional) an identifier for the publication venue, lower case
 
 
