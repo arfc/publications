@@ -2,6 +2,13 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
 \usepackage[margin=1in]{geometry}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{placeins}
@@ -65,11 +72,223 @@ Delayed neutron precursors are described by \cref{eq:precursors}:
 \label{eq:precursors}
 \end{equation}
 
-with the last term representing the effect of fuel advection.
+with the last term representing the effect of fuel advection. The governing
+equation for the temperature is given by:
+
+\begin{equation}
+  \rho_fc_{p,f}\frac{\partial T_f}{\partial t} + \nabla\cdot\left(\rho_f c_{p,f}
+  \vec{u}\cdot T_f -k_f\nabla T_f\right) =  Q_f
+  \label{eq:fuel_temp}
+\end{equation}
+
+in the fuel and by:
+
+\begin{equation}
+  \rho_gc_{p,g}\frac{\partial T_g}{\partial t} + \nabla\cdot\left(-k_g\nabla T_g\right) =  Q_g
+  \label{eq:moderator_temp}
+\end{equation}
+
+in the moderator. $Q_f$ is defined by:
+
+\begin{equation}
+  Q_f = \sum_{g=1}^G \epsilon_{f,g}\Sigma_{f,g}\phi_g
+  \label{eq:fuel_source}
+\end{equation}
+
+and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
+neutron irradiation in the moderator.
+
+\section{Results \& Discussion}
+
+\subsection{Continuous Galerkin for Temperature with Isotropic Stabilization}
+
+\Cref{fig:cg_group1,fig:cg_group2} show expected cosinusoidal shapes for the
+fast and thermal group fluxes with respect to the axial coordinate. Fast group neutrons
+show a slight preference for the fuel region, while the thermal group slightly
+prefers the moderator as we would intuitively expect.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{nt_group_1.png}
+  \caption{Fast group neutron flux for Continuous Galerkin discretization}
+  \label{fig:cg_group1}
+\end{figure}
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{nt_group_2.png}
+  \caption{Thermal group neutron flux for Continuous Galerkin discretization}
+  \label{fig:cg_group2}
+\end{figure}
+
+In \cref{fig:cg_temperature} we see that the reactor outlet temperature is
+around 992 K, which is within the realm of physical possiblity. The temperature
+monotonically increases with increasing axial coordinate in the direction of
+flow; radial profiles are uniform.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{temperature.png}
+  \caption{Temperature for Continuous Galerkin discretization}
+  \label{fig:cg_temperature}
+\end{figure}
+
+\Cref{fig:cg_longest_precursor,fig:cg_shortest_precursor} show the profiles of
+the longest and shortest lived precursors respectively. The longest lived
+precursor concentration peaks at the reactor outlet, while the shortest lived
+precursor shows a maximum concentration at approximately z = 85 cm. The use of
+constant monomial basis functions for the precursor solution approximation is
+evident in the elemental visualizations.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{longest_lived_precursor.png}
+  \caption{Longest lived precursor for Continuous Galerkin discretization}
+  \label{fig:cg_longest_precursor}
+\end{figure}
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{shortest_lived_precursor.png}
+  \caption{Shortest lived precursor for Continuous Galerkin discretization}
+  \label{fig:cg_shortest_precursor}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Discontinuous Galerkin for Temperature}
+
+Moving to a discontinuous Galerkin discretization and removing isotropic
+stabilization yields a dramatically different temperature profile, as shown in
+\cref{fig:dg_temperature}. With dramatically reduced heat flux due to removal of
+artificial conduction, the outlet temperature of the reactor is now 1119 K,
+about 130 K higher than the \gls{CG} case shown in \cref{fig:cg_temperature}.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_temperature.png}
+  \caption{Temperature for Discontinuous Galerkin discretization}
+  \label{fig:dg_temperature}
+\end{figure}
+
+As shown in \cref{fig:dg_group1,fig:dg_group2}, the shapes of the neutron flux
+distributions do not change with the move to \gls{DG}. The magnitudes of the
+fluxes do increase by about 35\%.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_group1.png}
+  \caption{Fast group neutron flux for Discontinuous Galerkin discretization}
+  \label{fig:dg_group1}
+\end{figure}
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_group2.png}
+  \caption{Thermal group neutron flux for Discontinuous Galerkin discretization}
+  \label{fig:dg_group2}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{DG Temperature with Moderator Heat Source}
+
+The \gls{MSR} model can be modified by adding a heat source in the moderator
+corresponding to gamma heating and neutron irradiation \cite{robertson_conceptual_1971}.
+
+Introduction of the moderator heat source further modifies the reactor
+temperature profile as shown in
+\cref{fig:dg_mod_source_temperature,fig:dg_mod_source_temperature_outlet}. Without
+the moderator heat source, the maximum temperature in the reactor for \gls{CG}
+and \gls{DG} discretizations is 992 and 1119 K respectively. These maxima both
+occur at the reactor outlet and are more or less uniform over the radial
+coordinate. However, with the addition of the moderator heat source, the reactor
+temperature maximum rises to a somewhat absurd 1615 K (this is only 88 K below
+the boiling point of \gls{FLiBe}). The location of the maximum is in the top right
+corner of the simulation domain, corresponding to the middle of the graphite
+moderator in a periodic lattice arrangement.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_mod_source_temperature_full_domain.png}
+  \caption{Temperature for Discontinuous Galerkin discretization with moderator
+    heat source}
+  \label{fig:dg_mod_source_temperature}
+\end{figure}
+
+The temperature profile at the top of the reactor is no longer uniform with
+respect to the radial coordinate as shown in
+\cref{fig:dg_mod_source_temperature_outlet}. From the right edge of the
+simulation domain (r = R$_2$), the graphite temperature decreases from its
+maximum value of 1615 K to a value of about 1200 K at the fuel/graphite
+interface. At the interface, perhaps due to the \gls{DG} discretization and the
+order of magnitude difference in diffusion coefficients, there is a shock and
+temperature oscillations in the fuel. After the oscillations are damped, the
+fuel outlet temperature is uniform between r = 0 and 1.2 cm at a value of
+approximately 990 K. This corresponds fairly closely to the outlet temperature
+calculated in the isotropically stabilized \gls{CG} simulation, but the
+correspondence is believed to be purely coincidental.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_mod_source_temperature_outlet.png}
+  \caption{Fuel outlet temperature profile for Discontinuous Galerkin
+    discretization with moderator heat source}
+  \label{fig:dg_mod_source_temperature_outlet}
+\end{figure}
+
+\Cref{fig:dg_mod_source_group1,fig:dg_mod_source_group2} show the neutron fluxes
+for the moderator heat source simulation case. Spatial shapes are the same as
+the previous two simulation cases; howevever, the flux magnitudes are
+less. A comparison of maximum flux magnitudes between the three simulation cases
+is shown in \cref{tab:max_fluxes}.
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_mod_source_group1.png}
+  \caption{Fast group neutron flux for Discontinuous Galerkin discretization
+    with moderator heat source}
+  \label{fig:dg_mod_source_group1}
+\end{figure}
+
+%% \begin{figure}[H]
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=.5\textwidth]{dg_mod_source_group2.png}
+  \caption{Thermal group neutron flux for Discontinuous Galerkin discretization
+    with moderator heat source}
+  \label{fig:dg_mod_source_group2}
+\end{figure}
+
+\begin{table}[htpb]
+    \begin{center}
+      \begin{tabular}{l|c|c}
+        Simulation Case & Maximum Fast Flux ($10^{15}\frac{\#}{cm^2s}$) & Maximum Thermal
+        Flux ($10^{15}\frac{\#}{cm^2s}$)\\
+        \hline \hline
+        \gls{CG} & 3.488 & 1.785 \\
+        \gls{DG} & 4.700 & 2.465 \\
+        \gls{DG} with moderator source & 2.751 & 1.408 \\
+      \end{tabular}
+    \end{center}
+    \caption{Maximum fluxes for different simulation cases}
+    \label{tab:max_fluxes}
+\end{table}
 
 \FloatBarrier
 \clearpage
 \printglossary[type=\acronymtype]
-%% \bibliographystyle{unsrt}
-%% \bibliography{Moltres}
+\bibliographystyle{unsrt}
+\bibliography{Moltres}
 \end{document}

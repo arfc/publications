@@ -6,7 +6,7 @@ all: $(NAME).pdf
 
 $(NAME).pdf : $(NAME).tex
 	pdflatex -shell-escape $(NAME)
-	# bibtex $(NAME)
+	bibtex $(NAME)
 	makeglossaries $(NAME)
 	pdflatex -shell-escape $(NAME)
 	pdflatex -shell-escape $(NAME)
