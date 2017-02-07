@@ -1,0 +1,75 @@
+\documentclass{article}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{placeins}
+\usepackage[T1]{fontenc}
+\usepackage{gensymb}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage[export]{adjustbox}
+\graphicspath{{./figures/}}
+% hyperref usually has to go last
+\usepackage[hidelinks]{hyperref}
+% but glossaries behaves best if after hyperref
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+% cleveref only behaves if after hyperref & glossaries
+\usepackage{cleveref}
+
+\let\Oldsection\section
+\renewcommand{\section}{\FloatBarrier\Oldsection}
+
+\let\Oldsubsection\subsection
+\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
+
+\let\Oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{Introduction to Moltres: an Application for Simulation of Molten Salt Reactors}
+\author{Alexander Lindsay, Kathryn Huff}
+
+\begin{document}
+\maketitle
+
+\section{Model Description}
+
+Neutrons are described with time-dependent multi-group diffusion theory as shown
+in \cref{eq:neutrons}:
+
+\begin{equation}
+\frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
++ \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
+\nu \Sigma_{g'}^f \phi_{g'}
+%% \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
+%% + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
+%% \nu \Sigma_{g'}^f \phi_{g'} + \sum_i^I \lambda_i \chi_g^{d,i} C_i
+\label{eq:neutrons}
+\end{equation}
+
+\textbf{Note that at present we do not have the neutron source term from decay
+  of delayed neutron precursors. Currently coupling with precursors is only one
+  way, e.g. precursors are a function of temperature and neutron flux and not
+  the other way around. This reverse coupling should be added before publication.}
+
+Delayed neutron precursors are described by \cref{eq:precursors}:
+
+\begin{equation}
+\frac{\partial C_i}{\partial t} = \sum_{g'= 1}^G \beta_i \nu \Sigma_{g'}^f
+\phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u C_i
+\label{eq:precursors}
+\end{equation}
+
+with the last term representing the effect of fuel advection.
+
+\FloatBarrier
+\clearpage
+\printglossary[type=\acronymtype]
+%% \bibliographystyle{unsrt}
+%% \bibliography{Moltres}
+\end{document}
