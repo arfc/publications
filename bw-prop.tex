@@ -67,8 +67,8 @@ temporal resolution are only possible with the aid of high performance
 computing resources.  To solve these large systems of partial differential
 equations on a finite element mesh in a fully-coupled, implicit way, the MOOSE
 framework was designed to take advantage of high performance computing
-capability.  The framework conducts fully implicit physics coupling with a
-Jacobian Free Newton Krylov (JFNK) solver method and sophisticated automatic
+capability.  The framework conducts fully implicit physics coupling with
+Newton-Krylov based solver methods and sophisticated automatic
 adaptive meshing.  These simulations are memory intensive, so the exceptional
 memory capability of the Blue Waters resource will be essential to performant
 simulation times. It is also important to note that rendering visualizations of
@@ -76,20 +76,20 @@ the results can be computationally intensive was well.
 
 \paragraph{Progress}
 
-Initial simulations of the MSRE have been conducted both locally on the desktop 
-computer scale and on Blue Wates. These have been steady state simulations and 
-have occupied up to many hundreds of nodes simultaneously. This talk will 
-describe how coupling between neutronics and thermal hydraulics ahve been 
-established in the Moltres tool as well as the validation and verification 
-efforts which are ongoing.  
+Initial simulations of the MSRE have been conducted both locally on the desktop
+computer scale and on Blue Wates. These have been steady state simulations and
+have occupied up to many hundreds of nodes simultaneously. This talk will
+describe how coupling between neutronics and thermal hydraulics have been
+established in the Moltres tool as well as the validation and verification
+efforts which are ongoing.
 
-In the near term, these steady state calculations will provide the initial 
-conditions for full core reactor transient simulations. Such simulations 
-commonly occupy tens of thousands of CPU cores at a time and vary in completion 
-time. The MOOSE framework is shown to scale very well up to 10,000 cores. 
-Transient and multi-scale simulations, which require greater capability per 
-simulation, may occupy up to 100,000 CPU cores at a time. Such transient 
-simulations will evaluate the safety performance of advanced reactors in severe 
+In the near term, these steady state calculations will provide the initial
+conditions for full core reactor transient simulations. Such simulations
+commonly occupy tens of thousands of CPU cores at a time and vary in completion
+time. The MOOSE framework is shown to scale very well up to 10,000 cores.
+Transient and multi-scale simulations, which require greater capability per
+simulation, may occupy up to 100,000 CPU cores at a time. Such transient
+simulations will evaluate the safety performance of advanced reactors in severe
 (beyond design basis) accidents.
 
 \paragraph{Potential Impact}
