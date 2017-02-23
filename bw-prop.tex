@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+\usepackage{fancyhdr}
+\usepackage{pagecounting}
+\usepackage[dvips]{color}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning}
+% Color Information from - http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/latex_advanced/node13.html
+
+% Trying to bold my name in the bib
+\usepackage{xstring}
+\def\FormatName#1{%
+  \IfSubStr{#1}{Huff}{\textbf{#1}}{#1}%
+}
+
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\newcommand\bb[1]{\mbox{\em #1}}
+\def\baselinestretch{1.1}
+%\pagestyle{empty}
+\newcommand{\hsp}{\hspace*{\parindent}}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+\newcommand{\authorname}{Kathryn~D.~Huff }
+\newcommand{\authoremail}{katyhuff@gmail.com}
+\newcommand{\authorsite}{katyhuff.github.com}
+
+\begin{document}
+
+\pagestyle{fancy}
+%\pagenumbering{gobble}
+%\fancyhead[location]{text}
+% Leave Left and Right Header empty.
+%\lhead{}
+%\rhead{}
+\lhead{\textcolor{gray}{\it \authorname}}
+\rhead{\textcolor{gray}{\thepage}}
+%\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
+
+\paragraph{Research Goal}
+
+The Advanced Reactors and Fuel Cycles (ARFC) group pursues improved safety and
+sustainability of nuclear power. To do so, we model and
+simulate the design, safety, and performance of advanced nuclear reactors.
+Such reactors  involve tight coupling between physics such as thermal-hydraulic
+phenomena, neutron transport, and fuel performance.
+
+The current state of the art in advanced nuclear reactor simulation (e.g. the
+CASL DOE innovation hub) is focused on traditional light water reactors.
+The ARFC group seeks to extend that state of the art by enabling similarly high fidelity simulation of more advanced reactor designs through development of models and tools for representing unique materials, geometries, and physical phenomena. Current work includes extension
+of the MOOSE framework to appropriately model coupled thermal-hydraulics and
+neutronics of promising molten salt fuelled reactor designs.
+ARFC develops physics kernel extensions and runs simulations using the highly
+scalable, fully implicit, Multiphysics Object-Oriented Simulation Environment
+(MOOSE) framework from Idaho National Laboratory.
+
+
+\paragraph{Role of Blue Waters}
+Simulations which faithfully capture this coupling at realistic spatial and
+temporal resolution are only possible with the aid of high performance
+computing resources.  To solve these large systems of partial differential
+equations on a finite element mesh in a fully-coupled, implicit way, the MOOSE
+framework was designed to take advantage of high performance computing
+capability.  The framework conducts fully implicit physics coupling with a
+Jacobian Free Newton Krylov (JFNK) solver method and sophisticated automatic
+adaptive meshing.  These simulations are memory intensive, so the exceptional
+memory capability of the Blue Waters resource will be essential to performant
+simulation times. It is also important to note that rendering visualizations of
+the results can be computationally intensive was well.
+
+\paragraph{Progress}
+
+
+While the allocation needs will vary according to the particular simulations, Dr. Huff’s research group will conduct many 2-dimensional and 3-dimensional finite element simulations per year using the MOOSE framework and modules. Such simulations commonly occupy tens of thousands of CPU cores at a time and vary in completion time. The MOOSE framework is shown to scale very well up to 10,000 cores. Transient and multi-scale simulations, which require greater capability per simulation, may occupy up to 100,000 CPU cores at a time. Only a few of those larger simulations are likely to be run per year.
+
+\paragraph{Potential Impact}
+Detailed spatially and temporally resolved neutron flux and
+temperature distributions can improve designs, help characterize
+performance, inform reactor safety margins, and enable validation of numerical
+modeling techniques for unique physics.
+Future work may include similarly challenging materials and geometries such as
+those in sodium cooled, gas cooled, and very high temperature reactor designs
+which also boast improved safety and sustainability.
+
+
+Simulations on the reactor core scale require substantial
+computing resources to enable interrogation of
+physical phenomena in the complex environments inside a nuclear reactor.
+
+\end{document}
