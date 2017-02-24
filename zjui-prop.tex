@@ -36,69 +36,70 @@
 % Leave Left and Right Header empty.
 %\lhead{}
 %\rhead{}
-\lhead{\textcolor{gray}{Investigator: Prof. \authorname\\Presenter: Dr. Alexander Lindsay}}
-\rhead{\textcolor{gray}{Advanced Reactors and Fuel Cycles\\}}
+\lhead{\textcolor{gray}{Investigator: Prof. \authorname}}
+\rhead{\textcolor{gray}{Advanced Reactors and Fuel Cycles}}
 %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
 
-\paragraph{Research Goal}
-
-The Advanced Reactors and Fuel Cycles (ARFC) group pursues improved safety and
-sustainability of nuclear power. To do so, we model and
-simulate the design, safety, and performance of advanced nuclear reactors.
-Such reactors  involve tight coupling between physics such as thermal-hydraulic
-phenomena, neutron transport, and fuel performance.
-
-The current state of the art in advanced nuclear reactor simulation (e.g. the
-CASL DOE innovation hub) is focused on traditional light water reactors.
-The ARFC group seeks to extend that state of the art by enabling similarly high fidelity simulation of more advanced reactor designs through development of models and tools for representing unique materials, geometries, and physical phenomena. Current work includes extension
-of the MOOSE framework to appropriately model coupled thermal-hydraulics and
-neutronics of promising molten salt fuelled reactor designs.
-ARFC develops physics kernel extensions and runs simulations using the highly
-scalable, fully implicit, Multiphysics Object-Oriented Simulation Environment
-(MOOSE) framework from Idaho National Laboratory.
-
-
-\paragraph{Role of Blue Waters}
+\paragraph{The \gls{ARFC} group} pursues improved 
+safety and sustainability of nuclear power. To do so, we model and simulate novel reactor designs
+boasting inherent safety features (i.e. accident tolerant fuels or non-voiding 
+coolants) and sustainable fuel cycles (i.e. high fuel utilization, online 
+reprocessing strategies). These analyses rely on developing computational 
+methods that navigate trade-offs between accuracy and compute time, with 
+special treatment of coupled feedbacks among thermal-hydraulic phenomena, 
+neutron transport, and fuel performance.
 Simulations which faithfully capture this coupling at realistic spatial and
 temporal resolution are only possible with the aid of high performance
-computing resources.  To solve these large systems of partial differential
-equations on a finite element mesh in a fully-coupled, implicit way, the MOOSE
-framework was designed to take advantage of high performance computing
-capability.  The framework conducts fully implicit physics coupling with
-Newton-Krylov based solver methods and sophisticated automatic
-adaptive meshing.  These simulations are memory intensive, so the exceptional
-memory capability of the Blue Waters resource will be essential to performant
-simulation times. It is also important to note that rendering visualizations of
-the results can be computationally intensive was well.
+computing resources such as the Blue Waters supercomputing facility which this 
+group relies on.
 
-\paragraph{Progress}
+\paragraph{The state of the art} in advanced nuclear reactor simulation (e.g. the 
+CASL DOE innovation hub) is focused on traditional light water reactors.  The 
+\gls{ARFC} group seeks to extend that state of the art by enabling similarly high 
+fidelity simulation of more advanced reactor designs through development of 
+models and tools applicable to their unique materials, geometries, and physics. 
 
-Initial simulations of the MSRE have been conducted both locally on the desktop
-computer scale and on Blue Waters. These have been steady state simulations and
-have occupied up to many hundreds of nodes simultaneously. This talk will
-describe how coupling between neutronics and thermal hydraulics have been
-established in the Moltres tool as well as the validation and verification
-efforts which are ongoing.
 
-In the near term, these steady state calculations will provide the initial
-conditions for full core reactor transient simulations. Such simulations
-commonly occupy tens of thousands of CPU cores at a time and vary in completion
-time. The MOOSE framework is shown to scale very well up to 10,000 cores.
-Transient and multi-scale simulations, which require greater capability per
-simulation, may occupy up to 100,000 CPU cores at a time. Such transient
-simulations will evaluate the safety performance of advanced reactors in severe
-(beyond design basis) accidents.
+\paragraph{Our current work} models the transient, three-dimensional, multi-scale physics
+of promising molten salt reactors such as the \gls{MSRE}, \gls{MSBR}, and \gls{FHR} designs.  
+This work is well underway with our development of the Moltres application 
+\cite{lindsay_moltres_2017}, which relies on the \gls{MOOSE} framework \cite{gaston_moose:_2009}. 
+Initial steady state simulations of the \gls{MSRE} have leveraged the Blue Waters 
+supercomputer to establish successful coupling between neutronics and thermal 
+hydraulics using the \gls{ARFC}-developed Moltres tool. Validation and 
+verification efforts are ongoing and upcoming transient simulations seek to explore 
+parameters that might increase \gls{LOFC}, \gls{LOHS}, and \gls{RIA} 
+survivability in novel reactors.
 
-\paragraph{Potential Impact}
-Detailed spatially and temporally resolved neutron flux and
-temperature distributions can improve designs, help characterize
-performance, inform reactor safety margins, and enable validation of numerical
-modeling techniques for unique physics.
-Future work may include similarly challenging materials and geometries such as
-those in sodium cooled, gas cooled, and very high temperature reactor designs
-which also boast improved safety and sustainability.
+\paragraph{Potential areas of future collaboration include:}
+\begin{itemize}
+        \item validation collaborations between \gls{ARFC} and materials scientists, especially 
+                experimentalists interested in high flux, high heat performance of 
+                molten fluoride salts, liquid metals, graphites, silicon 
+                carbides, and uranium nitrides
+        \item verification benchmarking collaborations between \gls{ARFC} and computationalists 
+                interested in comparing methods for coupled neutronics and 
+                thermal hydraulics in fluid fuelled reactors
+        \item modeling collaborations between \gls{ARFC} and neutron transport 
+                or thermal hydraulics theorists 
+        \item algorithmic and data science collaborations on accelerating monte 
+                carlo neutron transport calculations with machine learning or 
+                information theoretic technicques
+\end{itemize}
+
+\paragraph{Our future work} will approach similarly challenging materials and geometries such as those in sodium cooled, gas cooled, and very high temperature reactor designs which also boast improved safety and sustainability.  
+
+
+
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{2017-zjui-prop}
+
 
 \end{document}
+
