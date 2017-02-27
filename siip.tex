@@ -1,0 +1,139 @@
+%        File: siip.tex
+%     Created: Mon Feb 27 08:00 AM 2017 C
+% Last Change: Mon Feb 27 08:00 AM 2017 C
+%
+\documentclass[11pt]{article}
+
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+\usepackage{fancyhdr}
+\usepackage{pagecounting}
+\usepackage[dvips]{color}
+\usepackage{graphicx}
+
+% Trying to bold my name in the bib
+\usepackage{xstring}
+\def\FormatName#1{%
+          \IfSubStr{#1}{Huff}{\textbf{#1}}{#1}%
+          }
+
+          \usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+          \newcommand\bb[1]{\mbox{\em #1}}
+          \def\baselinestretch{1.1}
+          %\pagestyle{empty}
+          \newcommand{\hsp}{\hspace*{\parindent}}
+          \definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+          \newcommand{\authorname}{Kathryn~D.~Huff }
+          \newcommand{\authoremail}{katyhuff@illinois.edu}
+          \newcommand{\authorsite}{arfc.npre.illinois.edu}
+
+          \begin{document}
+
+          \pagestyle{fancy}
+          %\pagenumbering{gobble}
+          %\fancyhead[location]{text}
+          % Leave Left and Right Header empty.
+          %\lhead{}
+          %\rhead{}
+          \lhead{\textcolor{gray}{Investigator: Prof. \authorname\\\authoremail}}
+          \rhead{\textcolor{gray}{Advanced Reactors and Fuel Cycles\\Dept. of Nuclear, 
+          Plasma, and Radiological Engineering}}
+          %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
+          \renewcommand{\headrulewidth}{0pt}
+          \renewcommand{\footrulewidth}{0pt}
+          \fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
+
+          \section{The Problem}
+          As you read this, thousands of professors in the United States are 
+          simultaneously preparing lessons on solving a conduction equation. They are doing so largely 
+          without recieving feedback from one another or directly building on 
+          one another's experience \cite{wilson_software_2014}.  It's distressing but 
+          true that professors spend 10-40\% of 
+          their time each year repeating curriculum development efforts already 
+          tackled by numerous colleagues within their disciplines. What's worse 
+          is that these efforts are rarely, if ever, reviewed by, shared with, 
+          or extended upon by others.
+
+          \section{The Proposed Solution}
+          We propose a proof-of-concept for collaborative, open source, 
+          curriculum development that will break down barriers between 
+          classrooms and improve the transfer of lessons learned across universities.
+          
+          The goal will be to explore whether curriculum development can 
+          operate like open source software development does, drawing on a 
+          community of experts toward creating a shared core resource. In open 
+          source software, developers share code revisions in online 
+          repositories. In a typical project, the main 'fork' holds the 
+          official copy of the software package. Developers each have their own 
+          forks, copies of the repository, where they are able to make changes 
+          on their own. 
+
+          This initiative already involves a 
+          few peer professors -- faculty in Nuclear Engineering from UC 
+          Berkeley, U. Wisconsin at Madison, Kansas State, U. South Carolina, 
+          and U. Tennessee-Knoxville. We all use GitHub \cite{github} to store, 
+          revise, and collaborate on research, especially source code. A few 
+          of us have already started to host our course curricula online as 
+          well, but these are typically single author repositories \cite{}.
+
+          The participants will collaborate on a master set of learning 
+          modules} for a common upper-division course in nuclear engineering : 
+          The Nuclear Fuel Cycle.  The curriculum will be hosted on GitHub, 
+          used by all of us, and improved continually as we learn and grow as 
+          instructors. 
+
+
+
+          \paragraph{Each learning module} may include active in-class exercises, 
+          presentation notes, homework problems, project descriptions, and 
+          evaluation tools. 
+          
+          However, curriculum is not the same as source code, because each 
+          instructor wants and deserves to impart their own style of teaching 
+          (and corny jokes) on their instruction. This challenge has been 
+          encountered by collaborative instruction organizations such as 
+          Software Carpentry, in which forks of the original material diverge 
+          without any strong incentive for contribution back to the master 
+          material \cite{wilson_software_2014}.
+
+          This proposal suggests that fine-grained modularity and a clear 
+          dependency graph may assist in overcoming this goal. Further, a small 
+          and devoted group of like-minded nuclear engineering professors 
+          should be able to compromise on a cohesive set of modular materials 
+          that can be mixed and matched according to individual preference. 
+          This work could provide an important proof of concept for groups of 
+          instructors willing to collaborate on open source curriculum for:
+
+          - core courses with many sections in a single university
+          - niche courses taught by a select group of professors across 
+          universities
+          - fundamental courses in small fields (like nuclear engineering)
+
+
+          Why do educators not diff, patch, and merge one another's . 
+          Collaboratively construct and improve lesson materials. 
+         
+          Scientists are more than happy to build upon one another's work, form 
+          collaborations with others in their field. But, 
+          when it comes to educating, where is the sharing of lessons learned 
+          and collaboration? 
+
+          \section{The Potential Impact}
+          \cite{wilson_software_2014}.
+
+          Doing code review at the end of the work isn't useful. What works is 
+          incremental code review. This proposal suspects that the same is true 
+          for curriculum review. 
+          \cite{wilson_software_2014}.
+
+          Education is an inherently distributed system, but this need not be a 
+          hinderance to collaboration.
+
+          \bibliographystyle{katyunsrt}
+          \bibliography{bibliography}
+
+          \end{document}
+
+
