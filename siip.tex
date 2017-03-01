@@ -39,8 +39,9 @@
           % Leave Left and Right Header empty.
           %\lhead{}
           %\rhead{}
-          \lhead{\textcolor{gray}{Investigator: Prof. \authorname\\\authoremail}}
-          \rhead{\textcolor{gray}{Advanced Reactors and Fuel Cycles\\Dept. of Nuclear, 
+          \lhead{\textcolor{gray}{Investigator: Prof. \authorname 
+          <\authoremail>}}
+          \rhead{\textcolor{gray}{SIIP Pre-Proposal\\Dept. of Nuclear, 
           Plasma, and Radiological Engineering}}
           %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
           \renewcommand{\headrulewidth}{0pt}
@@ -49,33 +50,52 @@
 
           \section{The Problem}
           As you read this, thousands of professors in the United States are 
-          simultaneously preparing lessons on solving a conduction equation. 
+          simultaneously preparing lessons on transposing a matrix.
           They are doing so largely without recieving feedback from one another 
           or directly building on one another's experience 
-          \cite{wilson_software_2014}.  It's distressing but true that 
-          professors spend 10-40\% of their time each year repeating curriculum 
-          development efforts already tackled by numerous colleagues within 
-          their disciplines. What's worse is that these efforts are rarely, if 
-          ever, reviewed by, shared with, or extended upon by others.
+          \cite{wilson_software_2014}. In this way, professors spend an enormous amount of time 
+          duplicating curriculum development efforts already tackled 
+          by colleagues. What's worse is that these efforts are 
+          rarely, if ever, reviewed by, shared with, or extended upon by 
+          peers.
+          
+          Wikipedia and open source software development provide excellent 
+          examples of distributed expert collaboration and dynamic peer review 
+          on a master product. So, why aren't professors sharing their lesson 
+          materials online, collaborating on canonical lesson sets, 
+          diffing and merging similar lessons, and reviewing one another's 
+          work? \emph{Our goal is to explore the possibility that curriculum development for 
+          university courses can operate like open source software development 
+          does.}
 
           \section{The Proposed Solution}
           We propose a proof-of-concept for collaborative, open source, 
-          curriculum development that will break down barriers between 
-          classrooms and improve the transfer of lessons learned across universities.
+          curriculum development to improve the transfer of lessons learned 
+          between instructors of the same course (either at a single university or 
+          among different campuses). This small-scale prototype collaboration 
+          will provide a framework which could be adopted for collaboration among faculty 
+          teaching courses with an inherently larger scale (e.g. CS101).
           
-          The goal will be to explore whether curriculum development can 
-          operate like open source software development does, drawing on a 
-          community of experts toward creating a shared core resource. In open 
-          source software, developers share code revisions in online 
-          repositories. In a typical project, the main ``fork'' holds the 
-          official copy of the software package. Developers each have their own 
-          forks, copies of the repository, where they can work on features and 
-          bug fixes. When those features and bug fixes are ready for prime 
-          time, the developer makes a ``pull request'' to the main fork, it is 
+          
+          This initiative already involves a few peer professors. Six faculty 
+          in Nuclear Engineering from UC Berkeley, the University of Wisconsin 
+          at Madison, Kansas State, U. South Carolina, and U. 
+          Tennessee-Knoxville are involved. We all use GitHub \cite{github} to 
+          store, revise, and collaborate on research, especially source code. A 
+          few of us have already started to host our course curricula online as 
+          well, but these are typically single author repositories 
+          \cite{skutnik,wilson,slaybaugh,scopatz,borelli,roberts}.
+
+          \paragraph{In a typical open source project,} a main copy of the 
+          repository (or ``fork'') holds the 
+          official copy of the software package. Individual developers each have their own 
+          forks where they can work on features and 
+          bug fixes. When the developer makes changes that are ready for prime 
+          time, they make a ``pull request'' to the main fork, it is 
           reviewed by their collaborators, and it is eventually merged into the 
-          main fork where it can be used by all. 
-
-
+          main fork where it can be used by all. Figures 
+          \ref{fig:sub1} and \ref{fig:sub2} show how the workflow used for many 
+          open source projects can be leveraged toward course development.
 
           \begin{figure}
                   \centering
@@ -91,58 +111,35 @@
   \caption{This adaptation imagines the process in the context of learning module development, using the same git version control system and GitHub repository hosting framework.}
                                   \label{fig:sub2}
                   \end{subfigure}
-                  \caption{A figure with two subfigures}
                   \label{fig:test}
           \end{figure}
 
+          Such projects occur drawing on a community of experts toward 
+          creating a robust shared resource. In open source software, 
+          developers share code revisions in online repositories, review one 
+          anothers work, and contribute back their own improvements to the main 
+          project. 
 
-          This initiative already involves a few peer professors. Six faculty 
-          in Nuclear Engineering from UC Berkeley, the University of Wisconsin 
-          at Madison, Kansas State, U. South Carolina, and U. 
-          Tennessee-Knoxville are involved. We all use GitHub \cite{github} to 
-          store, revise, and collaborate on research, especially source code. A 
-          few of us have already started to host our course curricula online as 
-          well, but these are typically single author repositories 
-          \cite{skutnik,wilson,slaybaugh,scopatz,borelli,roberts}.
 
-          The participants will collaborate on a master set of learning 
+          \paragraph{The participants will collaborate} on a master set of learning 
           modules for an upper-division course in nuclear engineering : 
-          The Nuclear Fuel Cycle.  The curriculum will be hosted on GitHub, 
-          used by all of us, and improved continually as we learn and grow as 
+          The Nuclear Fuel Cycle. In the near term, we will develop fine 
+          grained learning modules which may be mixed and matched to meet the 
+          learning . The curriculum will be hosted on GitHub, 
+          test by all of us, and improved continually as we learn and grow as 
           instructors. 
 
           \paragraph{Each learning module} may include active in-class exercises, 
           presentation notes, homework problems, project descriptions, and 
           evaluation tools. 
-          
-          However, curriculum is not the same as source code, because each 
-          instructor wants and deserves to impart their own style of teaching 
-          (and corny jokes) on their instruction. This challenge has been 
-          encountered by collaborative instruction organizations such as 
-          Software Carpentry, in which forks of the original material diverge 
+
+          \paragraph{This challenge has been encountered} by collaborative 
+          instruction organizations already. Most notable among these is 
+          Software Carpentry, in which experience shows 
+          \cite{wilson_lessons_2014} forks of the original material tend to diverge 
           without any strong incentive for contribution back to the master 
           material \cite{wilson_software_2014}.
 
-          This proposal suggests that fine-grained modularity and a clear 
-          dependency graph may assist in overcoming this goal. Further, a small 
-          and devoted group of like-minded nuclear engineering professors 
-          should be able to compromise on a cohesive set of modular materials 
-          that can be mixed and matched according to individual preference. 
-          This work could provide an important proof of concept for groups of 
-          instructors willing to collaborate on open source curriculum for:
-
-          - core courses with many sections in a single university
-          - niche courses taught by a select group of professors across 
-          universities
-          - fundamental courses in small fields (like nuclear engineering)
-
-          Why do educators not diff, patch, and merge one another's . 
-          Collaboratively construct and improve lesson materials. 
-         
-          Scientists are more than happy to build upon one another's work, form 
-          collaborations with others in their field. But, 
-          when it comes to educating, where is the sharing of lessons learned 
-          and collaboration? 
 
           \section{The Potential Impact}
           \cite{wilson_software_2014}.
@@ -154,6 +151,28 @@
 
           Education is an inherently distributed system, but this need not be a 
           hinderance to collaboration.
+
+          \paragraph{We expect that} fine-grained modularity of lesson components and a clear dependency graph of prerequisite modules for each lesson may assist in overcoming this goal. Further, a small 
+          and devoted group of like-minded nuclear engineering professors 
+          should be able to compromise on a cohesive set of modular materials 
+          that can be mixed and matched according to individual preference. 
+          
+          This work will provide an important proof of concept for groups of 
+          instructors willing to collaborate on open source curriculum for:
+          \begin{itemize}
+                  \item core courses with many sections in a single university
+                  \item niche courses taught by a select group of professors across 
+          universities
+                  \item fundamental courses in small fields (e.g. nuclear engineering)
+          \end{itemize}
+
+          Through exploration of the option space, we will arrive at a raw 
+          curriculum format for each type of learning module.  
+
+          Scientists are more than happy to build upon one another's work, form 
+          collaborations with others in their field. But, 
+          when it comes to educating, where is the sharing of lessons learned 
+          and collaboration? 
 
           \bibliographystyle{katyunsrt}
           \bibliography{bibliography}
