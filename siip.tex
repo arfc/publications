@@ -11,6 +11,8 @@
 \usepackage{pagecounting}
 \usepackage[dvips]{color}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % Trying to bold my name in the bib
 \usepackage{xstring}
@@ -47,14 +49,14 @@
 
           \section{The Problem}
           As you read this, thousands of professors in the United States are 
-          simultaneously preparing lessons on solving a conduction equation. They are doing so largely 
-          without recieving feedback from one another or directly building on 
-          one another's experience \cite{wilson_software_2014}.  It's distressing but 
-          true that professors spend 10-40\% of 
-          their time each year repeating curriculum development efforts already 
-          tackled by numerous colleagues within their disciplines. What's worse 
-          is that these efforts are rarely, if ever, reviewed by, shared with, 
-          or extended upon by others.
+          simultaneously preparing lessons on solving a conduction equation. 
+          They are doing so largely without recieving feedback from one another 
+          or directly building on one another's experience 
+          \cite{wilson_software_2014}.  It's distressing but true that 
+          professors spend 10-40\% of their time each year repeating curriculum 
+          development efforts already tackled by numerous colleagues within 
+          their disciplines. What's worse is that these efforts are rarely, if 
+          ever, reviewed by, shared with, or extended upon by others.
 
           \section{The Proposed Solution}
           We propose a proof-of-concept for collaborative, open source, 
@@ -65,26 +67,49 @@
           operate like open source software development does, drawing on a 
           community of experts toward creating a shared core resource. In open 
           source software, developers share code revisions in online 
-          repositories. In a typical project, the main 'fork' holds the 
+          repositories. In a typical project, the main ``fork'' holds the 
           official copy of the software package. Developers each have their own 
-          forks, copies of the repository, where they are able to make changes 
-          on their own. 
+          forks, copies of the repository, where they can work on features and 
+          bug fixes. When those features and bug fixes are ready for prime 
+          time, the developer makes a ``pull request'' to the main fork, it is 
+          reviewed by their collaborators, and it is eventually merged into the 
+          main fork where it can be used by all. 
 
-          This initiative already involves a 
-          few peer professors -- faculty in Nuclear Engineering from UC 
-          Berkeley, U. Wisconsin at Madison, Kansas State, U. South Carolina, 
-          and U. Tennessee-Knoxville. We all use GitHub \cite{github} to store, 
-          revise, and collaborate on research, especially source code. A few 
-          of us have already started to host our course curricula online as 
-          well, but these are typically single author repositories \cite{}.
+
+
+          \begin{figure}
+                  \centering
+                  \begin{subfigure}{.4\textwidth}
+                            \centering
+                              \includegraphics[width=.8\linewidth]{git-flow}
+        \caption{This figure, from \cite{scopatz_effective_2016}, captures a process, often called Git Flow, through which a new feature or bug fix enters a piece of open source software \cite{scopatz_effective_2016}.}
+                                  \label{fig:sub1}
+                  \end{subfigure}\hfill%
+                  \begin{subfigure}{.4\textwidth}
+                            \centering
+                              \includegraphics[width=.8\linewidth]{siip-flow}
+  \caption{This adaptation imagines the process in the context of learning module development, using the same git version control system and GitHub repository hosting framework.}
+                                  \label{fig:sub2}
+                  \end{subfigure}
+                  \caption{A figure with two subfigures}
+                  \label{fig:test}
+          \end{figure}
+
+
+          This initiative already involves a few peer professors. Six faculty 
+          in Nuclear Engineering from UC Berkeley, the University of Wisconsin 
+          at Madison, Kansas State, U. South Carolina, and U. 
+          Tennessee-Knoxville are involved. We all use GitHub \cite{github} to 
+          store, revise, and collaborate on research, especially source code. A 
+          few of us have already started to host our course curricula online as 
+          well, but these are typically single author repositories 
+          \cite{skutnik,wilson,slaybaugh,scopatz,borelli,roberts}.
 
           The participants will collaborate on a master set of learning 
-          modules} for a common upper-division course in nuclear engineering : 
+          modules for an upper-division course in nuclear engineering : 
           The Nuclear Fuel Cycle.  The curriculum will be hosted on GitHub, 
           used by all of us, and improved continually as we learn and grow as 
           instructors. 
-
-
 
           \paragraph{Each learning module} may include active in-class exercises, 
           presentation notes, homework problems, project descriptions, and 
@@ -111,7 +136,6 @@
           universities
           - fundamental courses in small fields (like nuclear engineering)
 
-
           Why do educators not diff, patch, and merge one another's . 
           Collaboratively construct and improve lesson materials. 
          
@@ -134,6 +158,11 @@
           \bibliographystyle{katyunsrt}
           \bibliography{bibliography}
 
+          \section{Departmental Support}
+          The Department of Nuclear, Plasma, and Radiological Engineering will 
+          support this work with relese time through startup funds. 
+          Additionally, NPRE will support workshop activities through 
+          administrative effort and by providing space.
           \end{document}
 
 
