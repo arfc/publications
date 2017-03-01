@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
 
 % Trying to bold my name in the bib
 \usepackage{xstring}
@@ -39,54 +40,168 @@
           % Leave Left and Right Header empty.
           %\lhead{}
           %\rhead{}
-          \lhead{\textcolor{gray}{Investigator: Prof. \authorname 
-          <\authoremail>}}
-          \rhead{\textcolor{gray}{SIIP Pre-Proposal\\Dept. of Nuclear, 
-          Plasma, and Radiological Engineering}}
+          \lhead{\textcolor{gray}{PI: \authorname (NPRE)\\\authoremail}}
+          \rhead{\textcolor{gray}{SIIP Pre-Proposal\\}}
           %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
           \renewcommand{\headrulewidth}{0pt}
           \renewcommand{\footrulewidth}{0pt}
           \fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
 
-          \section{The Problem}
-          As you read this, thousands of professors in the United States are 
+          \subsection*{Problem}
+          At this very moment, hundreds of professors in the United States are 
           simultaneously preparing lessons on transposing a matrix.
-          They are doing so largely without recieving feedback from one another 
+          They are doing so largely without receiving feedback from one another 
           or directly building on one another's experience 
-          \cite{wilson_software_2014}. In this way, professors spend an enormous amount of time 
-          duplicating curriculum development efforts already tackled 
-          by colleagues. What's worse is that these efforts are 
-          rarely, if ever, reviewed by, shared with, or extended upon by 
-          peers.
+          \cite{green_building_2014}. In this way, 
+          professors spend an enormous amount of time duplicating curriculum 
+          development efforts already tackled by colleagues. What's worse is 
+          that these efforts are rarely, if ever, reviewed by, shared with, or 
+          extended upon by peers.
           
-          Wikipedia and open source software development provide excellent 
-          examples of distributed expert collaboration and dynamic peer review 
-          on a master product. So, why aren't professors sharing their lesson 
-          materials online, collaborating on canonical lesson sets, 
-          diffing and merging similar lessons, and reviewing one another's 
-          work? \emph{Our goal is to explore the possibility that curriculum development for 
+          Open source software development provides an excellent 
+          example of a possible solution.
+          These communities have mastered distributed expert collaboration, 
+          dynamic peer review, and de-duplication of effort. In open source 
+          software, developers share code revisions in online repositories, 
+          review one another's work in small chunks \cite{wilson_best_2014}, 
+          and contribute back their own improvements to the main project.
+
+          So, why aren't professors sharing their lesson materials online, 
+          collaborating on canonical lesson sets, diffing and merging similar 
+          lessons, and reviewing one another's learning materials? \textbf{Our 
+          goal is to explore the possibility that curriculum development for 
           university courses can operate like open source software development 
           does.}
+           
+          Attempts at this have been made before. Most notable among 
+          these is Software Carpentry (which with the PI is quite involved). 
+          Unfortunately, our experience showed that 
+          forks of the original material tend to diverge without any strong 
+          incentive for contribution back to the master material 
+          \cite{wilson_software_2014,wilson_software_2014-1}. We expect that fine-grained modularity 
+          of lesson components and a clear dependency graph of prerequisite 
+          modules for each lesson may assist in overcoming the challenges 
+          encountered by Software Carpentry and others.
 
-          \section{The Proposed Solution}
-          We propose a proof-of-concept for collaborative, open source, 
-          curriculum development to improve the transfer of lessons learned 
-          between instructors of the same course (either at a single university or 
-          among different campuses). This small-scale prototype collaboration 
-          will provide a framework which could be adopted for collaboration among faculty 
-          teaching courses with an inherently larger scale (e.g. CS101).
-          
-          
-          This initiative already involves a few peer professors. Six faculty 
-          in Nuclear Engineering from UC Berkeley, the University of Wisconsin 
-          at Madison, Kansas State, U. South Carolina, and U. 
-          Tennessee-Knoxville are involved. We all use GitHub \cite{github} to 
-          store, revise, and collaborate on research, especially source code. A 
-          few of us have already started to host our course curricula online as 
-          well, but these are typically single author repositories 
-          \cite{skutnik,wilson,slaybaugh,scopatz,borelli,roberts}.
+          \subsection*{Proposed Solution}
+          We propose a small-scale proof-of-concept for collaborative, open 
+          source, curriculum development to improve the transfer of lessons 
+          learned between instructors of the same course (either at a single 
+          university or among different campuses). This prototype collaboration 
+          will provide a template which could be adopted for collaboration 
+          among faculty teaching courses with an inherently larger scale (e.g. 
+          CS101).
 
-          \paragraph{In a typical open source project,} a main copy of the 
+          Faculty in Nuclear Engineering from four institutions\footnote{P.  
+          Wilson at (UW Madison),Steven Skutnik (UT Knoxville), J. Roberts 
+          (Kansas State University), Anthony Scopatz (University of South 
+          Carolina)} have agreed to be participants in 
+          this prototyping effort. We all currently use 
+          \href{https://github.com}{GitHub} to store, 
+          revise, and collaborate on research, especially source code. 
+          Additionally, this select group already started to host our course 
+          curricula online as well, but these are typically single author 
+          repositories (e.g. \cite{huff_npre412_2017}).
+
+          The participants will collaborate on a master set of learning 
+          modules for an upper-division course in nuclear engineering : 
+          The Nuclear Fuel Cycle. In the near term, we will develop fine 
+          grained lessons which may be mixed and matched to meet the 
+          learning objectives. The curriculum will be hosted on GitHub, 
+          tested by all of us, and improved continually.
+
+          \paragraph{A two-day kick-off workshop (\$15K)} at UIUC will allow the 
+          participants to sketch the initial framework of 
+          the collaboration and coordinate logistics. The workshop will 
+          deliver:
+
+          \begin{itemize} 
+                  \item learning objectives\cite{bloom_bloom_1984} and a concept 
+                          map\cite{novak_concept_1990} for the course
+                  \item a list of fine-grained lesson topics
+                  \item a directed acyclic graph describing dependencies among 
+                          lessons
+                  \item individual assignments for curriculum development
+                  \item decisions to adopt specific raw formats for lesson content
+                        (markdown vs. \LaTeX, Jupyter vs MATLAB, etc.)
+                  \item a repository structure for organizing the lesson 
+                          material (at this stage, compatibility with 
+                          frameworks like RELATE 
+                          \cite{kloeckner_relate_2017,kloeckner_relate_2017} 
+                          and tools like PrarieLearn 
+                          \cite{west_prairielearn:_2015} will be considered)
+          \end{itemize} 
+
+          \paragraph{Between Workshops} work will commence on developing 
+          lessons. These lessons will be submitted by pull request to the main 
+          repository and each lesson will include:
+          \begin{itemize} 
+                  \item associated learning objectives (identified previously)
+                \item content (e.g. speaking notes, presentation material, 
+                        derivations, worked examples, active learning  
+                          exercises, external readings, videos, images)
+                  \item learning assessments (e.g. project descriptions, exam questions) 
+          \end{itemize} 
+
+          Interactions will commence primarily via issues, pull requests, and 
+          reviews on GitHub during this time. Meanwhile, monthly video 
+          conferences will help to spur high-level conversation onward.
+
+          \paragraph{A two-day retrospective workshop (\$15K)} at UIUC will wrap up the 
+          project. Discussion concerning the process will allow reflection as 
+          well as a collection of lessons learned.
+          Experiences live testing the developed course material (for example 
+          in NPRE412 at UIUC in Fall 2017) will be shared and suggested 
+          improvements will be captures as feature requests on GitHub.  The 
+          successful parts of the process will be captured a template 
+          repository and collaboration instruction manual, intended for use by 
+          other groups of faculty seeking to collaborate in a similar way. 
+
+          \subsection*{Potential Impact}
+          
+          This work will provide an important proof of concept for groups of 
+          instructors willing to collaborate on open source curriculum for:
+          \begin{itemize}
+                  \item core courses with many subsections in a single university
+                  \item niche courses taught by a select group of professors across 
+          universities
+                  \item fundamental courses in small fields (e.g. nuclear engineering)
+          \end{itemize}
+
+          \subsection*{Departmental Support}
+          The Department of Nuclear, Plasma, and Radiological Engineering will 
+          support this work in kind with release time for Kathryn Huff through 
+          her Start-Up funds.  Additionally, NPRE will support workshop activities 
+          with administrative effort and by providing space. Finally, 
+          collaborating external participants will contribute in kind with 
+          summer time hours.
+
+
+          \bibliographystyle{katyunsrt}
+          \bibliography{2017-siip}
+
+          \end{document}
+
+
+\iffalse
+          New features are described in 
+          tickets and discussed before implementation. Small, atomic changes 
+          are reviewed before merging. Communities of practice are nurtured.
+
+          Doing code review at the end of the work isn't useful. What works is 
+          incremental code review. This proposal suspects that the same is true 
+          for curriculum review. 
+          \cite{wilson_software_2014}.
+
+          Education is an inherently distributed system, but this need not be a 
+          hinderance to collaboration.
+
+          Scientists are more than happy to build upon one another's work, form 
+          collaborations with others in their field. But, 
+          when it comes to educating, where is the sharing of lessons learned 
+          and collaboration? 
+
+\paragraph{In a typical open source project,} a main copy of the 
           repository (or ``fork'') holds the 
           official copy of the software package. Individual developers each have their own 
           forks where they can work on features and 
@@ -114,74 +229,4 @@
                   \label{fig:test}
           \end{figure}
 
-          Such projects occur drawing on a community of experts toward 
-          creating a robust shared resource. In open source software, 
-          developers share code revisions in online repositories, review one 
-          anothers work, and contribute back their own improvements to the main 
-          project. 
-
-
-          \paragraph{The participants will collaborate} on a master set of learning 
-          modules for an upper-division course in nuclear engineering : 
-          The Nuclear Fuel Cycle. In the near term, we will develop fine 
-          grained learning modules which may be mixed and matched to meet the 
-          learning . The curriculum will be hosted on GitHub, 
-          test by all of us, and improved continually as we learn and grow as 
-          instructors. 
-
-          \paragraph{Each learning module} may include active in-class exercises, 
-          presentation notes, homework problems, project descriptions, and 
-          evaluation tools. 
-
-          \paragraph{This challenge has been encountered} by collaborative 
-          instruction organizations already. Most notable among these is 
-          Software Carpentry, in which experience shows 
-          \cite{wilson_lessons_2014} forks of the original material tend to diverge 
-          without any strong incentive for contribution back to the master 
-          material \cite{wilson_software_2014}.
-
-
-          \section{The Potential Impact}
-          \cite{wilson_software_2014}.
-
-          Doing code review at the end of the work isn't useful. What works is 
-          incremental code review. This proposal suspects that the same is true 
-          for curriculum review. 
-          \cite{wilson_software_2014}.
-
-          Education is an inherently distributed system, but this need not be a 
-          hinderance to collaboration.
-
-          \paragraph{We expect that} fine-grained modularity of lesson components and a clear dependency graph of prerequisite modules for each lesson may assist in overcoming this goal. Further, a small 
-          and devoted group of like-minded nuclear engineering professors 
-          should be able to compromise on a cohesive set of modular materials 
-          that can be mixed and matched according to individual preference. 
-          
-          This work will provide an important proof of concept for groups of 
-          instructors willing to collaborate on open source curriculum for:
-          \begin{itemize}
-                  \item core courses with many sections in a single university
-                  \item niche courses taught by a select group of professors across 
-          universities
-                  \item fundamental courses in small fields (e.g. nuclear engineering)
-          \end{itemize}
-
-          Through exploration of the option space, we will arrive at a raw 
-          curriculum format for each type of learning module.  
-
-          Scientists are more than happy to build upon one another's work, form 
-          collaborations with others in their field. But, 
-          when it comes to educating, where is the sharing of lessons learned 
-          and collaboration? 
-
-          \bibliographystyle{katyunsrt}
-          \bibliography{bibliography}
-
-          \section{Departmental Support}
-          The Department of Nuclear, Plasma, and Radiological Engineering will 
-          support this work with relese time through startup funds. 
-          Additionally, NPRE will support workshop activities through 
-          administrative effort and by providing space.
-          \end{document}
-
-
+\fi
