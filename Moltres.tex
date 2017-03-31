@@ -50,19 +50,14 @@ Neutrons are described with time-dependent multi-group diffusion theory as shown
 in \cref{eq:neutrons}:
 
 \begin{equation}
-\frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
-+ \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
-\nu \Sigma_{g'}^f \phi_{g'}
 %% \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
 %% + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
-%% \nu \Sigma_{g'}^f \phi_{g'} + \sum_i^I \lambda_i \chi_g^{d,i} C_i
+%% \nu \Sigma_{g'}^f \phi_{g'}
+\frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
++ \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
+\nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
 \label{eq:neutrons}
 \end{equation}
-
-\textbf{Note that at present we do not have the neutron source term from decay
-  of delayed neutron precursors. Currently coupling with precursors is only one
-  way, e.g. precursors are a function of temperature and neutron flux and not
-  the other way around. This reverse coupling should be added before publication.}
 
 Delayed neutron precursors are described by \cref{eq:precursors}:
 
