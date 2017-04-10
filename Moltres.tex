@@ -44,7 +44,7 @@
 \begin{document}
 \maketitle
 
-\section{Model Description}
+\section{Governing Equations}
 
 Neutrons are described with time-dependent multi-group diffusion theory as shown
 in \cref{eq:neutrons}:
@@ -92,6 +92,10 @@ in the moderator. $Q_f$ is defined by:
 
 and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
 neutron irradiation in the moderator.
+
+Group constants are generated with either Serpent \cite{leppanen_serpent_2015}
+or Scale \cite{dehart_reactor_2011}. Temperature vs group constant interpolation
+tables are constructed separately for fuel and moderator regions.
 
 \section{Results \& Discussion}
 
