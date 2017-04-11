@@ -44,9 +44,49 @@
 \begin{document}
 \maketitle
 
-\section{Governing Equations}
+\section{Model Description}
 
-Neutrons are described with time-dependent multi-group diffusion theory as shown
+As a proof of concept and to ease resolution of strong transient gradients in
+temperature between fuel and moderator, the physical three dimensional problem
+is reduced to a two dimensional axisymmetric model. The model molten salt
+reactor is based on the \gls{MSRE}. To approximately simulate the lattice
+structure of the \gls{MSRE}, a geometry is constructed with 14 repeating
+fuel-moderator regions, as shown in \cref{fig:geom}. The fuel and moderator
+radii are chosen such that the resulting area/volume fraction of fuel is .225 as
+for the \gls{MSRE}.
+
+\begin{figure}
+  \centering
+  \includegraphics{geometry.eps}
+  \label{fig:geom}
+  \caption{A sketch of the \gls{MSR} model geometry}
+\end{figure}
+
+The model is implemented using the MOOSE \cite{gaston_physics-based_2015} application code
+Moltres. \cite{lindsayad_arfc/moltres_nodate} Building on the massively
+parallelizable MOOSE framework allows Moltres to be run on super-computing
+platforms like \gls{NCSA}'s Blue Waters. For some three-dimensional simulations
+(results not discussed here), the number of elements in the mesh and total
+number of degrees of freedom exceed one million and ten million respectively. To
+handle problems of this size, Moltres has been run on up to 608 cores. However,
+reducing the problem dimension from three to two and using a structured mesh
+that can be much more coarse in the axial direction allows problem solution to
+be carried out on a single core in under five minutes.
+
+The Moltres code-base currently includes kernels and boundary conditions for
+solving for neutron fluxes, temperature, and precursor concentrations. In MOOSE
+jargon, kernels are C++ classes that contain methods for computing residual and
+Jacobian contributions corresponding to individual piecies of governing
+equations. Developing the code-base in this way allows very modular construction
+of equation systems; e.g. the same kernel that is used to represent heat
+conduction can also be used to represent generic chemical diffusion. Moltres
+also features neutron and precursor ``actions.'' These actions enable automatic
+construction of the systems of equations for an arbitrary number of neutron and
+precursor groups. This means that as long as group constants are provided in an appropriate
+tabular form, a user only has to modify a couple of lines in a Moltres input
+file to change from say two to fourty-four neutron groups.
+
+In Moltres, neutrons are described with time-dependent multi-group diffusion theory as shown
 in \cref{eq:neutrons}:
 
 \begin{equation}
@@ -93,12 +133,87 @@ in the moderator. $Q_f$ is defined by:
 and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
 neutron irradiation in the moderator.
 
-Group constants are generated with either Serpent \cite{leppanen_serpent_2015}
-or Scale \cite{dehart_reactor_2011}. Temperature vs group constant interpolation
-tables are constructed separately for fuel and moderator regions.
+Reactor composition is based on the enriched uranium design for the \gls{MSRE}
+and is given in \cref{table:comp}. \cite{robertson_msre_1965} Group constants
+are generated with either Serpent \cite{leppanen_serpent_2015} or Scale
+\cite{dehart_reactor_2011}. Temperature vs group constant interpolation tables
+are constructed separately for fuel and moderator regions.
+
+\begin{table}[htpb]
+  \begin{center}
+    \begin{tabular}{l | r}
+      Component & Mass Fraction\\\hline\hline
+      Li-7 & .1090\\
+      Li-6 & 5$\cdot$10$^{-6}$\\
+      F-19 & .6680\\
+      Be-9 & .0627\\
+      U-235 & .0167\\
+      U-238 & .0344\\
+    \end{tabular}
+  \end{center}
+  \caption{Fuel salt composition based on enriched Uranium \gls{MSRE} design \cite{robertson_msre_1965}
+  \label{table:comp}
+\end{table}
+
 
 \section{Results \& Discussion}
 
+Group fluxes are shown in \cref{fig:group1,fig:group2}. The effect of the vacuum
+boundary conditions is shown clearly in the cosinusoidal shapes in radial and
+axial directions. Striations are observed in both fast and thermal fluxes, with
+the fast group preferring the fuel and the thermal group preferring the moderator.
+
+\begin{figure}
+  \centering
+  \includegraphics{auto_diff_rho_group1.eps}
+  \caption{Group 1 flux}
+  \label{fig:group1}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics{auto_diff_rho_group2.eps}
+  \caption{Group 2 flux}
+  \label{fig:group2}
+\end{figure}
+
+The effect of the advecting fuel is seen in {fig:temp} where the temperature
+rises steadily with increasing z-coordinate. As one might expect, the temperature
+gradient is negative in the radial direction.
+
+\begin{figure}
+  \centering
+  \includegraphics{auto_diff_rho_temp.eps}
+  \caption{Temperature}
+  \label{fig:temp}
+\end{figure}
+
+\Cref{fig:pre1} shows the concentration of the longest lived precursor in the
+reactor. Not surprisingly, the channel concentrations are higher in fuel channels
+with higher neutron fluxes and consequently a higher number of fission
+events. Because of the small decay constant of the precursor, the maximum
+concentration in any given channel occurs at the core outlet.
+
+% Fix me! Precursor concentrations have goofy scaling
+\begin{figure}
+  \centering
+  \includegraphics{auto_diff_rho_pre1.eps}
+  \caption{Longest lived precursor concentration}
+  \label{fig:pre1}
+\end{figure}
+
+With its much larger decay constant, the sixth and last precursor has its
+maximum concentration around the center-plane of the reactor as shown in
+\cref{fig:pre6}. As for all other precursors, its concentration decreases with
+increasing radius and decreasing neutron flux.
+
+% Fix me! Precursor concentrations have goofy scaling
+\begin{figure}
+  \centering
+  \includegraphics{auto_diff_rho_pre6.eps}
+  \caption{Shortest lived precursor concentration}
+  \label{fig:pre6}
+\end{figure}
 
 \FloatBarrier
 \clearpage
