@@ -26,6 +26,7 @@
 \makeglossaries
 % cleveref only behaves if after hyperref & glossaries
 \usepackage{cleveref}
+\usepackage{minted}
 
 \let\Oldsection\section
 \renewcommand{\section}{\FloatBarrier\Oldsection}
@@ -43,6 +44,70 @@
 
 \begin{document}
 \maketitle
+
+\section{Introduction}
+
+Molten salt reactors are a reactor concept that received considerable interest
+in the 1950s and 60s with development of the Aircraft Reactor Experiment and
+later the \gls{MSRE} at \gls{ORNL}. With the inclusion of the \gls{MSR} in the
+Generation-IV reactor designs, the reactor concept has gained renewed research
+interest in the past decade. Some of the advantages offered by the \gls{MSR}
+include lower fissile inventories, no radiation damage constraint on attainable
+fuel burn-up, no spent nuclear fuel, no requirement to fabricate and handle
+solid fuel, and a homogeneous isotopic composition of fuel in the
+reactor. \cite{noauthor_gen_2008} These characteristics give the \gls{MSR} a
+potentially unique capability for actinide burning and extension of fuel
+resources.
+
+\gls{MSR} modeling efforts are focused on description of steady-state and
+transient behavior. Krepel et. al. extended the in-house light-water reactor
+diffusion code DYN3D to consider drift of delayed neutron precursors alongside
+the reactor temperature profile, re-casting the extended code as
+DYN3D-MSR. \cite{krepel_dyn3d-msr_2007} DYN3D-MSR was compared against
+experimental \gls{MSRE} data and was then used to simulate local fuel channel
+blockages as well as local temperature perturbations. In a similar vein, Kophazi
+et. al. used iterative coupling between in-house three dimensional neutronic and
+one-dimensional heat conduction models DALTON and THERM to analyze the normal
+operational state of the \gls{MSRE} and some channel-blocking-incident
+transients. \cite{kophazi_development_2009} Additions in the Kophazi model
+included entrance effects of heat transfer coefficients as well as thermal
+coupling between fuel channels through moderator heat conduction. More recently,
+Cammi et. al. performed a 2D-axisymmetric single-channel analysis of the
+\gls{MSBR} using the commercial finite element package COMSOL
+Multiphysics. \cite{cammi_multi-physics_2011} Advances in this work included
+solution of the fuel salt velocity field, use of heterogeneous group constants
+in fuel and moderator regions, and employment of a software package (COMSOL)
+intrinsically designed for coupled multi-physics simulation.
+
+This work does not introduce new science relative to the current literature so
+much as it introduces a new open tool, Moltres
+\cite{lindsayad_arfc/moltres_nodate}, for \gls{MSR} simulation. Moltres is an
+open source code licensed under LGPL2 terms that aims to be a tool that can be
+freely used, studied, critiqued, and developed by the \gls{MSR}
+community. Though Moltres is devoted to an accurate description of \gls{MSR}
+physics, its openness is its defining characteristic and one that actually
+promotes the former quality through transparency and easy peer review. In the
+era of github and global development, open and modern software practices must be
+employed in order for nuclear engineering simulation capability to keep pace
+with that of fields like astronomy whose multitude of open simulation tools
+(Enzo, Gadget, Flash, Gizmo, Ramses, Mesa) allows them to be the darlings of
+scientific visualization and documentaries. In that vein Moltres uses
+\mintinline{latex}{git} for version control, integration testing to protect
+developed physics capabilities, and a C++ object-oriented design to allow easy
+class extensibility and minimal code duplication. Moreover, Moltres is built on
+top of the \gls{MOOSE} framework, \cite{gaston_physics-based_2015} another LGPL
+code that itself leans on LibMesh \cite{kirk2006libmesh}, a LGPL finite element
+library, and PetSc \cite{petsc-user-ref}, a BSD toolkit for solving nonlinear
+equations stemming from discretization of PDEs. MOOSE and LibMesh handle
+translation of application (Moltres) defined weak PDE forms into residual and
+Jacobian functions that are the inputs into PetSc Newton-Raphson solution
+routines. All codes use MPI for parallel communication and are easily deployed
+on massively-parallel cluster-computing platforms. MOOSE applications by default
+use monolithic and implicit methods that are ideal for closely-coupled and
+multi-scale physics. These methods are ideal for the model problem described in
+this work. However, it should be noted that Moltres can also use explicit
+time-stepping routines as well as segregated solution methods, making it more
+extensible to future problems.
 
 \section{Model Description}
 
