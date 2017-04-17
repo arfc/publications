@@ -51,7 +51,7 @@
           \renewcommand{\footrulewidth}{0pt}
           \fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
 
-          \subsection*{Problem}
+          \section*{Problem}
           At this very moment, hundreds of professors in the United States are 
           simultaneously preparing lessons on transposing a matrix.
           They are doing so largely without receiving feedback from one another 
@@ -87,17 +87,17 @@
           modules for each lesson may assist in overcoming the challenges 
           encountered by Software Carpentry and others.
 
-          \subsection*{Proposed Solution}
+          \section*{Proposed Solution}
           We propose a small-scale proof-of-concept for collaborative, open 
           source, curriculum development to improve the transfer of lessons 
           learned between instructors of the same course (either at a single 
           university or among different campuses). This prototype collaboration 
           will provide a template which could be adopted for collaboration 
           among faculty teaching courses with an inherently larger scale (e.g. 
-          CS101).
+          CS101)
 
-          Faculty in Nuclear Engineering from four institutions\footnote{P.  
-          Wilson at (UW Madison),Steven Skutnik (UT Knoxville), J. Roberts 
+          Faculty in Nuclear Engineering from four institutions\footnote{Paul 
+          Wilson at (UW Madison), Steven Skutnik (UT Knoxville), Jeremy Roberts 
           (Kansas State University), Anthony Scopatz (University of South 
           Carolina)} have agreed to be participants in 
           this prototyping effort. We all currently use 
@@ -114,14 +114,70 @@
           learning objectives. The curriculum will be hosted on GitHub, 
           tested by all of us, and improved continually.
 
+          \paragraph{In a typical open source project,} a main copy of the 
+          repository (or ``fork'') holds the 
+          official copy of the software package. Individual developers each have their own 
+          forks where they can work on features and 
+          bug fixes. When the developer makes changes that are ready for prime 
+          time, they make a ``pull request'' to the main fork, it is 
+          reviewed by their collaborators, and it is eventually merged into the 
+          main fork where it can be used by all. Figures 
+          \ref{fig:sub1} and \ref{fig:sub2} show how the workflow used for many 
+          open source projects can be leveraged toward course development.
+
+          Development of this proof-of-concept curriculum will be undertaken 
+          similarly to an open source software project. 
+          
+          Some features of open source development that will be emulated 
+          include those that cultivate collaboration. In open source, 
+          for example, new code features are described in tickets and discussed 
+          before implementation. Small, atomic changes are reviewed before 
+          merging. These discussions and incremental reviews nurture 
+          communities of practice.
+
+          \begin{figure}
+                  \centering
+                  \begin{subfigure}{.4\textwidth}
+                            \centering
+                              \includegraphics[width=.8\linewidth]{git-flow}
+        \caption{This figure, from \cite{scopatz_effective_2015}, captures a 
+                          process, often called Git Flow, through which a new 
+                          feature or bug fix enters a piece of open source 
+                          software.}
+                                  \label{fig:sub1}
+                  \end{subfigure}\hfill%
+                  \begin{subfigure}{.4\textwidth}
+                            \centering
+                              \includegraphics[width=.8\linewidth]{siip-flow}
+  \caption{This adaptation imagines the process in the context of learning module development, using the same git version control system and GitHub repository hosting framework.}
+                                  \label{fig:sub2}
+                  \end{subfigure}
+                  \label{fig:test}
+          \end{figure}
+          \FloatBarrier
+
+\iffalse
+          Doing code review at the end of the work isn't useful. What works is 
+          incremental code review. This proposal suspects that the same is true 
+          for curriculum review.  \cite{wilson_software_2014}.
+
+          Education is an inherently distributed system, but this need not be a hinderance to collaboration.
+
+          Scientists are more than happy to build upon one another's work, form 
+          collaborations with others in their field. But, 
+          when it comes to educating, where is the sharing of lessons learned 
+          and collaboration? 
+\fi
+
           \paragraph{A two-day kick-off workshop (\$15K)} at UIUC will allow the 
           participants to sketch the initial framework of 
           the collaboration and coordinate logistics. The workshop will 
           deliver:
 
           \begin{itemize} 
-                  \item learning objectives\cite{bloom_bloom_1984} and a concept 
-                          map\cite{novak_concept_1990} for the course
+                  \item learning objectives\cite{bloom_bloom_1984} for the 
+                          course
+                  \item a concept map\cite{novak_concept_1990} for the course
                   \item a list of fine-grained lesson topics
                   \item a directed acyclic graph describing dependencies among 
                           lessons
@@ -135,6 +191,15 @@
                           and tools like PrarieLearn 
                           \cite{west_prairielearn:_2015} will be considered)
           \end{itemize} 
+
+          Invited participants in the first workshop will include:
+          \begin{itemize}
+                  \item UIUC PI Huff and UIUC Co-PI Davis
+                  \item external collaborating Professors Wilson, Roberts, 
+                          Skutnik, and Scopatz
+                  \item up to 5 UIUC professors who may be likely to extend 
+                          this work in the future for their own courses.
+          \end{itemize}
 
           \paragraph{Between Workshops} work will commence on developing 
           lessons. These lessons will be submitted by pull request to the main 
@@ -150,6 +215,10 @@
           Interactions will commence primarily via issues, pull requests, and 
           reviews on GitHub during this time. Meanwhile, monthly video 
           conferences will help to spur high-level conversation onward.
+          Co-PI Davis will be invited to engage in these video conference as 
+          part of action research toward the final 
+          As progress is made, lessons learned will be recorded by all 
+          participants in a draft instruction manual. 
 
           \paragraph{A two-day retrospective workshop (\$15K)} at UIUC will wrap up the 
           project. Discussion concerning the process will allow reflection as 
@@ -157,75 +226,63 @@
           Experiences live testing the developed course material (for example 
           in NPRE412 at UIUC in Fall 2017) will be shared and suggested 
           improvements will be captured as feature requests on GitHub.  
-          The process will be captured in a template repository 
-          and a collaboration instruction manual will be produced
-          for use by other groups of faculty seeking to collaborate in a 
-          similar way. 
+          The lessons learned from the year-long process will be captured:
+          
+          \begin{itemize}
+                  \item in a template repository 
+                  \item and in a collaboration instruction manual 
+          \end{itemize}
 
-          \subsection*{Potential Impact}
+          These products will be produced for use by other groups of faculty 
+          seeking to collaborate in a similar way.
+
+          Invited participants in the retrospective workshop will include:
+
+          \begin{itemize}
+                  \item UIUC PI Huff and UIUC Co-PI Davis
+                  \item external collaborating Professors Wilson, Roberts, 
+                          Skutnik, and Scopatz
+                  \item up to 20 UIUC professors interested in extending this 
+                          work in the future for their own courses.
+          \end{itemize}
+
+
+          \section*{Potential Impact}
+          This work will have immediate student and faculty outcomes at UIUC, 
+          USC, KSU, UT Knoxville, and UW Madison. It will additionally have long term 
+          student and faculty outcomes at UIUC. Beyond this, it may have 
+          institutional outcomes at UIUC. 
           
           This work will provide an important proof of concept for groups of 
           instructors willing to collaborate on open source curriculum for:
           \begin{itemize}
-                  \item core courses with many subsections in a single university
+                  \item core courses with many sections in a single university
                   \item niche courses taught by a select group of professors across 
           universities
                   \item fundamental courses in small fields (e.g. nuclear engineering)
           \end{itemize}
 
-          Development of this proof-of-concept curriculum will be undertaken 
-          similarly to an open source software project. 
-          
-          Some features of open source development that will be emulated 
-          include those that cultivate collaboration. In open source, 
-          for example, new code features are described in tickets and discussed 
-          before implementation. Small, atomic changes are reviewed before 
-          merging. Through these discussions and incremental reviews, communities of practice are nurtured.
+          \paragraph{Student Outcomes}
+          Students enrolled in NPRE412 at UIUC and peer courses at partner 
+          institutions (USC, UT-Knoxville, Kansas State University, and 
+          UW-Madison) will have an improved experience. Their 
+          curriculum will be bolstered by the comprehensive concept mapping 
+          process as well as exercises and assessment tools reviewed by and 
+          improved by the expertise of professors at peer institutions. 
 
-          Doing code review at the end of the work isn't useful. What works is 
-          incremental code review. This proposal suspects that the same is true 
-          for curriculum review. 
-          \cite{wilson_software_2014}.
+          \paragraph{UIUC Faculty Outcomes}
+          The effort of developing curriculum in this way may be labor 
+          intensive initially. However, if the experience is similar to that of 
+          open source software, the maintenance effort will reduce 
+          substantially. Minor improvements and updates to the curriculum 
+          contributed by colleagues will be effectively 'free' in the long 
+          term. 
 
-          Education is an inherently distributed system, but this need not be a 
-          hinderance to collaboration.
+          \paragraph{UIUC Institutional Outcomes}
 
-          Scientists are more than happy to build upon one another's work, form 
-          collaborations with others in their field. But, 
-          when it comes to educating, where is the sharing of lessons learned 
-          and collaboration? 
+          Fame, glory.
 
-
-\paragraph{In a typical open source project,} a main copy of the 
-          repository (or ``fork'') holds the 
-          official copy of the software package. Individual developers each have their own 
-          forks where they can work on features and 
-          bug fixes. When the developer makes changes that are ready for prime 
-          time, they make a ``pull request'' to the main fork, it is 
-          reviewed by their collaborators, and it is eventually merged into the 
-          main fork where it can be used by all. Figures 
-          \ref{fig:sub1} and \ref{fig:sub2} show how the workflow used for many 
-          open source projects can be leveraged toward course development.
-
-          \begin{figure}
-                  \centering
-                  \begin{subfigure}{.4\textwidth}
-                            \centering
-                              \includegraphics[width=.8\linewidth]{git-flow}
-        \caption{This figure, from \cite{scopatz_effective_2016}, captures a process, often called Git Flow, through which a new feature or bug fix enters a piece of open source software \cite{scopatz_effective_2016}.}
-                                  \label{fig:sub1}
-                  \end{subfigure}\hfill%
-                  \begin{subfigure}{.4\textwidth}
-                            \centering
-                              \includegraphics[width=.8\linewidth]{siip-flow}
-  \caption{This adaptation imagines the process in the context of learning module development, using the same git version control system and GitHub repository hosting framework.}
-                                  \label{fig:sub2}
-                  \end{subfigure}
-                  \label{fig:test}
-          \end{figure}
-          \FloatBarrier
-
-          \subsection*{Departmental Support}
+          \section*{Departmental Support}
           The Department of Nuclear, Plasma, and Radiological Engineering will 
           support this work in kind with release time for Kathryn Huff through 
           her Start-Up funds.  Additionally, NPRE will support workshop activities 
@@ -234,8 +291,24 @@
           summer time hours.
 
 
+          \section*{Timeline and Deliverables}
+
+          \begin{itemize}
+                  \item[July 2017] 1st Workshop
+                  \item[.] 
+                  \item[.] 
+                  \item[.] 
+                  \item[July 2018] Retrospective Workshop
+          \end{itemize}
+
+          \section*{Budget Justification}
+          Explain travel for external collaborators, meals, meeting space, etc. 
+          Host it in the Union?
+
+
           \bibliographystyle{katyunsrt}
           \bibliography{2017-siip}
+
 
           \end{document}
 
