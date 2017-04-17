@@ -55,7 +55,7 @@ interest in the past decade. Some of the advantages offered by the \gls{MSR}
 include lower fissile inventories, no radiation damage constraint on attainable
 fuel burn-up, no spent nuclear fuel, no requirement to fabricate and handle
 solid fuel, and a homogeneous isotopic composition of fuel in the
-reactor. \cite{noauthor_gen_2008} These characteristics give the \gls{MSR} a
+reactor \cite{noauthor_gen_2008}. These characteristics give the \gls{MSR} a
 potentially unique capability for actinide burning and extension of fuel
 resources.
 
@@ -63,18 +63,18 @@ resources.
 transient behavior. Krepel et. al. extended the in-house light-water reactor
 diffusion code DYN3D to consider drift of delayed neutron precursors alongside
 the reactor temperature profile, re-casting the extended code as
-DYN3D-MSR. \cite{krepel_dyn3d-msr_2007} DYN3D-MSR was compared against
+DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. DYN3D-MSR was compared against
 experimental \gls{MSRE} data and was then used to simulate local fuel channel
 blockages as well as local temperature perturbations. In a similar vein, Kophazi
 et. al. used iterative coupling between in-house three dimensional neutronic and
 one-dimensional heat conduction models DALTON and THERM to analyze the normal
 operational state of the \gls{MSRE} and some channel-blocking-incident
-transients. \cite{kophazi_development_2009} Additions in the Kophazi model
+transients \cite{kophazi_development_2009}. Additions in the Kophazi model
 included entrance effects of heat transfer coefficients as well as thermal
 coupling between fuel channels through moderator heat conduction. More recently,
 Cammi et. al. performed a 2D-axisymmetric single-channel analysis of the
 \gls{MSBR} using the commercial finite element package COMSOL
-Multiphysics. \cite{cammi_multi-physics_2011} Advances in this work included
+Multiphysics \cite{cammi_multi-physics_2011}. Advances in this work included
 solution of the fuel salt velocity field, use of heterogeneous group constants
 in fuel and moderator regions, and employment of a software package (COMSOL)
 intrinsically designed for coupled multi-physics simulation.
@@ -128,7 +128,7 @@ for the \gls{MSRE}.
 \end{figure}
 
 The model is implemented using the \gls{MOOSE} \cite{gaston_physics-based_2015} application code
-Moltres. \cite{lindsay_arfc/moltres_nodate} Building on the massively
+Moltres \cite{lindsay_arfc/moltres_nodate}. Building on the massively
 parallelizable \gls{MOOSE} framework allows Moltres to be run on super-computing
 platforms like \gls{NCSA}'s Blue Waters. For some three-dimensional simulations
 (results not discussed here), the number of elements in the mesh and total
@@ -199,7 +199,7 @@ and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
 neutron irradiation in the moderator.
 
 Reactor composition is based on the enriched uranium design for the \gls{MSRE}
-and is given in \cref{table:comp}. \cite{robertson_msre_1965} Group constants
+and is given in \cref{table:comp} \cite{robertson_msre_1965}. Group constants
 are generated with either Serpent \cite{leppanen_serpent_2015} or Scale
 \cite{dehart_reactor_2011}. Temperature vs group constant interpolation tables
 are constructed separately for fuel and moderator regions.
