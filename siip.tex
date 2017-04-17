@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{placeins}
 \usepackage[hidelinks]{hyperref}
 
 % Trying to bold my name in the bib
@@ -33,6 +34,9 @@
           \newcommand{\authorsite}{arfc.npre.illinois.edu}
 
           \begin{document}
+          \title{Open Source, Collaborative Curriculum}
+          \author{PI: Kathryn Huff\\Co-PI: Neal Davis}
+          \maketitle
 
           \pagestyle{fancy}
           %\pagenumbering{gobble}
@@ -41,7 +45,7 @@
           %\lhead{}
           %\rhead{}
           \lhead{\textcolor{gray}{PI: \authorname (NPRE)\\\authoremail}}
-          \rhead{\textcolor{gray}{SIIP Pre-Proposal\\}}
+          \rhead{\textcolor{gray}{Collaborative Open Source Curriculum Development\\}}
           %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
           \renewcommand{\headrulewidth}{0pt}
           \renewcommand{\footrulewidth}{0pt}
@@ -169,25 +173,14 @@
                   \item fundamental courses in small fields (e.g. nuclear engineering)
           \end{itemize}
 
-          \subsection*{Departmental Support}
-          The Department of Nuclear, Plasma, and Radiological Engineering will 
-          support this work in kind with release time for Kathryn Huff through 
-          her Start-Up funds.  Additionally, NPRE will support workshop activities 
-          with administrative effort and by providing space. Finally, 
-          collaborating external participants will contribute in kind with 
-          summer time hours.
-
-
-          \bibliographystyle{katyunsrt}
-          \bibliography{2017-siip}
-
-          \end{document}
-
-
-\iffalse
-          New features are described in 
-          tickets and discussed before implementation. Small, atomic changes 
-          are reviewed before merging. Communities of practice are nurtured.
+          Development of this proof-of-concept curriculum will be undertaken 
+          similarly to an open source software project. 
+          
+          Some features of open source development that will be emulated 
+          include those that cultivate collaboration. In open source, 
+          for example, new code features are described in tickets and discussed 
+          before implementation. Small, atomic changes are reviewed before 
+          merging. Through these discussions and incremental reviews, communities of practice are nurtured.
 
           Doing code review at the end of the work isn't useful. What works is 
           incremental code review. This proposal suspects that the same is true 
@@ -201,6 +194,7 @@
           collaborations with others in their field. But, 
           when it comes to educating, where is the sharing of lessons learned 
           and collaboration? 
+
 
 \paragraph{In a typical open source project,} a main copy of the 
           repository (or ``fork'') holds the 
@@ -229,5 +223,20 @@
                   \end{subfigure}
                   \label{fig:test}
           \end{figure}
+          \FloatBarrier
 
-\fi
+          \subsection*{Departmental Support}
+          The Department of Nuclear, Plasma, and Radiological Engineering will 
+          support this work in kind with release time for Kathryn Huff through 
+          her Start-Up funds.  Additionally, NPRE will support workshop activities 
+          with administrative effort and by providing space. Finally, 
+          collaborating external participants will contribute in kind with 
+          summer time hours.
+
+
+          \bibliographystyle{katyunsrt}
+          \bibliography{2017-siip}
+
+          \end{document}
+
+
