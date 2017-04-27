@@ -30,7 +30,7 @@
           \definecolor{gray}{rgb}{0.4,0.4,0.4}
 
           \newcommand{\authorname}{Kathryn~D.~Huff }
-          \newcommand{\authoremail}{katyhuff@illinois.edu}
+          \newcommand{\authoremail}{kdhuff@illinois.edu}
           \newcommand{\authorsite}{arfc.npre.illinois.edu}
 
           \begin{document}
@@ -49,9 +49,9 @@
           %\rhead{\textcolor{gray}{\thepage/\totalpages{}}}
           \renewcommand{\headrulewidth}{0pt}
           \renewcommand{\footrulewidth}{0pt}
-          \fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
+          %\fancyfoot[C]{\footnotesize \textcolor{gray}{\authorsite}}
 
-          \section*{Problem}
+          \section{Problem}
           At this very moment, hundreds of professors in the United States are 
           simultaneously preparing lessons on transposing a matrix.
           They are doing so largely without receiving feedback from one another 
@@ -87,7 +87,7 @@
           modules for each lesson may assist in overcoming the challenges 
           encountered by Software Carpentry and others.
 
-          \section*{Proposed Solution}
+          \section{Proposed Solution}
           We propose a small-scale proof-of-concept for collaborative, open 
           source, curriculum development to improve the transfer of lessons 
           learned between instructors of the same course (either at a single 
@@ -99,7 +99,7 @@
           Faculty in Nuclear Engineering from four institutions\footnote{Paul 
           Wilson at (UW Madison), Steven Skutnik (UT Knoxville), Jeremy Roberts 
           (Kansas State University), Anthony Scopatz (University of South 
-          Carolina)} have agreed to be participants in 
+          Carolina), and Robert Borrelli (University of Idaho)} have agreed to be participants in 
           this prototyping effort. We all currently use 
           \href{https://github.com}{GitHub} to store, 
           revise, and collaborate on research, especially source code. 
@@ -114,26 +114,29 @@
           learning objectives. The curriculum will be hosted on GitHub, 
           tested by all of us, and improved continually.
 
-          \paragraph{In a typical open source project,} a main copy of the 
-          repository (or ``fork'') holds the 
-          official copy of the software package. Individual developers each have their own 
-          forks where they can work on features and 
-          bug fixes. When the developer makes changes that are ready for prime 
-          time, they make a ``pull request'' to the main fork, it is 
-          reviewed by their collaborators, and it is eventually merged into the 
-          main fork where it can be used by all. Figures 
-          \ref{fig:sub1} and \ref{fig:sub2} show how the workflow used for many 
-          open source projects can be leveraged toward course development.
-
+          \subsection{Open Source Workflow}
           Development of this proof-of-concept curriculum will be undertaken 
           similarly to an open source software project. 
-          
-          Some features of open source development that will be emulated 
-          include those that cultivate collaboration. In open source, 
-          for example, new code features are described in tickets and discussed 
-          before implementation. Small, atomic changes are reviewed before 
-          merging. These discussions and incremental reviews nurture 
+          In particular, this work will emulate features of open source software development 
+          that cultivate distributed collaboration. In open source, for 
+          example, new code features are described in \emph{issues} or 
+          \emph{tickets} and discussed before implementation. Small, atomic 
+          changes are reviewed before they are merged into the 
+          \emph{repository}. These discussions and incremental reviews nurture 
           communities of practice.
+
+          In a typical open source project, a main copy of the 
+          repository (or main \emph{fork}) holds the 
+          official copy of the software package. Individual developers each have their own 
+          \emph{forks} where they can work on features and 
+          bug fixes. When the developer makes changes that are ready for prime 
+          time, they make a ``pull request'' to the main \emph{fork}. That 
+          \emph{pull request} is 
+          reviewed by their collaborators, and it is eventually merged into the 
+          main \emph{fork} where it can be used by all. Figures 
+          \ref{fig:sub1} and \ref{fig:sub2} show how this open source software 
+          development workflow
+          can be leveraged toward course development.
 
           \begin{figure}
                   \centering
@@ -169,7 +172,8 @@
           and collaboration? 
 \fi
 
-          \paragraph{A two-day kick-off workshop (\$15K)} at UIUC will allow the 
+          \subsection{Kick-Off Workshop}
+          A two-day kick-off workshop (\$15K) at UIUC will allow the 
           participants to sketch the initial framework of 
           the collaboration and coordinate logistics. The workshop will 
           deliver:
@@ -196,12 +200,13 @@
           \begin{itemize}
                   \item UIUC PI Huff and UIUC Co-PI Davis
                   \item external collaborating Professors Wilson, Roberts, 
-                          Skutnik, and Scopatz
+                          Borrelli, Skutnik, and Scopatz
                   \item up to 5 UIUC professors who may be likely to extend 
                           this work in the future for their own courses.
           \end{itemize}
 
-          \paragraph{Between Workshops} work will commence on developing 
+          \subsection{Interim Period}
+          Between Workshops, work will commence on developing 
           lessons. These lessons will be submitted by pull request to the main 
           repository and each lesson will include:
           \begin{itemize} 
@@ -220,7 +225,8 @@
           As progress is made, lessons learned will be recorded by all 
           participants in a draft instruction manual. 
 
-          \paragraph{A two-day retrospective workshop (\$15K)} at UIUC will wrap up the 
+          \subsection{Retrospective Workshop}
+          A two-day retrospective workshop (\$15K) at UIUC will wrap up the 
           project. Discussion concerning the process will allow reflection as 
           well as a collection of lessons learned.
           Experiences live testing the developed course material (for example 
@@ -247,7 +253,7 @@
           \end{itemize}
 
 
-          \section*{Potential Impact}
+          \section{Potential Impact}
           This work will have immediate student and faculty outcomes at UIUC, 
           USC, KSU, UT Knoxville, and UW Madison. It will additionally have long term 
           student and faculty outcomes at UIUC. Beyond this, it may have 
@@ -291,7 +297,7 @@
           practice among colleagues previously primarily connected by research 
           in their specific technical subdomain. 
 
-          \section*{Timeline and Deliverables}
+          \section{Timeline and Deliverables}
 
           \begin{itemize}
                   \item[July 2017] 1st Workshop
@@ -301,13 +307,13 @@
                   \item[July 2018] Retrospective Workshop
           \end{itemize}
 
-          \section*{Budget Justification}
+          \section{Budget Justification}
           The two workshops will 
           Explain travel for external collaborators, meals, meeting space, etc. 
           Host it in the Union?
 
 
-          \section*{Departmental Support}
+          \section{Departmental Support}
           The Department of Nuclear, Plasma, and Radiological Engineering will 
           support this work in kind with release time for Kathryn Huff through 
           her Start-Up funds.  Additionally, NPRE will support workshop activities 
