@@ -15,6 +15,7 @@
 \usepackage{subcaption}
 \usepackage{placeins}
 \usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
 
 % Trying to bold my name in the bib
 \usepackage{xstring}
@@ -299,6 +300,11 @@
           in their specific technical subdomain. 
 
           \section{Timeline and Deliverables}
+          \subsection{Timeline}
+          The timeline will be bookended by two workshops, a kickoff workshop 
+          and a retrospective workshop. In the intervening time, consistent 
+          communication through GitHub's collaboration framework, a Slack 
+          channel, an email listhost, a shared Google Drive folder, and  
 
           \begin{itemize}
                   \item[July 2017] 1st Workshop
@@ -308,28 +314,55 @@
                   \item[July 2018] Retrospective Workshop
           \end{itemize}
 
+          \subsection{Deliverables}
+
+          \subsubsection{Learning Objectives List}
+          \subsubsection{Concept Map}
+          \subsubsection{Learning Dependency Graph}
+\begin{figure}[htb!]
+        \begin{center}
+                \includegraphics[height=0.5\textheight]{rosalind.png}
+        \end{center}
+        \caption{Rosalind.info has a graph of exercises and their dependencies.}
+        \label{fig:rosalind}
+\end{figure}
+          \subsubsection{Lesson Materials}
+
+
           \section{Budget}
           The two workshops will be hosted at the Illini Union, where a meeting 
           room will be reserved. Visiting 
           invited workshop participants will be flown to Urbana-Champaign and 
           lodged at the Illini Union Hotel.
 
-\begin{tabular}[htb]{|l|c|c|c|}
+\begin{table}[htb]
+        \begin{tabularx}{\textwidth}{| X |c|c|c|c|c|}
         \hline
-        \textbf{Item} & \textbf{Cost} & \textbf{Units} & \textbf{Notes} \\ 
+        \textbf{Event} & \textbf{Item} & \textbf{Cost} & \textbf{Units} & \textbf{\$} & \textbf{Notes}\\ 
         \hline
-        \textbf{Lodging} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
-        \textbf{<++>} & <++> & <++> & <++> \\ 
+Kick-off Workshop&Meeting Room&744&2&1488&Allerton, all day package\\
+&Lodging&150&24&3600&Allerton guest rooms\\
+&Flights&800&6&4800&Estimated\\
+&Taxi&20&12&240&\\
+&Incidentals&100&6&600&\\
+&Continental breakfast&8.5&24&204&Working breakfasts, Allerton\\
+&Dinner&30&24&720&In Champaign-Urbana\\
+\hline
+Retrospective Workshop&Meeting Room&50&2&100&Illini Union\\
+&Projector&300&4&1200&Illini Union\\
+&Lodging&150&24&3600&Illini Union Hotel\\
+&Flights&800&6&4800&Estimated\\
+&Taxi&20&12&240&\\
+&Incidentals&100&6&600&\\
+&Continental breakfast&8.5&24&204&University Catering\\
+&Coffee Service&32.5&4&130&\\
+&Lunch&15&24&360&University Catering\\
+&Dinner&30&24&720&In Champaign-Urbana\\
         \hline
-\end{tabular}
-
+        &\textbf{Total}&&&\textbf{23606}&\\
+        \hline
+\end{tabularx}
+\end{table}
 
           \section{Departmental Support}
           The Department of Nuclear, Plasma, and Radiological Engineering will 
