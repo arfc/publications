@@ -14,13 +14,14 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{placeins}
-\usepackage[hidelinks]{hyperref}
+%\usepackage{chronology}
 \usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
 
-% Trying to bold my name in the bib
+% Trying to bold PI names in the bib
 \usepackage{xstring}
 \def\FormatName#1{%
-          \IfSubStr{#1}{Huff}{\textbf{#1}}{#1}%
+          \IfSubStr{#1}{Huff}{\textbf{#1}}{\IfSubStr{#1}{Neal Davis}{\textbf{#1}}{#1}}%
           }
 
           \usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
@@ -98,11 +99,11 @@ Paul Wilson\\University of Wisconsin - Madison
           which the PI and Co-PI are quite involved) 
           \cite{wilson_software_2014}.  Software Carpentry teaches 
           computational skills for scientists using a shared curriculum hosted 
-          on GitHub. Instructors can use and remix the curriculum, but our 
-          experience showed that instructors improved on the original material, 
-          but lacked a  strong incentive for contribution back to the master 
-          material. Thus, versions of the original material tended to diverge 
-          rather than converge 
+          on GitHub. Hundreds of instructors accross the planet use and remix 
+          the curriculum, but our experience showed that while these 
+          instructors used and improved on the original material, they rarely 
+          contributed their changes back to the master material. Thus, versions 
+          of the original material tend to diverge rather than converge 
           \cite{wilson_software_2014,wilson_software_2014-1}. 
           
           We expect that 
@@ -136,14 +137,14 @@ Paul Wilson\\University of Wisconsin - Madison
 
           The participants will collaborate on a master set of learning 
           modules for an upper-division course in nuclear engineering : 
-          on The Nuclear Fuel Cycle. In the near term, we will develop 
+          The Nuclear Fuel Cycle. In the near term, we will develop 
           fine-grained lessons and assessments which may be mixed and matched 
           to meet the learning objectives. The curriculum will be hosted on 
           GitHub, tested by all of us, and improved continually.
 
           Prof. Neal Davis, Co-PI of this proposal, has contemplated a 
           Collaborative Computational Curriculum for some time 
-          \cite{davis_ui-ccc_2016}. Since he 
+          \cite{davis_university_2016}. Since he 
           teaches large-scale 
           computational curriculum at UIUC 
           he is an ideal person to potentially scale-up this work in the 
@@ -366,9 +367,14 @@ Paul Wilson\\University of Wisconsin - Madison
           contributed by colleagues will be effectively 'free' in the long 
           term. 
 
-          \paragraph{UIUC Institutional Outcomes}
-
-          Fame, glory.
+          \paragraph{UIUC Institutional Outcomes} Openness and collaboration 
+          both increase visibility. The leadership of UIUC College of 
+          Engineering faculty in this effort, if successful, will be exemplary 
+          of the forward-thinking nature of the college and the university at 
+          large. Furthermore, extensions to this work may be competitive for  
+          support from educational grant-making agencies such as the National 
+          Science Foundation and even private foundations such as Moore and 
+          Sloan. 
 
           \paragraph{External Outcomes}
 
@@ -386,6 +392,7 @@ Paul Wilson\\University of Wisconsin - Madison
           channel, an email listhost, a shared Google Drive folder, and monthly 
           Google Hangouts will drive this work. 
 
+          %\input{timeline}
           \begin{itemize}
                   \item[Jul 2017] 1st Workshop
                   \item[Aug 2017 - Jun 2018] Monthly Video Conferences 
