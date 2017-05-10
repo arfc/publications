@@ -136,16 +136,9 @@ extensible to myriad future modeling challenges.
 
 \section{Methods}
 
-The model is implemented using the \gls{MOOSE} \cite{gaston_physics-based_2015} application code
-Moltres \cite{lindsay_arfc/moltres_nodate}. Building on the massively
-parallelizable \gls{MOOSE} framework allows Moltres to be run on super-computing
-platforms like \gls{NCSA}'s Blue Waters. For some three-dimensional simulations
-(results not discussed here), the number of elements in the mesh and total
-number of degrees of freedom exceed one million and ten million respectively. To
-handle problems of this size, Moltres has been run on up to 608 cores. However,
-reducing the problem dimension from three to two and using a structured mesh
-that can be much more coarse in the axial direction allows problem solution to
-be carried out on a single core in under five minutes.
+Moltres \cite{lindsay_arfc/moltres_nodate} is implemented as an application for 
+use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework.
+
 
 The Moltres code-base currently includes kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
@@ -232,10 +225,21 @@ in the moderator. $Q_f$ is defined by:
 and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
 neutron irradiation in the moderator.
 
-Group constants
-are generated with either Serpent \cite{leppanen_serpent_2015} or Scale
-\cite{dehart_reactor_2011}. Temperature vs group constant interpolation tables
-are constructed separately for fuel and moderator regions.
+Group constants are generated with either Serpent \cite{leppanen_serpent_2015} 
+or Scale \cite{dehart_reactor_2011}. Temperature vs group constant 
+interpolation tables are constructed separately for fuel and moderator regions.
+
+\subsection{Performance}
+
+Building on the massively parallelizable \gls{MOOSE} framework allows Moltres 
+to be run on super-computing platforms like \gls{NCSA}'s Blue Waters. For some 
+three-dimensional simulations (results not discussed here), the number of 
+elements in the mesh and total number of degrees of freedom exceed one million 
+and ten million respectively. To handle problems of this size, Moltres has been 
+run on up to 608 cores. However, reducing the problem dimension from three to 
+two and using a structured mesh that can be much more coarse in the axial 
+direction allows problem solution to be carried out on a single core in under 
+five minutes.
 
 \section{Model Description}
 
@@ -309,7 +313,7 @@ gradient is negative in the radial direction.
   \label{fig:temp}
 \end{figure}
 
-\Cref{fig:pre1} shows the concentration of the longest lived precursor in the
+\cref{fig:pre1} shows the concentration of the longest lived precursor in the
 reactor. Not surprisingly, the channel concentrations are higher in fuel channels
 with higher neutron fluxes and consequently a higher number of fission
 events. Because of the small decay constant of the precursor, the maximum
