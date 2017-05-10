@@ -209,7 +209,14 @@ equation for the temperature is given by:
   Q_f &= \mbox{source term}\\
 \end{align}
 
-in the fuel and by:
+in the fuel, where the source term $Q_f$ is defined by:
+
+\begin{equation}
+  Q_f = \sum_{g=1}^G \epsilon_{f,g}\Sigma_{f,g}\phi_g
+  \label{eq:fuel_source}
+\end{equation}
+
+In the moderator, the governing equation for temperature is given by:
 
 \begin{align}
         \rho_gc_{p,g}\frac{\partial T_g}{\partial t} &+ 
@@ -223,19 +230,15 @@ in the fuel and by:
   Q_g &= \mbox{source term in graphite moderator}\\
 \end{align}
 
-in the moderator. $Q_f$ is defined by:
+in the moderator. 
 
-\begin{equation}
-  Q_f = \sum_{g=1}^G \epsilon_{f,g}\Sigma_{f,g}\phi_g
-  \label{eq:fuel_source}
-\end{equation}
-
-and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
-neutron irradiation in the moderator.
+and $Q_g$ is equal to $\gamma Q_f$, where $\gamma$ is a factor representing 
+heat dissipation by gamma and neutron irradiation in the moderator.
 
 Group constants are generated with either Serpent \cite{leppanen_serpent_2015} 
-or Scale \cite{dehart_reactor_2011}. Temperature vs group constant 
-interpolation tables are constructed separately for fuel and moderator regions.
+or Scale \cite{dehart_reactor_2011} by the modeler. Group constant temperature 
+dependence is implmented via interpolation tables, which must be constructed 
+separately for fuel and moderator regions.
 
 \subsection{Performance}
 
