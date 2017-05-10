@@ -287,7 +287,9 @@ and is given in \Cref{table:comp} \cite{robertson_msre_1965}.
       U-238 & .0344\\
     \end{tabular}
   \end{center}
-  \caption{Fuel salt composition based on enriched Uranium \gls{MSRE} design \cite{robertson_msre_1965}}
+        \caption{Fuel salt composition is based on the \gls{BOL} enriched 
+        uranium composition in the \gls{MSRE} design 
+        \cite{robertson_msre_1965}.}
   \label{table:comp}
 \end{table}
 
@@ -302,25 +304,37 @@ the fast group preferring the fuel and the thermal group preferring the moderato
 \begin{figure}
   \centering
   \includegraphics{auto_diff_rho_group1.eps}
-  \caption{Group 1 flux}
+        \caption{The group 1 flux in this 2-D cylindrical axisymmetric model 
+        has the anticipated magnitude and canonical cosine shape ($r=1$ is center of core). }
   \label{fig:group1}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics{auto_diff_rho_group2.eps}
-  \caption{Group 2 flux}
+        \caption{The group 2 flux in this 2-D cylindrical axisymmetric model 
+        has the anticipated magnitude and canonical cosine shape ($r=1$ is center of core). }
   \label{fig:group2}
 \end{figure}
 
+\begin{figure}
+  \centering
+  \includegraphics{radial_group_comparison.eps}
+        \caption{The thermal and fast flux profiles are compared at the 
+        core center in this 2-D cylindrical axisymmetric model ($r=1$ is center of core). }
+\end{figure}
+
+
+
 The effect of the advecting fuel is seen in \Cref{fig:temp} where the temperature
-rises steadily with increasing z-coordinate. As one might expect, the temperature
+rises steadily with increasing z-coordinate. As is accordingly expected, the temperature
 gradient is negative in the radial direction.
 
 \begin{figure}
   \centering
   \includegraphics{auto_diff_rho_temp.eps}
-  \caption{Temperature}
+        \caption{The reactor core temperature peaks near the reactor outlet 
+        in this 2-D axisymmetric model ($r=1$ is center of core).}
   \label{fig:temp}
 \end{figure}
 
@@ -334,7 +348,9 @@ concentration in any given channel occurs at the core outlet.
 \begin{figure}
   \centering
   \includegraphics{auto_diff_rho_pre1.eps}
-  \caption{Longest lived precursor concentration}
+        \caption{The concentration of the group of longest lived precursors 
+        ($\lambda = ?$) peaks near the reactor outlet
+        in this 2-D axisymmetric model ($r=1$ is center of core).}
   \label{fig:pre1}
 \end{figure}
 
@@ -347,7 +363,9 @@ increasing radius and decreasing neutron flux.
 \begin{figure}
   \centering
   \includegraphics{auto_diff_rho_pre6.eps}
-  \caption{Shortest lived precursor concentration}
+        \caption{The concentration of the group of shortest lived precursors 
+        ($\lambda = ?$) peaks near the reactor center
+        in this 2-D axisymmetric model ($r=1$ is center of core).}
   \label{fig:pre6}
 \end{figure}
 
