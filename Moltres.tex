@@ -137,10 +137,8 @@ extensible to myriad future modeling challenges.
 \section{Methods}
 
 Moltres \cite{lindsay_arfc/moltres_nodate} is implemented as an application for 
-use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework.
-
-
-The Moltres code-base currently includes kernels and boundary conditions for
+use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework. 
+Accordingly, Moltres includes physics kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
 jargon, kernels are C++ classes that contain methods for computing residual and
 Jacobian contributions corresponding to individual piecies of governing
@@ -160,27 +158,30 @@ in \Cref{eq:neutrons}:
 %% \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
 %% + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
 %% \nu \Sigma_{g'}^f \phi_{g'}
-        \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g 
-        \nabla \phi_g + \Sigma_g^r \phi_g &= \sum_{g \ne g'}^G 
+        \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} &- \nabla \cdot D_g 
+        \nabla \phi_g + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G 
         \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - 
         \beta) \nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
 \label{eq:neutrons}
         \intertext{where}
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>].
+        v_g &= \mbox{speed of neutrons in group g } [<+units+>]\\ 
+        \phi_g &= \mbox{flux of neutrons in group g } [<+units+>]\\ 
+        t &= \mbox{time } [<+units+>]\\ 
+        D_g &= \mbox{Diffusion coefficient for neutrons in group g } [<+units+>]\\ 
+        \Sigma_g^r &= \mbox{macroscopic cross-section for removal of neutrons 
+        from group g } [<+units+>]\\ 
+        \Sigma_{g'\rightarrow g} &= \mbox{macroscopic cross-section of 
+        scattering from g' to g } [<+units+>]\\ 
+        \chi_g^p &= \mbox{prompt fission spectrum, neutrons in group g } [<+units+>]\\ 
+        G &= \mbox{number of discrete groups, g } [<+units+>]\\ 
+        \nu &= \mbox{number of neutrons produced per fission } [<+units+>]\\ 
+        \Sigma_g^f &= \mbox{macroscopic cross section for fission due to neutrons in group g } [<+units+>]\\ 
+        \chi_g^d &= \mbox{delayed fission spectrum, neutrons in group g } [<+units+>]\\ 
+        I &= \mbox{number of delayed neutron precursor groups } [<+units+>]\\ 
+        \lambda_i &= \mbox{average decay constant of delayed neutron precursors 
+        in precursor group i } [<+units+>]\\ 
+        C_i &= \mbox{concentration of delayed neutron precursors in precursor 
+        group i } [<+units+>]. 
 \end{align}
 
 Delayed neutron precursors are described by \Cref{eq:precursors}:
@@ -190,13 +191,20 @@ Delayed neutron precursors are described by \Cref{eq:precursors}:
         \Sigma_{g'}^f \phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u 
         C_i \label{eq:precursors}
         \intertext{where}
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
-        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
+        <+var+> &= \mbox{<+def+>} [<+units+>]\\ 
 \end{align}
 
 with the last term representing the effect of fuel advection. The governing
