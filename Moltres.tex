@@ -196,18 +196,32 @@ Delayed neutron precursors are described by \Cref{eq:precursors}:
 with the last term representing the effect of fuel advection. The governing
 equation for the temperature is given by:
 
-\begin{equation}
-  \rho_fc_{p,f}\frac{\partial T_f}{\partial t} + \nabla\cdot\left(\rho_f c_{p,f}
-  \vec{u}\cdot T_f -k_f\nabla T_f\right) =  Q_f
+\begin{align}
+        \rho_fc_{p,f}\frac{\partial T_f}{\partial t} &+ \nabla\cdot\left(\rho_f 
+        c_{p,f} \vec{u}\cdot T_f -k_f\nabla T_f\right) =  Q_f
   \label{eq:fuel_temp}
-\end{equation}
+  \intertext{where}
+  \rho_f &= \mbox{density of fuel salt}\\
+  c_{p,f} &= \mbox{specific heat capacity of fuel salt}\\
+  T_f &= \mbox{temperature of fuel salt}\\
+  \vec{u} &= \mbox{velocity of fuel salt}\\
+  k_f &= \mbox{thermal conductivity of fuel salt}\\
+  Q_f &= \mbox{source term}\\
+\end{align}
 
 in the fuel and by:
 
-\begin{equation}
-  \rho_gc_{p,g}\frac{\partial T_g}{\partial t} + \nabla\cdot\left(-k_g\nabla T_g\right) =  Q_g
+\begin{align}
+        \rho_gc_{p,g}\frac{\partial T_g}{\partial t} &+ 
+        \nabla\cdot\left(-k_g\nabla T_g\right) =  Q_g
   \label{eq:moderator_temp}
-\end{equation}
+  \intertext{where}
+  \rho_g &= \mbox{density of graphite moderator}\\
+  c_{p,g} &= \mbox{specific heat capacity of graphite moderator}\\
+  T_g &= \mbox{temperature of graphite moderator}\\
+  k_g &= \mbox{thermal conductivity of graphite moderator}\\
+  Q_g &= \mbox{source term in graphite moderator}\\
+\end{align}
 
 in the moderator. $Q_f$ is defined by:
 
