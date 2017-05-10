@@ -112,8 +112,11 @@ employed in order for nuclear engineering simulation capability to enable
 discovery and support the regulatory needs presented by new reactor designs. 
 Furthermore, to openness is necessary to keep pace with scientific computing 
 advances in fields like astronomy whose multitude of open simulation tools
-(Enzo, Gadget, Flash, Gizmo, Ramses, Mesa) allows them to be the darlings of
-scientific visualization and public interest. In that vein Moltres uses
+(Enzo\cite{enzo}, Gadget\cite{gadget}, Flash\cite{flash}, Gizmo\cite{gizmo}, 
+Ramses\cite{ramses}, Mesa\cite{mesa}) allows them to be the darlings of
+scientific visualization and public interest. 
+
+In that vein, Moltres uses
 \mintinline{latex}{git} for version control, integration testing to protect
 developed physics capabilities, and a C++ object-oriented design to allow easy
 class extensibility and minimal code duplication. Moreover, Moltres is built on
@@ -128,26 +131,10 @@ on massively-parallel cluster-computing platforms. \gls{MOOSE} applications by d
 use monolithic and implicit methods that are ideal for closely-coupled and
 multi-scale physics. These methods are ideal for the model problem described in
 this work. However, it should be noted that Moltres can also use explicit
-time-stepping routines as well as segregated solution methods, making it more
-extensible to future problems.
+time-stepping routines as well as segregated solution methods, making it very 
+extensible to myriad future modeling challenges.
 
-\section{Model Description}
-
-As a proof of concept and to ease resolution of strong transient gradients in
-temperature between fuel and moderator, the physical three dimensional problem
-is reduced to a two dimensional axisymmetric model. The model molten salt
-reactor is based on the \gls{MSRE}. To approximately simulate the lattice
-structure of the \gls{MSRE}, a geometry is constructed with 14 repeating
-fuel-moderator regions, as shown in \cref{fig:geom}. The fuel and moderator
-radii are chosen such that the resulting area/volume fraction of fuel is .225 as
-for the \gls{MSRE}.
-
-\begin{figure}
-  \centering
-  \includegraphics{geometry.eps}
-  \label{fig:geom}
-  \caption{A sketch of the \gls{MSR} model geometry}
-\end{figure}
+\section{Methods}
 
 The model is implemented using the \gls{MOOSE} \cite{gaston_physics-based_2015} application code
 Moltres \cite{lindsay_arfc/moltres_nodate}. Building on the massively
@@ -176,23 +163,48 @@ file to change from say two to fourty-four neutron groups.
 In Moltres, neutrons are described with time-dependent multi-group diffusion theory as shown
 in \cref{eq:neutrons}:
 
-\begin{equation}
+\begin{align}
 %% \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
 %% + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
 %% \nu \Sigma_{g'}^f \phi_{g'}
-\frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
-+ \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
-\nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
+        \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g 
+        \nabla \phi_g + \Sigma_g^r \phi_g &= \sum_{g \ne g'}^G 
+        \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - 
+        \beta) \nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
 \label{eq:neutrons}
-\end{equation}
+        \intertext{where}
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>].
+\end{align}
 
 Delayed neutron precursors are described by \cref{eq:precursors}:
 
-\begin{equation}
-\frac{\partial C_i}{\partial t} = \sum_{g'= 1}^G \beta_i \nu \Sigma_{g'}^f
-\phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u C_i
-\label{eq:precursors}
-\end{equation}
+\begin{align}
+        \frac{\partial C_i}{\partial t} &= \sum_{g'= 1}^G \beta_i \nu 
+        \Sigma_{g'}^f \phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u 
+        C_i \label{eq:precursors}
+        \intertext{where}
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+        <+var+> &= \mbox{<++>} [<+units+>]\\ 
+\end{align}
 
 with the last term representing the effect of fuel advection. The governing
 equation for the temperature is given by:
@@ -220,11 +232,33 @@ in the moderator. $Q_f$ is defined by:
 and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
 neutron irradiation in the moderator.
 
-Reactor composition is based on the enriched uranium design for the \gls{MSRE}
-and is given in \cref{table:comp} \cite{robertson_msre_1965}. Group constants
+Group constants
 are generated with either Serpent \cite{leppanen_serpent_2015} or Scale
 \cite{dehart_reactor_2011}. Temperature vs group constant interpolation tables
 are constructed separately for fuel and moderator regions.
+
+\section{Model Description}
+
+As a proof of concept and to ease resolution of strong transient gradients in
+temperature between fuel and moderator, the physical three dimensional problem
+is reduced to a two dimensional axisymmetric model. The model molten salt
+reactor is based on the \gls{MSRE}. To approximately simulate the lattice
+structure of the \gls{MSRE}, a geometry is constructed with 14 repeating
+fuel-moderator regions, as shown in \cref{fig:geom}. The fuel and moderator
+radii are chosen such that the resulting area/volume fraction of fuel is .225 as
+for the \gls{MSRE}.
+
+\begin{figure}
+  \centering
+  \includegraphics{geometry.eps}
+  \label{fig:geom}
+  \caption{A sketch of the \gls{MSR} model geometry}
+\end{figure}
+
+
+The fuel composition is based on the \gls{BOL} enriched uranium composition in the \gls{MSRE}
+and is given in \cref{table:comp} \cite{robertson_msre_1965}.
+
 
 \begin{table}[htpb]
   \begin{center}
