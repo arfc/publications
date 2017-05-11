@@ -287,6 +287,39 @@ and is given in \Cref{table:comp} \cite{robertson_msre_1965}.
   \label{table:comp}
 \end{table}
 
+Other simulation inputs are outlined in \Cref{table:params}. It should be noted
+that the reactor simulation height of 151.75 cm was chosen to produce an
+approximately critical reactor configuration corresponding to \gls{BOL}
+\gls{MSRE} composition. It is about 10 cm shorter than the actual \gls{MSRE}
+height of 162.56 cm.
+
+\begin{table}[htpb]
+  \begin{center}
+    \begin{tabular}{l|c|c|c}
+      Parameter & Value & Units & Source\\\hline\hline
+      Inlet temp. & 922 & $K$ & \gls{MSRE} nominal \cite{robertson_msre_1965}\\
+      Wall temp. & 922 & $K$ & \gls{MSRE} nominal \cite{robertson_msre_1965}\\
+      Neutron groups & 2 & 1 & User\\
+      Precursor groups & 6 & 1 & User\\
+      Reactor radius & 72.5 & $cm$ & $\approx$\gls{MSRE} radius (70.2 cm) \cite{robertson_msre_1965}\\
+      Reactor height & 151.75 & $cm$ & User\\
+      $k{_f}$ & .0553 & $W cm^{-1} K^{-1}$ & \cite{robertson_msre_1965}\\
+      $c_{p,f}$ & 1967 & $J K^{-1} kg^{-1}$ & \cite{robertson_msre_1965}\\
+      $\rho_f$ & $2.146\cdot 10^{-3} e^{-\alpha_f (T_f - 922)}$ & $kg\ cm^{-3}$ & \cite{robertson_msre_1965}\\
+      $\alpha_f$ & $2.12\cdot 10^{-4}$ & $K^{-1}$ &
+      \cite{haubenreich_experience_1970}\\
+      $k_g$ & .312 & $W cm^{-1} K^{-1}$ & \cite{cammi_multi-physics_2011}\\
+      $c_{p,g}$ & 1760 & $J K^{-1} kg^{-1}$ & \cite{cammi_multi-physics_2011}\\
+      $\rho_g$ & $1.86\cdot 10^{-3} e^{-\alpha_g (T_g - 922)}$ & $kg\ m^{-3}$ &
+      \cite{robertson_msre_1965}\\
+      $\alpha_g$ & $1.8\cdot 10^{-5}$ & $K^{-1}$ &
+      \cite{haubenreich_experience_1970}\\
+    \end{tabular}
+  \end{center}
+  \caption{Simulation input parameters}
+  \label{table:params}
+\end{table}
+
 
 \section{Results \& Discussion}
 
