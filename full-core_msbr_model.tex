@@ -13,8 +13,10 @@ Urbana, IL
 
 %%%% packages and definitions (optional)
 \usepackage{graphicx} % allows inclusion of graphics
+\usepackage{caption}  % allows center figures caption
 \usepackage{booktabs} % nice rules (thick lines) for tables
 \usepackage{microtype} % improves typography for PDF
+\graphicspath{{figures/}}
 
 \newcommand{\SN}{S$_N$}
 \renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
@@ -24,41 +26,44 @@ Urbana, IL
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-The molten salt reactor (MSR) is advanced type of reactor which was  developed in Oak Ridge National Laboratory for a military aircraft nuclear propulsion project. In the MSR flourides of fissile and/or ferile materials (i.e. $UF_4$, $PuF_3$ and/or $ThF_4$) are mixed with carrier salts to form liquid fuel. 
-combining two functions: heat transportation from the energy generation region  to heat exchanger and 
+\section{1. Introduction}
+The molten salt reactor (MSR) is advanced type of reactor which was  developed at Oak Ridge National Laboratory for a military aircraft nuclear propulsion project. In the MSR fluorides of fissile and/or fertile materials (i.e. $UF_4$, $PuF_3$ and/or $ThF_4$) are mixed with carrier salts to form a liquid fuel which circulated in a loop-type primary circuit \cite{haubenreich_experience_1970}. This conception leads to immediate advantages over traditional reactors with a solid fuel, such as near-atmospheric pressure in the primary loop, relatively high coolant temperature, outstanding neutron economy, a high level of inherent safety, reduced fuel preprocessing, and the ability to continuously remove fission products and add fissile and/or fertile elements \cite{leblanc_molten_2010}. 
 
-Microsoft Word can be a finicky beastie. \LaTeX\ abstracts content from
-formatting, allowing the user to let a style file such as this take care of
-uppercasing the section headings, spacing the paragraphs, and shuffle around
-the figures.
+Thermal spectrum Molten Salt Breeder Reactor (MSBR) designed specifically to realize promising thorium fuel cycle which allows use natural thorium instead of enriched uranium as the fertile element to breed the fissile $^{233}U$ and avoid uranium enrichment. The mixtures of $LiF-BeF_2-ThF_4-UF_4-PuF_3$ (72-16-12-0.232-0.0006 mole \%) has a melting point $499^\circ$C, good flow and heat transfer properties \cite{robertson_conceptual_1971}.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+For the development of MSBR research, this paper demonstrates advanced whole-core three-dimensional model developed using a continuous-energy Monte Carlo reactor physics calculation code Serpent 2 and cross-verification with existing MCNP6 results \cite{park_whole_2015,leppanen_serpent_2012}. The neutronics model could be useful for optimization fuel salt composition and fuel utilization, neutron fluxes and spectrum evaluation, and for depletion calculations using built-in Serpent burnup module. Moreover, this model in the future will be employed to generate problem-oriented homogenized nuclear data (multi-group cross sections and diffusion constants) for deterministic reactor codes, multi-physics simulations \cite{fridman_use_2011,valtavirta_coupled_2017} as well as for routine applications.
 
-The \SN\ equations were developed by Carlson \cite{Car1953}. Another
-paper is cited here \cite{Lar2008}.
+All the calculations presented in this paper were performed using the Serpent 2 code version 2.1.28. Comparing with Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. Before burnup calculations can be undertaken MSBR model should be validated. In Section 2 a brief description of the MSBR geometry model is given. There is no approximations were applied for this core simulation despite aspects of MSBR geometry are difficult to model \cite{park_whole_2015}. In Section 3 the results are presented and discussed. Section 4 reflected conclusions and plans for the future research.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Theory}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie. Etiam malesuada, sapien at lobortis lacinia,
-justo ante volutpat nunc, gravida commodo justo purus ut quam. Proin tincidunt
-sem quis dui condimentum rhoncus. Nulla ut libero est, ut sollicitudin ligula.
-Curabitur quam orci, aliquet dignissim feugiat eu, porta ac leo. Aenean in
-ipsum arcu. Duis tempus porttitor turpis, eu volutpat odio fringilla sit amet.
-Donec malesuada, arcu id porttitor mattis, arcu est molestie arcu, quis
-dignissim tellus justo nec sapien. Praesent pretium interdum odio ac varius.
-Suspendisse dui mauris, posuere in varius a, semper id dui. Suspendisse
-placerat, quam quis luctus aliquam, metus justo hendrerit massa, vel tempus
-ligula sem et purus.
+\section{2. Molten salt breeder reactor description}
+MSBR vessel has diameter 680 cm and high 610 cm and contains molten fluoride fuel-salt mixture which performs to functions: generate heat in the moderated region and transport heat energy from the core to primary heat exchanger using primary salt pump. The vessel also contains graphite blocks for neutron moderation and reflection. The reactor core has a central zone, Zone I, in which 13\% of the volume is fuel salt and 87\% - graphite. The first zone is composed of 1320 graphite cells, 2 graphite control rods and 2 safety rods consisting of boron carbide clad. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie.
+The undermoderated zone, Zone II, with 37\% fuel salt, or radial reflector, surrounding the more active portion serves to diminish neutron leakage from the reactor core. This zone is formed of two kinds of elements: elements like those for Zone I except for a larger hole size (Zone II-A), and radially spread 42.72cm-thick graphite slats (Zone II-B). At the outer of the core there are 70cm-thick graphite reflector and 5cm-thick vessel wall. Betweeen the core and the reflector blocks located 5.08cm-wide annulus which is 100\% salt needed to provide possibility removing and inserting a core graphite assembly. 
+
+Figure~\ref{fig:plan} shows plan view of the whole core configuration at the expected reactor operational level when all control rods are fully withdrawn from the core.  Figure~\ref{fig:elevation} shows longitudinal section of the reactor. The violet color represents bare graphite, and the yellow represents fuel salt. The blue color shows Hastelloy-N, material used for the plenum and vessel wall, and the black color is a void space. All figures of the core in this work generated using built-in Serpent plotter.
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \captionsetup{justification=centering}
+  \includegraphics[width=1\linewidth]{figure_2_1.png}
+  \caption{Plan view of molten salt breeder reactor (MSBR) core.}
+  \label{fig:plan}
+\end{figure}
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \captionsetup{justification=centering}
+  \includegraphics[width=1\linewidth]{figure_2_2.png}
+  \caption{Elevation view of MSBR.}
+  \label{fig:elevation}
+\end{figure}
+
+\subsection{2.1. Zone I and II-A}
+The central portion, called Zone I, is made up of $10.16cm\times10.16cm\times396.24cm$-long graphite elements, as shown in Fig.2.2. The elements 
+
+\subsection{2.2. Zone II-B}
+
+
 
 Equations look exceedingly pretty. Here is a 3-D, monoenergetic, steady-state
 transport equation with isotropic scattering and an isotropic extraneous source:
@@ -103,7 +108,7 @@ vacuum boundary condition:
 The extrapolation distance is $2/3$. A more detailed asymptotic analysis yields
 an extrapolation distance of about $0.71045$.
 
-Figure~\ref{fig:voltage} shows how a plot might conceivably look in your
+shows how a plot might conceivably look in your
 document. Always place figures after they are referenced so as not to throw
 off the reader. You can use symbols and different line styles to help
 differentiate your results, especially if they are printed in black and white.
