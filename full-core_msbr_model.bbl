@@ -1,0 +1,50 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{haubenreich_experience_1970}
+\MakeUppercase{P.~N. Haubenreich} and \MakeUppercase{J.~R. Engel},
+  \enquote{Experience with the {Molten}-{Salt} {Reactor} {Experiment},}
+  \emph{Nuclear Technology}, \textbf{8}, \emph{2}, 118--136 (Feb. 1970).
+
+\bibitem{leblanc_molten_2010}
+\MakeUppercase{D.~LeBlanc}, \enquote{Molten salt reactors: {A} new beginning
+  for an old idea,} \emph{Nuclear Engineering and Design}, \textbf{240},
+  \emph{6}, 1644--1656 (Jun. 2010).
+
+\bibitem{robertson_conceptual_1971}
+\MakeUppercase{R.~C. Robertson}, \enquote{Conceptual {Design} {Study} of a
+  {Single}-{Fluid} {Molten}-{Salt} {Breeder} {Reactor}.} Tech. Rep. ORNL--4541,
+  comp.; Oak Ridge National Lab., Tenn. (Jan. 1971).
+
+\bibitem{park_whole_2015}
+\MakeUppercase{J.~Park}, \MakeUppercase{Y.~Jeong}, \MakeUppercase{H.~C. Lee},
+  and \MakeUppercase{D.~Lee}, \enquote{Whole core analysis of molten salt
+  breeder reactor with online fuel reprocessing: {Whole} core analysis of
+  {MSBR} with online fuel reprocessing,} \emph{International Journal of Energy
+  Research}, pp. n/a--n/a (Jul. 2015).
+
+\bibitem{leppanen_serpent_2012}
+\MakeUppercase{J.~Leppänen}, \enquote{Serpent -- a {Continuous}-energy {Monte}
+  {Carlo} {Reactor} {Physics} {Burnup} {Calculation} {Code},} \emph{VTT
+  Technical Research Centre of Finland, Espoo, Finland} (2012).
+
+\bibitem{fridman_use_2011}
+\MakeUppercase{E.~Fridman} and \MakeUppercase{J.~Leppänen}, \enquote{On the
+  use of the {Serpent} {Monte} {Carlo} code for few-group cross section
+  generation,} \emph{Annals of Nuclear Energy}, \textbf{38}, \emph{6},
+  1399--1405 (Jun. 2011).
+
+\bibitem{valtavirta_coupled_2017}
+\MakeUppercase{V.~Valtavirta}, \MakeUppercase{J.~Leppänen}, and
+  \MakeUppercase{T.~Viitanen}, \enquote{Coupled neutronics–fuel behavior
+  calculations in steady state using the {Serpent} 2 {Monte} {Carlo} code,}
+  \emph{Annals of Nuclear Energy}, \textbf{100}, 50--64 (Feb. 2017).
+
+\bibitem{leppanen_serpent_2015}
+\MakeUppercase{J.~Leppänen}, \MakeUppercase{M.~Pusa},
+  \MakeUppercase{T.~Viitanen}, \MakeUppercase{V.~Valtavirta}, and
+  \MakeUppercase{T.~Kaltiaisenaho}, \enquote{The {Serpent} {Monte} {Carlo}
+  code: {Status}, development and applications in 2013,} \emph{Annals of
+  Nuclear Energy}, \textbf{82}, 142--150 (Aug. 2015).
+
+\end{thebibliography}

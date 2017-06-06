@@ -1,11 +1,11 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Full-core analysis of thorium-fueled molten salt breader reactor using the SERPENT-2 Monte Carlo code}
+\title{Full-core analysis of thorium-fueled molten salt breeder reactor using the SERPENT-2 Monte Carlo code}
 
 \author{Andrei Rykhlevskii, Kathryn Huff, Alexander Lindsay}
 
 \institute{
-Department of Nuclear, Plasma, and Radiological Engineering, University of Illinois at Urbana-Champaign
+Department of Nuclear, Plasma, and Radiological Engineering, University of Illinois at Urbana-Champaign \break
 Urbana, IL
 }
 
@@ -33,61 +33,54 @@ Thermal spectrum Molten Salt Breeder Reactor (MSBR) designed specifically to rea
 
 For the development of MSBR research, this paper demonstrates advanced whole-core three-dimensional model developed using a continuous-energy Monte Carlo reactor physics calculation code Serpent 2 and cross-verification with existing MCNP6 results \cite{park_whole_2015,leppanen_serpent_2012}. The neutronics model could be useful for optimization fuel salt composition and fuel utilization, neutron fluxes and spectrum evaluation, and for depletion calculations using built-in Serpent burnup module. Moreover, this model in the future will be employed to generate problem-oriented homogenized nuclear data (multi-group cross sections and diffusion constants) for deterministic reactor codes, multi-physics simulations \cite{fridman_use_2011,valtavirta_coupled_2017} as well as for routine applications.
 
-All the calculations presented in this paper were performed using the Serpent 2 code version 2.1.28. Comparing with Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. Before burnup calculations can be undertaken MSBR model should be validated. In Section 2 a brief description of the MSBR geometry model is given. There is no approximations were applied for this core simulation despite aspects of MSBR geometry are difficult to model \cite{park_whole_2015}. In Section 3 the results are presented and discussed. Section 4 reflected conclusions and plans for the future research.
+All the calculations presented in this paper were performed using the Serpent 2 code version 2.1.28. Comparing with Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. Before burnup calculations can be undertaken MSBR model should be validated. In Section 2 a brief description of the MSBR geometry model is given. In Section 3 the results are presented and discussed. Section 4 reflected conclusions and plans for the future research.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{2. Molten salt breeder reactor description}
+\section{2. MSBR design description}
 MSBR vessel has diameter 680 cm and high 610 cm and contains molten fluoride fuel-salt mixture which performs to functions: generate heat in the moderated region and transport heat energy from the core to primary heat exchanger using primary salt pump. The vessel also contains graphite blocks for neutron moderation and reflection. The reactor core has a central zone, Zone I, in which 13\% of the volume is fuel salt and 87\% - graphite. The first zone is composed of 1320 graphite cells, 2 graphite control rods and 2 safety rods consisting of boron carbide clad. 
 
-The undermoderated zone, Zone II, with 37\% fuel salt, or radial reflector, surrounding the more active portion serves to diminish neutron leakage from the reactor core. This zone is formed of two kinds of elements: elements like those for Zone I except for a larger hole size (Zone II-A), and radially spread 42.72cm-thick graphite slats (Zone II-B). At the outer of the core there are 70cm-thick graphite reflector and 5cm-thick vessel wall. Betweeen the core and the reflector blocks located 5.08cm-wide annulus which is 100\% salt needed to provide possibility removing and inserting a core graphite assembly. 
+The undermoderated zone, Zone II, with 37\% fuel salt, or radial reflector, surrounding the more active portion serves to diminish neutron leakage from the reactor core. This zone is formed of two kinds of elements: elements like those for Zone I except for a larger hole size (Zone II-A), and radially spread graphite slats (Zone II-B). At the outer of the core there are 70cm-thick graphite reflector and 5cm-thick vessel wall. Betweeen the core and the reflector blocks located 5.08cm-wide annulus which is 100\% salt needed to provide possibility removing and inserting a core graphite assembly. 
 
 Figure~\ref{fig:plan} shows plan view of the whole core configuration at the expected reactor operational level when all control rods are fully withdrawn from the core.  Figure~\ref{fig:elevation} shows longitudinal section of the reactor. The violet color represents bare graphite, and the yellow represents fuel salt. The blue color shows Hastelloy-N, material used for the plenum and vessel wall, and the black color is a void space. All figures of the core in this work generated using built-in Serpent plotter.
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \captionsetup{justification=centering}
-  \includegraphics[width=1\linewidth]{figure_2_1.png}
+  \includegraphics[width=\linewidth]{figure_2_1.png}
   \caption{Plan view of molten salt breeder reactor (MSBR) core.}
   \label{fig:plan}
 \end{figure}
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \captionsetup{justification=centering}
-  \includegraphics[width=1\linewidth]{figure_2_2.png}
-  \caption{Elevation view of MSBR.}
+  \includegraphics[width=\linewidth]{figure_2_2.png}
+  \caption{Elevation view of molten salt breeder reactor (MSBR).}
   \label{fig:elevation}
 \end{figure}
 
 \subsection{2.1. Zone I and II-A}
-The central portion, called Zone I, is made up of $10.16cm\times10.16cm\times396.24cm$-long graphite elements, as shown in Fig.2.2. The elements 
+The central portion, called Zone I, is made up of $10.16cm\times10.16cm\times396.24cm$-long graphite elements. The fuel salt to graphite volume ratio of Zone 1 is 13.2\% which possible with a central hole diameter about $3.42cm$. Zone II having 37\% salt and central hole diameter about $6.604cm$. Both types of elements mostly have rectangular shape with a part of cylinder sticking out at each corner to form salt flow between tje griphite channels. Different sizes of elements neccesarily to reduce the peak damage flux and power density in the center of the core to prevent local graphite damage. Figure~\ref{fig:zone12A} demonstrates the reconstructed graphite element utilized for Serpent model.
+
+\begin{figure}[h] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.95\linewidth]{figure_2_4.png}
+  \caption{Zone I (left) and Zone II-A (right) elements.}
+  \label{fig:zone12A}
+\end{figure}
 
 \subsection{2.2. Zone II-B}
+Second core zone is divided into two different zones: Zone II-A and Zone II-B. The graphite elements for zone II-A are prismatic and form first reflecting layer surrounding the core zone I. The elements for zone II-B made ip in the foru of rectangular slats spaced far enough apart to achieve 0.37 fuel salt volume fraction. Figure~\ref{fig:zone2B} shows Zone II, 5.08cm-wide annular space between the core graphite and the radial reflector graphite. The annulus contains 100\% fuel salt and serves to reduce the damage flux for internal surface of the graphite reflector blocks. From the ORNL report suggested model for Zone II-B has 8 graphite elements every $45^\circ$ with special shape and have holes for the flow of salt and were simplified into a uniformly sized chopped fan shape with the central hole. All other graphite $5.08cm$-thick slats and various length in width (average width is about $26.67cm$ are reconstructed as is in the model without any approximation.
 
-
-
-Equations look exceedingly pretty. Here is a 3-D, monoenergetic, steady-state
-transport equation with isotropic scattering and an isotropic extraneous source:
-\begin{subequations} \label{eqs:fullTransport}
-\begin{multline} \label{eq:fullTransportVol}
-  \vec{\Omega}\vd \grad \psi(\vec{x}, \vec{\Omega})
-  + \sigma(\vec{x}) \psi (\vec{x}, \vec{\Omega})
-\\ =
-  \frac{\sigma_s(\vec{x})}{4\pi} \int_{4\pi} \psi(\vec{x},\vec{\Omega}')
-  \ud\Omega' + \frac{q(\vec{x})}{4\pi}
-  \equiv \frac{1}{4\pi} Q(\vec{x}) \,,
-\end{multline}
-inside $\vec{x} \in V$, $\vec{\Omega} \in 4\pi$, with an incident boundary
-condition
-\begin{equation} \label{eq:fullTransportBndy}
-  \psi(\vec{x}, \vec{\Omega}) = \psi^b(\vec{x}, \vec{\Omega}) \,,
- \quad \vec{x} \in \partial V, \ \vec{\Omega} \vd \vec{n} < 0\,.
-\end{equation}
-\end{subequations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and Analysis}
+\section{3. Results and Analysis}
 The results were interesting, so interesting in fact that we have decided to
 present them here.
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=\linewidth]{figure_2_5.png}
+  \caption{Plan view of Zone II-B.}
+  \label{fig:zone2B}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Subsection Goes Here}
@@ -95,18 +88,6 @@ The user must manually capitalize initial letters of a subsection heading.
 
 For those who like equations in their papers, \LaTeX\ is a good choice. Here is
 an equation for the Marshak diffusion boundary condition:
-\begin{equation} \label{eq:marshak}
-  4 J^- = \phi + 2 D \vec{n} \vd \grad \phi \,.
-\end{equation}
-If we so choose, we can effortlessly reference the equation later.
-
-Another paragraph starts with Eq.~\eqref{eq:marshak} and sets $J^-$ to zero, a
-vacuum boundary condition:
-\begin{equation*}
-  0 = \phi + \frac{2}{3} \frac{1}{\sigma} \vec{n} \vd \grad \phi \,.
-\end{equation*}
-The extrapolation distance is $2/3$. A more detailed asymptotic analysis yields
-an extrapolation distance of about $0.71045$.
 
 shows how a plot might conceivably look in your
 document. Always place figures after they are referenced so as not to throw
