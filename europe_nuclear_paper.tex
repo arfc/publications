@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{anstrans}
 
 %%%% packages and definitions (optional)
 \usepackage{graphicx} % allows inclusion of graphics
@@ -12,10 +12,12 @@
 \usepackage{hhline}
 
 \usepackage{tabularx}
+\usepackage{caption}
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.5\hsize}X}
 \newcolumntype{m}{>{\hsize=.75\hsize}X}
 
+\captionsetup{justification=centering}
 \newcommand{\SN}{S$_N$}
 \renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
 \newcommand{\vd}{\bm{\cdot}} % slightly bold vector dot
@@ -39,19 +41,15 @@
 \affil{Dept. of Nuclear, Plasma, and Radiological Engineering, University of Illinois at Urbana-Champaign
 	
 		  Urbana, IL}
-\date{}                     %% if you don't need date to appear
+\date{}
 \setcounter{Maxaffil}{0}
 \renewcommand\Affilfont{\itshape\small}
 %%%%%%%%%%%%%%actual words%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 
 \begin{document}
-\maketitle
 	
 \input{introduction}
-\input{scenario_specifications}
-\input{current}
-\input{future}
 \input{results}
 \input{discussion}
 
@@ -59,6 +57,5 @@
 \bibliographystyle{abbrv}
 \bibliography{./bibliography.bib}
 
-\input{appendix.tex}
 
 \end{document}
