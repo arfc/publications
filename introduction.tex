@@ -19,7 +19,7 @@ to receive all the \gls{SNF} from \gls{EU} nations to create \gls{MOX}.
 The \gls{MOX} created will fuel French transition to a \gls{SFR} fleet
 and may allow France to avoid building additional \glspl{LWR}.
 
-Past research which focuses solely on France has made the assumptions that additional \glspl{LWR},
+Past research, which focuses mostly on France, has made the assumptions that additional \glspl{LWR},
 namely \glspl{EPR} are constructed in order to supply \gls{SNF} required
 for \gls{MOX} production \cite{carre_overview_2009, martin_symbiotic_2007, freynet_multiobjective_2016}.
 There has been little attention in reprocessing legacy \gls{SNF} from other
@@ -29,7 +29,6 @@ need to construct additional \glspl{LWR} in France.
 
 A \Cyclus simulation is run to calculate
 how much spent fuel is created from \gls{EU} nations from 1970 to 2050, as well as the amount
-
 of \gls{MOX} that can be created with the \gls{SNF} inventory.
 The paper assumes a once-through cycle for all 
 \gls{EU} nations with the exception of France. France can reprocess spent \gls{UOX} and \gls{MOX} to
@@ -163,69 +162,6 @@ is then reprocessed to separate plutonium and uranium.
 The plutonium is mixed with depleted uranium (tails) to \gls{MOX}.
 The reprocessed uranium is stockpiled. \gls{SNF} decay is assumed
 to have no effect on reprocessing viability.
-
-
-% Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
-text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
-text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-minimum height=2em]
-
-
-\begin{figure}
-        \centering
-        \scalebox{0.8}{
-                \begin{tikzpicture}[align=center, node distance = 3cm and 3cm, auto]
-                % Place nodes
-                \node [block] (sr) {Mine (\texttt{SOURCE})};
-                \node [cloud, below of=sr] (nu) {Nat U};
-                \node [block, below of=nu] (enr) {Enrichment (\texttt{ENRICHMENT})};
-                \node [cloud, below of=enr] (uox) {\gls{UOX}};
-                \node [block, below of=uox] (lwr) {\gls{LWR} (\texttt{REACTOR})};
-                \node [cloud, right of=uox] (snf2) {\gls{SNF}};
-                \node [cloud, left of=lwr] (tl2) {Tailings};
-                \node [cloud, right of=enr] (tl) {Tailings};
-                \node [block, right of=tl] (sk) {Repository (\texttt{SINK})};
-                \node [cloud, below of=lwr] (snf) {\gls{SNF}};
-                \node [block, below of=snf] (rep) {Reprocessing (\texttt{SEPARATIONS})};
-                \node [cloud, below of=rep] (u) {Sep. U} ;
-                \node [cloud, left of=rep] (pu) {Sep. Pu};
-                \node [block, left of=pu] (mix) {Fabrication (\texttt{MIXER})};
-                \node [cloud, below of=mix] (mox) {\gls{MOX}};
-                \node [block, below of=mox] (mxr) {\gls{MOX} Reactors};
-                \node [cloud, right of= mxr] (snmox) {Spent \gls{MOX}};
-                
-                
-                \draw[->, thick] (sr) -- (nu);
-                \draw[->, thick] (nu) -- (enr);
-                \draw[->, thick] (enr) -- (tl);
-                \draw[->, thick] (enr) -- (tl2);
-                \draw[->, thick] (tl) -- (sk);
-                \draw[->, thick] (tl2) -- (mix);
-                \draw[->, thick] (enr) -- (uox);
-                \draw[->, thick] (uox) -- (lwr);
-                \draw[->, thick] (lwr) -- (snf);
-                \draw[->, thick] (lwr) -- (snf2);
-                \draw[->, thick] (snf2) -- (sk);
-                \draw[->, thick] (snf) -- (rep);
-                \draw[->, thick] (rep) -- (u);
-                \draw[->, thick] (rep) -- (pu);
-                \draw[->, thick] (pu) -- (mix);
-                \draw[->, thick] (mix) -- (mox);
-                \draw[->, thick] (mox) -- (mxr);
-                \draw[->, thick] (mxr) -- (snmox);
-                \draw[->, thick] (snmox) -- (rep);
-                
-                \end{tikzpicture}
-        
-                }
-                \caption{Model Fuel Cycle with \gls{MOX} Reprocessing}
-                \label{diag:fc}
-\end{figure}
-
 
 The second scenario estimates the \gls{SNF} inventory in \gls{EU} at 2050,
 and reprocesses the \gls{SNF} to separate plutonium. The separated
