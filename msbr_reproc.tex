@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Full-core analysis of thorium-fueled molten salt breeder reactor using the SERPENT 2 Monte Carlo code}
+\title{Online reprocessing simulation for thorium-fueled molten salt breeder reactor}
 
 \author{Andrei Rykhlevskii, Alexander Lindsay, Kathryn Huff}
 
@@ -17,6 +17,12 @@ Urbana, IL
 \usepackage{booktabs} % nice rules (thick lines) for tables
 \usepackage{microtype} % improves typography for PDF
 \usepackage[section]{placeins}
+
+\usepackage[acronym,toc]{glossaries}  % acronyms inclusion
+\include{acros}
+	
+\makeglossaries
+
 \graphicspath{{figures/}}
 
 \newcommand{\SN}{S$_N$}
@@ -28,13 +34,15 @@ Urbana, IL
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The molten salt reactor (MSR) is an advanced type of reactor which was developed at Oak Ridge National Laboratory (ORNL) in the 1950s and was operated in the 1960s. In the MSR, fluorides of fissile and/or fertile materials (i.e. $UF_4$, $PuF_3$ and/or $ThF_4$) are mixed with carrier salts to form a liquid fuel which is circulated in a loop-type primary circuit \cite{haubenreich_experience_1970}. This innovation leads to immediate advantages over traditional, solid-fueled, reactors. These include near-atmospheric pressure in the primary loop, relatively high coolant temperature, outstanding neutron economy, a high level of inherent safety, reduced fuel preprocessing, and the ability to continuously remove fission products and add fissile and/or fertile elements \cite{leblanc_molten_2010}. 
+The thermal spectrum \gls{MSR} is an advanced type of reactor consist of constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or $LiF-BeF_2-ZrF_4-UF_4$) which works also as a coolant, and the reactor graphite as moderator. This fuel form leads to immediate advantages over traditional, solid-fueled, reactors. The molten-salt carrier salt with dissolved in it fissile and/or fertile material allows to use online refuelling and reprocessing, which means \gls{MSR}s can operate years without shutdown, achieve maximum fuel utilization, and outstanding neutron economy \cite{leblanc_molten_2010}. Moreover, this type of fuel does not need fabrication and could be transported from enrichment plant to \gls{NPP} in form of uranium hexafluoride ($UF_6$), so \gls{MSR}s are also beneficial with regards to economics. Additionally, it has high level of inherent safety due to strong negative temeperature coefficient of reactivity, near-atmospheric pressure in the primary loop, stable coolant, passive decay heat cooling, and small excess reactivity \cite{elsheikh_safety_2013}.
 
-The thermal spectrum Molten Salt Breeder Reactor (MSBR) was designed specifically to realize the promise of the thorium fuel cycle which allows the use of natural thorium instead of enriched uranium as the fertile element. Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment. The mixture of $LiF-BeF_2-ThF_4-UF_4-PuF_3$ has a melting point of $499^\circ$C, a low vapor pressure at operating temperatures, and good flow and heat transfer properties \cite{robertson_conceptual_1971}. The MSBR geometry is difficult to describe in computer code input and usually require major approximations to proceed \cite{park_whole_2015}. 
+The thorium fueled Molten Salt Breeder Reactor (MSBR) was developed in early 1970s specifically to realize the promise of the thorium fuel cycle which allows the use of natural thorium instead of enriched uranium as the fertile element. Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment \cite{robertson_conceptual_1971}. In the matter of nuclear fuel cycle, the thorium cycle produces much less amount of plutonium and minor actinides (MAs) comparing to the traditional uranium fuel cycle, consequently, it might significantly increase prolifiration resistance when \gls{MSR} operates in the breeder regime. The \gls{MSR}s also could be employed as converter reactor for transmutation spent fuel from \gls{LWR} or others.
 
-For the development of MSBR research, this paper demonstrates an advanced whole-core three-dimensional model developed using a continuous-energy the Serpent 2 Monte Carlo reactor physics calculation code and cross-verification with existing MCNP6 results \cite{park_whole_2015,leppanen_serpent_2012}. This neutronics model is of sufficient fidelity to inform optimization of fuel salt composition and fuel utilization, neutron fluxes and spectrum evaluation, and for depletion calculations using built-in Serpent burnup module. Moreover, this model in the future will be employed to generate problem-oriented homogenized nuclear data (multi-group cross sections and diffusion constants) for deterministic reactor codes, multi-physics simulations \cite{fridman_use_2011,valtavirta_coupled_2017}, and for routine applications.
+Nowadays, interest to \gls{MSR} coming back after long-term break because of its unique characteristics and features of this type of reactor, such as online reprocessing and refueling. For the development of \gls{MSR} conception special computational analysis methods and codes needed due to completely different physics of liquid-fueled nuclear reactor comparing with traditional, solid-fueled, reactors. Most of the contemporary nuclear reactor physics codes do not able to perform depletion calculations in the online reprocessing regime. J.J. Powers (\gls{ORNL}) has suggested a novel method to conducting depletion simulation for \gls{MSR} with taking into account the online reprocessing and refueling based on the deterministic computer code NEWT in SCALE \cite{powers_new_2013}. This approach was later used by Jeong et al. to find equilibrium state for MSBR and validate it with MCNP6/CINDER90 model \cite{jeong_equilibrium_2016}. For the development of MSBR research, this paper presents the MSBR single-cell model developed using a continuous-energy the Serpent 2 Monte Carlo reactor physics calculation code that was employed to find equilibrium core state, and several calculation results including the depletion calculation of the single-cell unit.
 
-All calculations presented in this paper were performed using the Serpent 2 code version 2.1.28. Compared with Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. Before burnup calculations could be undertaken, MSBR model was verified. In Section 2, a brief description of the MSBR geometry model is given. In Section 3 the results are presented and discussed. Section 4 reflected conclusions and plans for the future research.
+All calculations presented in this paper were performed using the Serpent 2 code version 2.1.29 with ENDF/B-VII
+nuclear data \cite{leppanen_serpent_2012,chadwick_endf/b-vii.0:_2006}. Compared with Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. This paper use build-in Serpent 2 depletion capabilities with online reprocessing subroutine. Another feature, circulating
+liquid fuel, which causes delayed neutron precursor drift is not treated here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MSBR design description}
