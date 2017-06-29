@@ -1,6 +1,6 @@
 \section{Abstract}
 The French strategy recommended by 2012-2015 Commission Nationale d'Evaluation reports
-\cite{cne2_noauthor_2015} emphasizes preparation for a transition from \glspl{LWR} to \glspl{SFR}.
+\cite{noauthor_cne2_nodate} emphasizes preparation for a transition from \glspl{LWR} to \glspl{SFR}.
 This paper uses \Cyclus to explore the feasibility of using \gls{SNF}from other EU nations
 for French transition into a \gls{SFR} fleet without additional construction of \glspl{LWR}.
 A \Cyclus simulation is run from 1950 to 2160 for EU to track the \gls{SNF} mass
@@ -21,8 +21,10 @@ and may allow France to avoid building additional \glspl{LWR}.
 
 Past research, which focuses mostly on France, has made the assumptions that additional \glspl{LWR},
 namely \glspl{EPR} are constructed in order to supply \gls{SNF} required
-for \gls{MOX} production \cite{carre_overview_2009, martin_symbiotic_2007, freynet_multiobjective_2016}.
-There has been little attention in reprocessing legacy \gls{SNF} from other
+for \gls{MOX} production \cite{carre_overview_2009, martin_symbiotic_2017, freynet_multiobjective_2016}.
+There also are studies on regional (European) transmutation and partitioning with fast reactors
+and \gls{ADS} to reduce disposal burden \cite{fazio_study_2013, martinez-val_pateros_2009}.
+There has been little attention in utilizing legacy \gls{SNF} from other
 EU nations to produce \gls{MOX} for the newly deployed \glspl{SFR}.
 The present work finds that this collaborative strategy can reduce the
 need to construct additional \glspl{LWR} in France.
@@ -117,12 +119,10 @@ of \gls{SFR} by 2076.
 \end{figure}
 
 
-\Cref{fig:sfr_cap} and \cref{fig:sfr_num} display
+\Cref{fig:sfr_cap} display
 the \gls{SFR} number and capacity over time.
 The sharp increase from 2035 to 2060 is due mainly to
 French aggressive growth from 1975 to 2000.
-
-
 
 \subsection{Depletion Calculations}
 Depletion calculations of the nuclear fuel are recipe-based, such that a fresh 
@@ -152,10 +152,13 @@ The plutonium is mixed with depleted uranium (tails) to \gls{MOX}.
 The reprocessed uranium is stockpiled. \gls{SNF} decay is assumed
 to have no effect on reprocessing viability.
 
-The second scenario estimates the \gls{SNF} inventory in \gls{EU} at 2050,
+The second scenario utilizes the obtained \gls{SNF} inventory in \gls{EU} at 2050,
 and reprocesses the \gls{SNF} to separate plutonium. The separated
 plutonium is mixed with the depleted uranium inventory from 2050
 to create \gls{MOX}, which is used in the \gls{SFR}s. The used
 \gls{MOX} is also reprocessed to extract plutonium, which also
-is mixed with depleted uranium to produce \gls{MOX}.
+is mixed with depleted uranium to produce \gls{MOX}. Note that the plutonium
+from both spent fuel types are of 'good quality' (~70\% fissile, ~25\% Pu240),
+and the \gls{MOX} fuel is fabricated in the simulation to have an appropriate
+neutronic property \cite{huff_fundamental_2016}.
 
