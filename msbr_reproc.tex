@@ -66,36 +66,36 @@ transmutation or spent fuel from current \glspl{LWR}.
 
 Recently, interest in \glspl{MSR} is resurgent, with multiple new companies 
 pursuing commercialization of \gls{MSR} designs\footnote{Examples include both 
-        liquid-fueled molten salt designs
-        from Transatomic, Terrapower, Terrestrial, and Thorcon.}
-To further develop these \gls{MSR} concepts, strategies for online reprocessing 
-and refueling special 
-computational analysis methods and codes are needed due to the unique completely different 
-physics of liquid-fueled nuclear reactor comparing with traditional, 
-solid-fueled, reactors. 
-Most of the contemporary nuclear reactor physics codes 
-do not able to perform depletion calculations in the online reprocessing 
-regime. J.J. Powers (\gls{ORNL}) has suggested a novel method to conducting 
+liquid-fueled molten salt designs from Transatomic, Terrapower, Terrestrial, 
+and Thorcon.}.
+To further develop these \gls{MSR} concepts, particularly with respect to their  
+strategies for online reprocessing and refueling, advanced
+computational analysis methods capturing
+their unique reactor physics and process chemistry are needed.
+Most contemporary nuclear reactor physics software is unable
+to perform depletion calculations in an online reprocessing 
+regime. Powers \emph{et al.} suggested a novel method to conducting 
 depletion simulation for \gls{MSR} with taking into account the online 
 reprocessing and refueling based on the deterministic computer code NEWT in 
-SCALE \cite{powers_new_2013}. This approach was later used by Jeong et al. to 
-find equilibrium state for \gls{MSBR} and validate it with \gls{MCNP}/CINDER90 
-model \cite{jeong_equilibrium_2016}. For the development of \gls{MSBR} 
-research, this paper presents the single-cell model developed using a 
-continuous-energy the Serpent 2 Monte Carlo reactor physics calculation code 
-that was employed to find equilibrium core state, and several calculation 
-results including the depletion calculation of the single-cell unit.
+SCALE \cite{powers_new_2013}. This approach was later used by Jeong \emph{et 
+al.} to find an equilibrium fuel composition for \gls{MSBR} and to validate it 
+with an \gls{MCNP}/CINDER90 
+model \cite{jeong_equilibrium_2016}. 
 
+The current paper presents the single-cell model developed using the
+continuous-energy Serpent 2 Monte Carlo reactor physics software. It was 
+employed to find an equilibrium core composition and core depletion of the 
+single-cell unit. 
 All calculations presented in this paper were performed using the Serpent 2 
 code version 2.1.29 with ENDF/B-VII.0
-nuclear data \cite{leppanen_serpent_2012,chadwick_endf/b-vii.0:_2006}. Compared 
-to Serpent 1, Serpent 2 has many more useful features and contains a complete 
-redesign of memory management using hybrid OpenMP + MPI parallelization, which 
-is important in depletion calculations using computer clusters with multiple 
-cores \cite{leppanen_serpent_2015}. This paper use build-in Serpent 2 depletion 
-capabilities with online reprocessing subroutine. Another feature of 
-\gls{MSBR}, circulating
-liquid fuel, which causes delayed neutron precursor drift is not treated here.
+nuclear data \cite{leppanen_serpent_2012,chadwick_endf/b-vii.0:_2006}. Serpent 
+2 is an improvement upon Serpent 1, and contains a complete 
+redesign of memory management using hybrid OpenMP + MPI parallelization.  This 
+hybrid parallelization is important in depletion calculations using computer 
+clusters with multiple cores \cite{leppanen_serpent_2015}. This work used the 
+built-in Serpent 2 depletion capabilities and its built-in online reprocessing 
+subroutine. Another feature of the \gls{MSBR}, its circulating liquid fuel and 
+corresponding delayed neutron precursor drift, is not treated here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Description of the actual work}
@@ -289,7 +289,7 @@ flows during 4 years of depletion calculations.
 %  \label{tab:rates}
 %\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{rates_fuel.png}
         \caption{Materials flows rates during online reprocessing.}
@@ -301,7 +301,7 @@ uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th
 rate slightly decreases over 4 years of operation due to other than $^{233}$U 
 fissile materials accumulation.
 
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{rates_outflow.png}
         \caption{Materials flows rates for the protactinium decay tank during 
@@ -322,13 +322,15 @@ Figure~\ref{fig:spectrum} represents the normalized neutron flux distribution
 of the initial and the equilibrium core compositions. The spectrum for the 
 equilibrium state is harder than the initial state due to heavy fission 
 products.  
-\begin{figure}[hb!] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.04\linewidth]{spectrum.png}
         \caption{Normalized neutron energy spectrum for initial and equilibrium 
         composition.}
         \label{fig:spectrum}
 \end{figure}
+
+\FloatBarrier 
 
 In this work only Zone I unit cell with 0.132 volume fraction of fuel 
 considered, neutron spectrum for Zone II cell where salt fraction is 37\% 
