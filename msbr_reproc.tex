@@ -61,15 +61,19 @@ Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment
 thorium cycle produces a reduced quantity of plutonium and \glspl{MA} 
 compared to the traditional uranium fuel cycle. Consequently, it may 
 significantly increase proliferation resistance when the \gls{MSR} operates in the 
-breeder regime. The \glspl{MSR} also could be employed as converter reactor for 
-transmutation spent fuel from \gls{LWR} or others.
+breeder regime. The \glspl{MSR} also could be employed as a converter reactor for 
+transmutation or spent fuel from current \glspl{LWR}.
 
-Nowadays, interest to \gls{MSR} coming back after long-term break because of 
-its unique characteristics and features of this type of reactor, such as online 
-reprocessing and refueling. For the development of \gls{MSR} conception special 
-computational analysis methods and codes needed due to completely different 
+Recently, interest in \glspl{MSR} is resurgent, with multiple new companies 
+pursuing commercialization of \gls{MSR} designs\footnote{Examples include both 
+        liquid-fueled molten salt designs
+        from Transatomic, Terrapower, Terrestrial, and Thorcon.}
+To further develop these \gls{MSR} concepts, strategies for online reprocessing 
+and refueling special 
+computational analysis methods and codes are needed due to the unique completely different 
 physics of liquid-fueled nuclear reactor comparing with traditional, 
-solid-fueled, reactors. Most of the contemporary nuclear reactor physics codes 
+solid-fueled, reactors. 
+Most of the contemporary nuclear reactor physics codes 
 do not able to perform depletion calculations in the online reprocessing 
 regime. J.J. Powers (\gls{ORNL}) has suggested a novel method to conducting 
 depletion simulation for \gls{MSR} with taking into account the online 
@@ -160,7 +164,6 @@ reprocessing cycle at 908K \cite{robertson_conceptual_1971}.
 
 \begin{figure}[h] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.6em}
         \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
         \caption{MSBR unit cell of Zone I geometry.}
         \label{fig:zoneI}
@@ -219,15 +222,15 @@ state with fully withdrawn control and poison rods position which gives high
 excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
 Standard deviation is about 100 pcm.
 
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.8em}
         \includegraphics[width=1.03\linewidth]{keff.png}
         \caption{Infinite multiplication factor during 4 years depletion 
         simulation.}
-        \vspace{-0.8em}
         \label{fig:keff}
 \end{figure}
+
+\FloatBarrier
 
 Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
 reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
@@ -242,15 +245,15 @@ materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which
 makes it possible to decrease fresh fuel refill rate after ~1 year of 
 operation.
 
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.8em}
         \includegraphics[width=1.03\linewidth]{fuel_composition.png}
         \caption{Normalized number density of major isotopes during 4 years 
         depletion.}
         \label{fig:compos}
-        \vspace{-0.8em}
 \end{figure}
+
+\FloatBarrier
 
 The analysis of the fuel salt composition variation gives clearer information 
 about equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
@@ -288,11 +291,9 @@ flows during 4 years of depletion calculations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.8em}
         \includegraphics[width=1.03\linewidth]{rates_fuel.png}
         \caption{Materials flows rates during online reprocessing.}
         \label{fig:rates}
-        \vspace{-0.8em}
 \end{figure}
 From the graph below we can see that to keep reactor critical higher $^{233}$U 
 flow rate required for first 400 days of operation and after that much smaller 
@@ -302,13 +303,10 @@ fissile materials accumulation.
 
 \begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.8em}
         \includegraphics[width=1.03\linewidth]{rates_outflow.png}
         \caption{Materials flows rates for the protactinium decay tank during 
         \gls{MSBR} online reprocessing.}
-        \vspace{-0.6em}
         \label{fig:outflow}
-        \vspace{-0.8em}
 \end{figure}
 As shown in Figure~\ref{fig:outflow}, the tank for protactinium decay 
 accumulates $^{233}$Pa approximately 200 days and fresh fuel ($^{233}$U) flow 
@@ -323,16 +321,13 @@ and, hence, the reactivity, in the reactor core as desired.
 Figure~\ref{fig:spectrum} represents the normalized neutron flux distribution 
 of the initial and the equilibrium core compositions. The spectrum for the 
 equilibrium state is harder than the initial state due to heavy fission 
-products.  \begin{figure}[hb] % replace 't' with 'b' to force it to be on the 
-        bottom
+products.  
+\begin{figure}[hb!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \vspace{-0.85em}
         \includegraphics[width=1.04\linewidth]{spectrum.png}
-        \vspace{-0.6em}
         \caption{Normalized neutron energy spectrum for initial and equilibrium 
         composition.}
         \label{fig:spectrum}
-        \vspace{-0.10em}
 \end{figure}
 
 In this work only Zone I unit cell with 0.132 volume fraction of fuel 
