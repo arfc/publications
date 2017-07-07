@@ -36,19 +36,19 @@ reactor}
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The thermal spectrum \gls{MSR} is an advanced type of reactor consisting of 
+The thermal spectrum \gls{MSR} is an advanced type of reactor that consists of 
 constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or 
-$LiF-BeF_2-ZrF_4-UF_4$) which also works as a coolant, and the reactor graphite 
-as moderator. This fuel form leads to immediate advantages over traditional, 
-solid-fueled, reactors. The molten-salt carrier salt with dissolved in it 
-fissile and/or fertile material allows to use online refuelling and 
-reprocessing, which means \gls{MSR}s can operate years without shutdown, 
-achieve maximum fuel utilization, and outstanding neutron economy 
+$LiF-BeF_2-ZrF_4-UF_4$) and solid graphite moderator structures. This liquid 
+fuel form leads to immediate advantages over traditional, 
+solid-fueled, reactors. The molten-salt carrier with dissolved 
+fissile and/or fertile material allows for online refuelling and 
+reprocessing. Thus, \gls{MSR}s can potentially operate years without shutdown, 
+achieving maximum fuel utilization and outstanding neutron economy 
 \cite{leblanc_molten_2010}. Moreover, this type of fuel does not need 
 fabrication and could be transported from enrichment plant to \gls{NPP} in form 
 of uranium hexafluoride ($UF_6$), so \gls{MSR}s are also beneficial with 
 regards to economics. Additionally, it has high level of inherent safety due to 
-strong negative temeperature coefficient of reactivity, near-atmospheric 
+strong negative temperature coefficient of reactivity, near-atmospheric 
 pressure in the primary loop, stable coolant, passive decay heat cooling, and 
 small excess reactivity \cite{elsheikh_safety_2013}.
 
@@ -59,7 +59,7 @@ Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment
 \cite{robertson_conceptual_1971}. In the matter of nuclear fuel cycle, the 
 thorium cycle produces much less amount of plutonium and minor actinides (MAs) 
 comparing to the traditional uranium fuel cycle, consequently, it might 
-significantly increase prolifiration resistance when \gls{MSR} operates in the 
+significantly increase proliferation resistance when \gls{MSR} operates in the 
 breeder regime. The \gls{MSR}s also could be employed as converter reactor for 
 transmutation spent fuel from \gls{LWR} or others.
 
@@ -147,7 +147,7 @@ skip = \medskipamount}
 The \gls{MSBR} core consist of two different zones with one flow. The central 
 zone, Zone I, in which 13.2\% of the volume is fuel salt and 86.8\% graphite. 
 The first zone is composed of 1320 graphite cells, 2 graphite control rods, and 
-2 safety rods consisting of boron carbide clad. The undermoderated zone, Zone 
+2 safety rods consisting of boron carbide clad. The under-moderated zone, Zone 
 II, with 37\% fuel salt, and radial reflector, surrounding the more active 
 portion serves to diminish neutron leakage from the reactor core. In this work, 
 only Zone I element with the hole diameter of 3.42138 cm, and the molten-salt 
@@ -187,11 +187,11 @@ reactor poisoning. The reactor reprocessing system designed to separate
 $^{233}$Pa from the molten-salt fuel over 3 days, held it to produce $^{233}$U 
 and return it back to the primary loop. This feature allows to keep the 
 neutrons losses to protactinium and fission products to a very low level, and 
-increses the efficency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
+increases the efficiency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
 
 A major problem with the reprocessing method is that different nuclides have 
 specific removal rates. On the one hand, if the depletion time intervals are 
-very short it means specific isotope beign instantly removed, and it is hard to 
+very short it means specific isotope being instantly removed, and it is hard to 
 obtain equilibrium composition because enormous large number of depletion 
 steps. On the other hand, if the depletion calculation time interval is too 
 long the results would not truly represents \gls{MSBR} conceptual design. 
@@ -214,9 +214,9 @@ The method approximate a single representative unit cell for the whole
 \gls{MSBR} core, consequently, it does not take into consideration different 
 fuel-moderator volume ratio for Zone I, Zone II, annulus, and reflector. The 
 initial multiplication factor during depletion calculation is selected for 
-state with fully withdrawn control and poison rods position which gaves high 
+state with fully withdrawn control and poison rods position which gives high 
 excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
-Standart deviation is about 100 pcm.
+Standard deviation is about 100 pcm.
 
 \begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
         \centering
@@ -228,7 +228,7 @@ Standart deviation is about 100 pcm.
         \label{fig:keff}
 \end{figure}
 
-Figure~\ref{fig:keff} shows the infinite muliplication factor for 4-year 
+Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
 reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
 high standard deviation causes the multiplication factor fluctuations. 
 Protactinium-233 continuously removing into the tank for protactinium decay. 
@@ -256,7 +256,7 @@ about equilibrium core state. Figure~\ref{fig:compos} shows the normalized
 number density of important isotopes that have strong influence on the core 
 neutronics at the beginning of each depletion time interval. The number density 
 of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
-of it produced during 3-days reprocessing step. It can be seen that the the 
+of it produced during 3-days reprocessing step. It can be seen that the 
 multiplication factor reaches the equilibrium state at about 950  days. 
 Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
 flows during 4 years of depletion calculations. 
@@ -341,8 +341,8 @@ lower. To obtain high fidelity neutron energy spectrum whole \gls{MSBR} core
 analysis is required.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-The depletion calculation of the \gls{MSBR} init cell model for finding the 
-equilibrium states was performed using the Serepent 2 Monte Carlo code to 
+The depletion calculation of the \gls{MSBR} unit cell model for finding the 
+equilibrium states was performed using the Serpent 2 Monte Carlo code to 
 simulate simplified case of the online reprocessing and refueling to find 
 equilibrium material composition. When running depletion calculation, the 
 fission products are removed and fertile/fissile materials are added to fuel 
@@ -360,7 +360,7 @@ two different unit cell models and uses \gls{MCNP} with Python-script to
 simulate \gls{MSBR} online reprocessing to find equilibrium composition. This 
 inconsistency may be due to different fuel fraction in the unit cell (Jeong and 
 Park selected 20.6\% salt fraction). To obtain better results in online 
-reprocessing simualtion number of future efforts expected. First, depletion 
+reprocessing simulation number of future efforts expected. First, depletion 
 simulation will be performed using full-core tree-dimensional high-fidelity 
 model of \gls{MSBR} developed in Serpent 2. In this case, different 
 fuel-moderator volume ratios for the reactor Zone I, Zone II, annulus, 
