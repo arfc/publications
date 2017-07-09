@@ -23,6 +23,8 @@ reactor}
 \usepackage[acronym,toc]{glossaries}  % acronyms inclusion
 \include{acros}
 
+\usepackage{tabularx} % for nice wrapping of table text
+
 \makeglossaries
 
 \graphicspath{{figures/}}
@@ -121,15 +123,16 @@ this model \cite{robertson_conceptual_1971}.
 skip = \medskipamount}
 \begin{table}[h!]
         %\centering
-        \begin{tabular}{p{0.46\linewidth} p{0.50\linewidth}} \toprule
+        %\begin{tabular}{p{0.46\linewidth} p{0.50\linewidth}} \toprule
+        \begin{tabularx}{\linewidth}{l X} \toprule 
                 Thermal capacity of reactor           & 2250 MW(t)
                 \\ \midrule
                 %Net electrical output                 & 1000 MW(e) \\ \midrule
                 %Net thermal efficiency        & 44.4\%
                 %\\ \midrule
-                Volume fraction of salt in central core zone     & 0.132
+                Salt volume fraction in central core zone     & 0.132
                 \\ \midrule
-                Volume fraction of salt in outer core zone       & 0.37
+                Salt volume fraction in outer core zone       & 0.37
                 \\ \midrule
                 Fuel-salt inventory (Zone I)                  & 8.2 m$^3$	
                 \\ \midrule
@@ -142,7 +145,7 @@ skip = \medskipamount}
                 71.767-16-12-0.232-0.0006 mole\%
                 \\
                 \bottomrule
-        \end{tabular}
+        \end{tabularx}
         \caption{Summary of principal data for MSBR.}
         \label{tab:data}
 \end{table}
@@ -157,27 +160,30 @@ portion serves to diminish neutron leakage from the reactor core. In this work,
 only a Zone I element with a $3.42138 cm$ diameter central fuel channel and molten-salt 
 fuel volume fraction of 0.132 was considered. Figure~\ref{fig:zoneI} shows the 
 geometry of the unit cell model. The boundary condition of the unit cell is 
-periodic. The density of the fuel salt is $3.3304 \frac{g}{cm^3}$ and the graphite density is 
-$1.843 \frac{g}{cm^3}$. The temperature of fuel and graphite is fixed at 908K for the whole 
+periodic. The density of the fuel salt is $3.3304 g/cm^3$ and the graphite density is 
+$1.843 g/cm^3$. The temperature of fuel and graphite is fixed at 908K for the whole 
 reprocessing cycle\cite{robertson_conceptual_1971}.
 
-\begin{figure}[h] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
         \caption{MSBR unit cell of Zone I geometry.}
         \label{fig:zoneI}
 \end{figure}
 
+\FloatBarrier
 \subsection{Online reprocessing method}
 
-Currently, researchers usually using supporting tools and scripts to simulate 
-online reprocessing and refueling. Most researchers investigating the 
-\glspl{MSR} have utilised for reprocessing calculations stochastic (i.e. 
-\gls{MCNP}) or deterministic (i.e. SCALE) code with originally-developed 
-scripts based on Python \cite{jeong_equilibrium_2016,park_whole_2015}. The 
-Serpent 2 is the first code supporting continuous material reprocessing, and 
-allows create needed number of material flows into the fuel and/or out from the 
-fuel.
+Currently, researchers 
+investigating the \glspl{MSR} 
+typically develop custom supporting tools and scripts to simulate 
+online reprocessing and refueling. Most utilize stochastic (i.e. 
+\gls{MCNP}) or deterministic (i.e. SCALE) methods for depletion and supplement 
+these with custom Python scripts to capture the impacts of reprocessing 
+\cite{jeong_equilibrium_2016,park_whole_2015}. Serpent 2 is the 
+first commonly used monte carlo software to support continuous material 
+reprocessing. It does so by allowing the user to 
+create multiple material flows into and out of the fuel.
 
 The \gls{MSBR} has the capability to remove every 20 seconds all poisons (e.g. 
 $^{135}$Xe), noble metals and gases (e.g. $^{75}$Se, $^{85}$Kr) which also have 
