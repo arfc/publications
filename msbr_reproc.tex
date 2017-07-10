@@ -1,12 +1,14 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Online reprocessing simulation for thorium-fueled molten salt breeder reactor}
+\title{Online reprocessing simulation for thorium-fueled molten salt breeder 
+reactor}
 
 \author{Andrei Rykhlevskii, Alexander Lindsay, Kathryn Huff}
 
 \institute{
-Department of Nuclear, Plasma, and Radiological Engineering, University of Illinois at Urbana-Champaign \break
-Urbana, IL
+        Department of Nuclear, Plasma, and Radiological Engineering, University 
+        of Illinois at Urbana-Champaign \break
+        Urbana, IL
 }
 
 \email{andreir2@illinois.edu}
@@ -20,7 +22,9 @@ Urbana, IL
 
 \usepackage[acronym,toc]{glossaries}  % acronyms inclusion
 \include{acros}
-	
+
+\usepackage{tabularx} % for nice wrapping of table text
+
 \makeglossaries
 
 \graphicspath{{figures/}}
@@ -34,109 +38,243 @@ Urbana, IL
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The thermal spectrum \gls{MSR} is an advanced type of reactor consist of constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or $LiF-BeF_2-ZrF_4-UF_4$) which works also as a coolant, and the reactor graphite as moderator. This fuel form leads to immediate advantages over traditional, solid-fueled, reactors. The molten-salt carrier salt with dissolved in it fissile and/or fertile material allows to use online refuelling and reprocessing, which means \gls{MSR}s can operate years without shutdown, achieve maximum fuel utilization, and outstanding neutron economy \cite{leblanc_molten_2010}. Moreover, this type of fuel does not need fabrication and could be transported from enrichment plant to \gls{NPP} in form of uranium hexafluoride ($UF_6$), so \gls{MSR}s are also beneficial with regards to economics. Additionally, it has high level of inherent safety due to strong negative temeperature coefficient of reactivity, near-atmospheric pressure in the primary loop, stable coolant, passive decay heat cooling, and small excess reactivity \cite{elsheikh_safety_2013}.
+The thermal spectrum \gls{MSR} is an advanced type of reactor that consists of 
+constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or 
+$LiF-BeF_2-ZrF_4-UF_4$) and solid graphite moderator structures. This liquid 
+fuel form leads to immediate advantages over traditional, 
+solid-fueled, reactors. The molten-salt carrier with dissolved 
+fissile and/or fertile material allows for online refuelling and 
+reprocessing. Thus, \glspl{MSR} can potentially operate years without shutdown, 
+achieving maximum fuel utilization and outstanding neutron economy 
+\cite{leblanc_molten_2010}. Moreover, this type of fuel does not need 
+complex fabrication since the fissile material could be transported from any 
+enrichment plant to the \gls{NPP} in the form 
+of uranium hexafluoride ($UF_6$).  Additionally, \glspl{MSR} have a high level 
+of inherent safety due to their characteristically 
+strong negative temperature coefficient of reactivity, near-atmospheric 
+pressure in the primary loop, stable coolant, passive decay heat cooling, and 
+small excess reactivity \cite{elsheikh_safety_2013}.
 
-The thorium fueled \gls{MSBR} was developed in early 1970s by \gls{ORNL} specifically to realize the promise of the thorium fuel cycle which allows the use of natural thorium instead of enriched uranium as the fertile element. Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment \cite{robertson_conceptual_1971}. In the matter of nuclear fuel cycle, the thorium cycle produces much less amount of plutonium and minor actinides (MAs) comparing to the traditional uranium fuel cycle, consequently, it might significantly increase prolifiration resistance when \gls{MSR} operates in the breeder regime. The \gls{MSR}s also could be employed as converter reactor for transmutation spent fuel from \gls{LWR} or others.
+The thorium-fueled \gls{MSBR} was developed in the early 1970s by \gls{ORNL} 
+specifically to realize the promise of the thorium fuel cycle which allows the 
+use of natural thorium instead of enriched uranium as the fertile element. 
+Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment 
+\cite{robertson_conceptual_1971}. In the matter of nuclear fuel cycle, the 
+thorium cycle produces a reduced quantity of plutonium and \glspl{MA} 
+compared to the traditional uranium fuel cycle. Consequently, it may 
+significantly increase proliferation resistance when the \gls{MSR} operates in the 
+breeder regime. The \glspl{MSR} also could be employed as a converter reactor for 
+transmutation or spent fuel from current \glspl{LWR}.
 
-Nowadays, interest to \gls{MSR} coming back after long-term break because of its unique characteristics and features of this type of reactor, such as online reprocessing and refueling. For the development of \gls{MSR} conception special computational analysis methods and codes needed due to completely different physics of liquid-fueled nuclear reactor comparing with traditional, solid-fueled, reactors. Most of the contemporary nuclear reactor physics codes do not able to perform depletion calculations in the online reprocessing regime. J.J. Powers (\gls{ORNL}) has suggested a novel method to conducting depletion simulation for \gls{MSR} with taking into account the online reprocessing and refueling based on the deterministic computer code NEWT in SCALE \cite{powers_new_2013}. This approach was later used by Jeong et al. to find equilibrium state for \gls{MSBR} and validate it with \gls{MCNP}/CINDER90 model \cite{jeong_equilibrium_2016}. For the development of \gls{MSBR} research, this paper presents the single-cell model developed using a continuous-energy the Serpent 2 Monte Carlo reactor physics calculation code that was employed to find equilibrium core state, and several calculation results including the depletion calculation of the single-cell unit.
+Recently, interest in \glspl{MSR} has resurged, with multiple new companies 
+pursuing commercialization of \gls{MSR} designs\footnote{Examples include both 
+liquid-fueled molten salt designs from Transatomic, Terrapower, Terrestrial, 
+and Thorcon.}.
+To further develop these \gls{MSR} concepts, particularly with respect to their  
+strategies for online reprocessing and refueling, computational analysis methods capturing
+their unique reactor physics and process chemistry are needed.
+However, most contemporary nuclear reactor physics software is unable to 
+perform depletion calculations in an online reprocessing 
+regime. Powers \emph{et al.} suggested a novel method for conducting 
+depletion simulations for \gls{MSR}. This suggested method takes into account 
+fuel salt composition changes due to online 
+reprocessing and refueling based on the deterministic computer code NEWT in 
+SCALE \cite{powers_new_2013}. This approach was later used by Jeong \emph{et 
+al.} to find an equilibrium fuel composition for the \gls{MSBR} and was 
+validated with an \gls{MCNP}/CINDER90 model \cite{jeong_equilibrium_2016}. 
 
-All calculations presented in this paper were performed using the Serpent 2 code version 2.1.29 with ENDF/B-VII.0
-nuclear data \cite{leppanen_serpent_2012,chadwick_endf/b-vii.0:_2006}. Compared to Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. This paper use build-in Serpent 2 depletion capabilities with online reprocessing subroutine. Another feature of \gls{MSBR}, circulating
-liquid fuel, which causes delayed neutron precursor drift is not treated here.
+The current paper presents a single-cell model developed using the
+continuous-energy Serpent 2 Monte Carlo reactor physics software. It was 
+employed to establish a Serpent-based method for finding the equilibrium core composition and 
+core depletion of the \gls{MSBR}.
+All calculations presented in this paper were performed using the Serpent 2 
+code version 2.1.29 with ENDF/B-VII.0
+nuclear data \cite{leppanen_serpent_2012,chadwick_endf/b-vii.0:_2006}. Serpent 
+2 is an improvement upon Serpent 1, and contains a complete 
+redesign of memory management using hybrid OpenMP + MPI parallelization.  This 
+hybrid parallelization is important in depletion calculations using computer 
+clusters with multiple cores \cite{leppanen_serpent_2015}. This work used the 
+built-in Serpent 2 depletion capabilities and its built-in online reprocessing 
+subroutine. Another feature of the \gls{MSBR}, its circulating liquid fuel and 
+corresponding delayed neutron precursor drift, is not treated here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Description of the actual work}
-The \gls{MSBR} is thermal spectrum reactor. The reactor vessel has diameter of 680 cm and a height of 610 cm and contains molten fluoride fuel-salt mixture which performs two functions: to generate heat in the moderated region and to transport heat energy from the core to primary heat exchanger using the primary salt pump. The vessel also contains graphite blocks for neutron moderation and reflection. The lithium in the fuel-salt solution is enriched to 99.995\% $^7$Li because $^6$Li is a very strong neutron poison and becomes tritium upon neutron bombardment. In this study, the 0.005\% atomic fraction of $^6$Li has been taken into account because even such a small amount of isotope with very high absorption cross section might significantly affect on neutron flux energy distribution and, consequently, on depletion calculation results. Table~\ref{tab:data} is the summary of the major \gls{MSBR} parameters \cite{robertson_conceptual_1971}. 
+The \gls{MSBR} is a thermal spectrum reactor. The reactor vessel has a diameter of 
+$680 cm$ and a height of $610 cm$. It contains a molten fluoride fuel-salt mixture 
+which performs two functions: to generate heat in the moderated region and to 
+transport heat energy from the core to primary heat exchanger using the primary 
+salt pump. The vessel also contains graphite blocks for neutron moderation and 
+reflection. The lithium in the fuel-salt solution is enriched to 99.995\% 
+$^7$Li because $^6$Li is a very strong neutron poison and becomes tritium upon 
+neutron bombardment. In this study, the 0.005\% atomic fraction of $^6$Li has 
+been taken into account because even such a small amount of isotope with very 
+high absorption cross section can significantly impact the neutron flux energy 
+distribution and, consequently, depletion calculation results. 
+Table~\ref{tab:data} is the summary of the major \gls{MSBR} parameters used by 
+this model \cite{robertson_conceptual_1971}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \captionsetup[table]{
-  labelsep = newline,
-  name = TABLE, 
-  justification=justified,
-  singlelinecheck=false,%%%%%%% a single line is centered by default
-  labelsep=colon,%%%%%%
-  skip = \medskipamount}
+        labelsep = newline,
+        name = TABLE, justification=justified,
+        singlelinecheck=false,%%%%%%% a single line is centered by default
+        labelsep=colon,%%%%%%
+skip = \medskipamount}
 \begin{table}[h!]
-%\centering
-\begin{tabular}{p{0.46\linewidth} p{0.50\linewidth}} \toprule
-Thermal capacity of reactor           & 2250 MW(t)
-\\ \midrule
-%Net electrical output                 & 1000 MW(e) 
-%\\ \midrule
-%Net thermal efficiency        & 44.4\%
-%\\ \midrule
-Volume fraction of salt in central core zone     & 0.132
-\\ \midrule
-Volume fraction of salt in outer core zone       & 0.37
-\\ \midrule
-Fuel-salt inventory (Zone I)                  & 8.2 m$^3$	
-\\ \midrule
-Fuel-salt inventory (Zone II)                 & 10.8 m$^3$	
-\\ \midrule
-Fuel salt components                  & LiF-BeF$_2$-ThF$_4$-$^{233}$UF$_4$-$^{239}$PuF$_3$	
-\\ \midrule
-Fuel salt composition                 & 71.767-16-12-0.232-0.0006 mole\%
-\\
-\bottomrule
-\end{tabular}
-  \caption{Summary of principal data for MSBR.}
-  \label{tab:data}
+        %\centering
+        %\begin{tabular}{p{0.46\linewidth} p{0.50\linewidth}} \toprule
+        \begin{tabularx}{\linewidth}{l X} \toprule 
+                Thermal capacity of reactor           & 2250 MW(t)
+                \\ \midrule
+                %Net electrical output                 & 1000 MW(e) \\ \midrule
+                %Net thermal efficiency        & 44.4\%
+                %\\ \midrule
+                Salt volume fraction in central core zone     & 0.132
+                \\ \midrule
+                Salt volume fraction in outer core zone       & 0.37
+                \\ \midrule
+                Fuel-salt inventory (Zone I)                  & 8.2 m$^3$	
+                \\ \midrule
+                Fuel-salt inventory (Zone II)                 & 10.8 m$^3$	
+                \\ \midrule
+                Fuel salt components                  & 
+                LiF-BeF$_2$-ThF$_4$-$^{233}$UF$_4$-$^{239}$PuF$_3$	\\ 
+                \midrule
+                Fuel salt composition                 & 
+                71.767-16-12-0.232-0.0006 mole\%
+                \\
+                \bottomrule
+        \end{tabularx}
+        \caption{Summary of principal data for MSBR.}
+        \label{tab:data}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The \gls{MSBR} core consist of two different zones with one flow. The central zone, Zone I, in which 13.2\% of the volume is fuel salt and 86.8\% graphite. The first zone is composed of 1320 graphite cells, 2 graphite control rods, and 2 safety rods consisting of boron carbide clad. The undermoderated zone, Zone II, with 37\% fuel salt, and radial reflector, surrounding the more active portion serves to diminish neutron leakage from the reactor core. In this work, only Zone I element with the hole diameter of 3.42138 cm, and the molten-salt fuel volume fraction is 0.132 was considered. Figure~\ref{fig:zoneI} shows the geometry of unit cell model. The boundary condition of the unit cell is periodic. The density of fuel salt is 3.3304 g/cm$^3$ and graphite one is 1.843 g/cm$^3$. The temperature of fuel and graphite is fixed for the whole reprocessing cycle at 908K \cite{robertson_conceptual_1971}.
+The \gls{MSBR} core consists of two different zones. The central 
+zone, Zone I, in which 13.2\% of the volume is fuel salt and 86.8\% graphite. 
+The first zone is composed of 1320 graphite cells, 2 graphite control rods, and 
+2 safety rods consisting of boron carbide clad. The under-moderated zone, Zone 
+II, with 37\% fuel salt, and radial reflector, surrounding the more active 
+portion serves to diminish neutron leakage from the reactor core. In this work, 
+only a Zone I element with a $3.42138 cm$ diameter central fuel channel and molten-salt 
+fuel volume fraction of 0.132 was considered. Figure~\ref{fig:zoneI} shows the 
+geometry of the unit cell model. The boundary condition of the unit cell is 
+periodic. The density of the fuel salt is $3.3304 g/cm^3$ and the graphite density is 
+$1.843 g/cm^3$. The temperature of fuel and graphite is fixed at 908K for the whole 
+reprocessing cycle\cite{robertson_conceptual_1971}.
 
-\begin{figure}[h] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.6em}
-  \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
-  \caption{MSBR unit cell of Zone I geometry.}
-  \label{fig:zoneI}
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
+        \caption{MSBR unit cell of Zone I geometry.}
+        \label{fig:zoneI}
 \end{figure}
 
+\FloatBarrier
 \subsection{Online reprocessing method}
 
-Currently, researchers usually using supporting tools and scripts to simulate online reprocessing and refueling. Most researchers investigating the \gls{MSR}s have utilised for reprocessing calculations stochastic (i.e. \gls{MCNP}) or deterministic (i.e. SCALE) code with originally-developed scripts based on Python \cite{jeong_equilibrium_2016,park_whole_2015}. The Serpent 2 is the first code supporting continuous material reprocessing, and allows create needed number of material flows into the fuel and/or out from the fuel.
+Currently, researchers 
+investigating the \glspl{MSR} 
+typically develop custom supporting tools and scripts to simulate 
+online reprocessing and refueling. Most utilize stochastic (i.e. 
+\gls{MCNP}) or deterministic (i.e. SCALE) methods for depletion and supplement 
+these with custom Python scripts to capture the impacts of reprocessing 
+\cite{jeong_equilibrium_2016,park_whole_2015}. Serpent 2 is the 
+first commonly used monte carlo software to support continuous material 
+reprocessing. It does so by allowing the user to 
+create multiple material flows into and out of the fuel.
 
-The \gls{MSBR} has the capability to remove every 20 seconds all poisons (e.g. $^{135}$Xe), noble metals and gases (e.g. $^{75}$Se, $^{85}$Kr) which also have relatively high absorption cross section. The thorium-232 absorbs thermal neutrons and produce $^{233}$Pa which then decay into the fissile $^{233}$U. The problem of protactinium is a large absorption cross section in the thermal energy spectrum, therefore $^{233}$Pa continuously removing from fuel salt into protactinium decay tank and allowing $^{233}$Pa to decay to $^{233}$U without reactor poisoning. The reactor reprocessing system designed to separate $^{233}$Pa from the molten-salt fuel over 3 days, held it to produce $^{233}$U and return it back to the primary loop. This feature allows to keep the neutrons losses to protactinium and fission products to a very low level, and increses the efficency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
+The \gls{MSBR} has the capability to remove all poisons
+(e.g. 
+$^{135}$Xe), noble metals, and gases (e.g. $^{75}$Se, $^{85}$Kr) 
+every 20 seconds. The $^{232}$Th in the fuel absorbs thermal 
+neutrons and produces $^{233}$Pa which then decay into the fissile $^{233}$U. 
+Protactinium presents a challenge, since it has a large absorption cross section in the thermal 
+energy spectrum. Accordingly, $^{233}$Pa is continuously removed from fuel salt 
+into a protactinium decay tank and allowing $^{233}$Pa to decay to $^{233}$U without 
+poisoning the reactor. The reactor reprocessing system is designed to separate 
+$^{233}$Pa from the molten-salt fuel over 3 days, hold it while $^{233}$Pa 
+decays into $^{233}$U 
+and return it back to the primary loop. This feature allows the reactor to 
+avoid neutron losses to protactinium, keeps fission products to a very low level, and 
+increases the efficiency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
 
-A major problem with the reprocessing method is that different nuclides have specific removal rates. On the one hand, if the depletion time intervals are very short it means specific isotope beign instantly removed, and it is hard to obtain equilibrium composition because enormous large number of depletion steps. On the other hand, if the depletion calculation time interval is too long the results would not truly represents \gls{MSBR} conceptual design. Following this idea, the time interval for depletion calculations was selected 3 days that correlate with the removal interval of $^{233}$Pa which is the major isotope for producing $^{233}$U. Thorium is continuously adding to maintain the initial mass fraction of $^{232}$ThF$_4$.
+A major problem with the reprocessing method is that different nuclides have 
+specific removal rates. On the one hand, if the depletion time intervals are 
+very short it means specific isotope being instantly removed, and it is hard to 
+obtain equilibrium composition because enormous large number of depletion 
+steps. On the other hand, if the depletion calculation time interval is too 
+long the results would not truly represent the \gls{MSBR} conceptual design. 
+Following this idea, the time interval for depletion calculations was selected 
+as 3 days to correlate with the removal interval of $^{233}$Pa. Thorium is 
+continuously added to 
+maintain the initial mass fraction of $^{232}$ThF$_4$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
 
-Using the methodology described previously, the \gls{MSBR} unit cell depletion analysis was performed to find equilibrium core conditions. In this section, the calculation results including multiplication factor, neutron flux energy spectrum, atomic density of major isotopes are summarised.
+Using the methodology described previously, the \gls{MSBR} unit cell depletion 
+analysis was performed to find equilibrium core conditions. In this section, 
+the calculation results including multiplication factor, neutron flux energy 
+spectrum, atomic density of major isotopes are summarised.
 
 \subsection{Equilibrium state analysis}
 
-The method approximate a single representative unit cell for the whole \gls{MSBR} core, consequently, it does not take into consideration different fuel-moderator volume ratio for Zone I, Zone II, annulus, and reflector. The initial multiplication factor during depletion calculation is selected for state with fully withdrawn control and poison rods position which gaves high excess reactivity in the beginning of the cycle (approximately 5000 pcm). Standart deviation is about 100 pcm.
+The method approximate a single representative unit cell for the whole 
+\gls{MSBR} core, consequently, it does not take into consideration different 
+fuel-moderator volume ratio for Zone I, Zone II, annulus, and reflector. The 
+initial multiplication factor during depletion calculation is selected for 
+state with fully withdrawn control and poison rods position which gives high 
+excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
+Standard deviation is about 100 pcm.
 
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.8em}
-  \includegraphics[width=1.03\linewidth]{keff.png}
-  \caption{Infinite multiplication factor during 4 years depletion simulation.}
-    \vspace{-0.8em}
-  \label{fig:keff}
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=1.03\linewidth]{keff.png}
+        \caption{Infinite multiplication factor during 4 years depletion 
+        simulation.}
+        \label{fig:keff}
 \end{figure}
 
-Figure~\ref{fig:keff} shows the infinite muliplication factor for 4-year reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The high standard deviation causes the multiplication factor fluctuations. Protactinium-233 continuously removing into the tank for protactinium decay. $^{233}$Pa has a half-life of 27 days and beta decays into $^{233}$U which as fresh fuel goes back to the reactor core. The infinite multiplication factor decreases first 400 days of depletion due to strong absorbers (e.g. $^{233}$Th, $^{234}$U) accumulation which causes relatively high fuel ($^{233}$U) refill inflow to keep reactor critical. During reactor operation producing fissile materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which makes it possible to decrease fresh fuel refill rate after ~1 year of operation.
+\FloatBarrier
 
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.8em}
-  \includegraphics[width=1.03\linewidth]{fuel_composition.png}
-  \caption{Normalized number density of major isotopes during 4 years depletion.}
-  \label{fig:compos}
-  \vspace{-0.8em}
+Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
+reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
+high standard deviation causes the multiplication factor fluctuations. 
+Protactinium-233 continuously removing into the tank for protactinium decay. 
+$^{233}$Pa has a half-life of 27 days and beta decays into $^{233}$U which as 
+fresh fuel goes back to the reactor core. The infinite multiplication factor 
+decreases first 400 days of depletion due to strong absorbers (e.g. $^{233}$Th, 
+$^{234}$U) accumulation which causes relatively high fuel ($^{233}$U) refill 
+inflow to keep reactor critical. During reactor operation producing fissile 
+materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which 
+makes it possible to decrease fresh fuel refill rate after ~1 year of 
+operation.
+
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=1.03\linewidth]{fuel_composition.png}
+        \caption{Normalized number density of major isotopes during 4 years 
+        depletion.}
+        \label{fig:compos}
 \end{figure}
 
-The analysis of the fuel salt composition variation gives clearer information about equilibrium core state. Figure~\ref{fig:compos} shows the normalized number density of important isotopes that have strong influence on the core neutronics at the beginning of each depletion time interval. The number density of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount of it produced during 3-days reprocessing step. It can be seen that the the multiplication factor reaches the equilibrium state at about 950  days. Figure~\ref{fig:rates} represents the rates of materials in online reprocessing flows during 4 years of depletion calculations. 
+\FloatBarrier
+
+The analysis of the fuel salt composition variation gives clearer information 
+about equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
+number density of important isotopes that have strong influence on the core 
+neutronics at the beginning of each depletion time interval. The number density 
+of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
+of it produced during 3-days reprocessing step. It can be seen that the 
+multiplication factor reaches the equilibrium state at about 950  days. 
+Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
+flows during 4 years of depletion calculations. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\captionsetup[table]{
 %  labelsep = newline,
-%  name = TABLE, 
-%  justification=justified,
+%  name = TABLE, justification=justified,
 %  singlelinecheck=false,%%%%%%% a single line is centered by default
 %  labelsep=colon,%%%%%%
 %  skip = \medskipamount}
@@ -153,50 +291,93 @@ The analysis of the fuel salt composition variation gives clearer information ab
 %\\
 %\bottomrule
 %\end{tabular}
-%  \caption{Materials flows rates during \gls{MSBR} online reprocessing [1/s*cm$^3$].}
+%  \caption{Materials flows rates during \gls{MSBR} online reprocessing 
+%  [1/s*cm$^3$].}
 %  \label{tab:rates}
 %\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.8em}
-  \includegraphics[width=1.03\linewidth]{rates_fuel.png}
-  \caption{Materials flows rates during online reprocessing.}
-  \label{fig:rates}
-  \vspace{-0.8em}
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=1.03\linewidth]{rates_fuel.png}
+        \caption{Materials flows rates during online reprocessing.}
+        \label{fig:rates}
 \end{figure}
-From the graph below we can see that to keep reactor critical higher $^{233}$U flow rate required for first 400 days of operation and after that much smaller uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th rate slightly decreases over 4 years of operation due to other than $^{233}$U fissile materials accumulation.
+From the graph below we can see that to keep reactor critical higher $^{233}$U 
+flow rate required for first 400 days of operation and after that much smaller 
+uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th 
+rate slightly decreases over 4 years of operation due to other than $^{233}$U 
+fissile materials accumulation.
 
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.8em}
-  \includegraphics[width=1.03\linewidth]{rates_outflow.png}
-  \caption{Materials flows rates for the protactinium decay tank during \gls{MSBR} online reprocessing.}
-  \vspace{-0.6em}
-  \label{fig:outflow}
-  \vspace{-0.8em}
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=1.03\linewidth]{rates_outflow.png}
+        \caption{Materials flows rates for the protactinium decay tank during 
+        \gls{MSBR} online reprocessing.}
+        \label{fig:outflow}
 \end{figure}
-As shown in Figure~\ref{fig:outflow}, the tank for protactinium decay accumulates $^{233}$Pa approximately 200 days and fresh fuel ($^{233}$U) flow established also after 200 days. Uranium produced in the tank by protactinium decay is separated by circulation of the salt through a flourinator. The fully processed molten salt, on its way back to the primary loop, has uranium added at the rate required to maintain or adjust the fissile material concentration and, hence, the reactivity, in the reactor core as desired.
+As shown in Figure~\ref{fig:outflow}, the tank for protactinium decay 
+accumulates $^{233}$Pa approximately 200 days and fresh fuel ($^{233}$U) flow 
+established also after 200 days. Uranium produced in the tank by protactinium 
+decay is separated by circulation of the salt through a flourinator. The fully 
+processed molten salt, on its way back to the primary loop, has uranium added 
+at the rate required to maintain or adjust the fissile material concentration 
+and, hence, the reactivity, in the reactor core as desired.
 
 \subsection{Neutron spectrum}
 
-Figure~\ref{fig:spectrum} represents the normalized neutron flux distribution of the initial and the equilibrium core compositions. The spectrum for the equilibrium state is harder than the initial state due to heavy fission products. 
-\begin{figure}[hb] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \vspace{-0.85em}
-  \includegraphics[width=1.04\linewidth]{spectrum.png}
-  \vspace{-0.6em}
-  \caption{Normalized neutron energy spectrum for initial and equilibrium composition.}
-  \label{fig:spectrum}
-  \vspace{-0.10em}
+Figure~\ref{fig:spectrum} represents the normalized neutron flux distribution 
+of the initial and the equilibrium core compositions. The spectrum for the 
+equilibrium state is harder than the initial state due to heavy fission 
+products.  
+\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+        \centering
+        \includegraphics[width=1.04\linewidth]{spectrum.png}
+        \caption{Normalized neutron energy spectrum for initial and equilibrium 
+        composition.}
+        \label{fig:spectrum}
 \end{figure}
 
-In this work only Zone I unit cell with 0.132 volume fraction of fuel considered, neutron spectrum for Zone II cell where salt fraction is 37\% should be harder and the peak in thermal energy region predicted to be much lower. To obtain high fidelity neutron energy spectrum whole \gls{MSBR} core analysis is required.
+\FloatBarrier 
+
+In this work only Zone I unit cell with 0.132 volume fraction of fuel 
+considered, neutron spectrum for Zone II cell where salt fraction is 37\% 
+should be harder and the peak in thermal energy region predicted to be much 
+lower. To obtain high fidelity neutron energy spectrum whole \gls{MSBR} core 
+analysis is required.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-The depletion calculation of the \gls{MSBR} init cell model for finding the equilibrium states was performed using the Serepent 2 Monte Carlo code to simulate simplified case of the online reprocessing and refueling to find equilibrium material composition. When running depletion calculation, the fission products are removed and fertile/fissile materials are added to fuel salt every 3 days. The important MSR feature, online reprocessing I\& refueling is implemented in the Serpent 2 material burnup routine. The results of this study indicate that from the depletion calculation the multiplication factor slowly decreases and reaches to the equilibrium state. The most obvious finding to emerge from the analysis of initial and equilibrium materials composition is that neutron energy spectrum is harder for equilibrium state because significant amount of heavy fission products were accumulated in the \gls{MSBR} core.
+The depletion calculation of the \gls{MSBR} unit cell model for finding the 
+equilibrium states was performed using the Serpent 2 Monte Carlo code to 
+simulate simplified case of the online reprocessing and refueling to find 
+equilibrium material composition. When running depletion calculation, the 
+fission products are removed and fertile/fissile materials are added to fuel 
+salt every 3 days. The important MSR feature, online reprocessing I\& refueling 
+is implemented in the Serpent 2 material burnup routine. The results of this 
+study indicate that from the depletion calculation the multiplication factor 
+slowly decreases and reaches to the equilibrium state. The most obvious finding 
+to emerge from the analysis of initial and equilibrium materials composition is 
+that neutron energy spectrum is harder for equilibrium state because 
+significant amount of heavy fission products were accumulated in the \gls{MSBR} 
+core.
 
-These results are contrary with those of Jeong and Park (2016) who suggested two different unit cell models and uses \gls{MCNP} with Python-script to simulate \gls{MSBR} online reprocessing to find equilibrium composition. This inconsistency may be due to different fuel fraction in the unit cell (Jeong and Park selected 20.6\% salt fraction). To obtain better results in online reprocessing simualtion number of future efforts expected. First, depletion simulation will be performed using full-core tree-dimensional high-fidelity model of \gls{MSBR} developed in Serpent 2. In this case, different fuel-moderator volume ratios for the reactor Zone I, Zone II, annulus, reflectors would be taken into account to find accurate multiplication factor, neutron spectrum and, hence, depleted composition. Secondly, additional Serpent 2 flow control system subroutine should be developed to simulate adjusting material flows (e.g. rate of removing $^{233}$Pa from the salt and adding fissile $^{233}$U from the tank for protactinium decay) depending upon current reactivity value which is more promising reactivity control method than moving control and safety rods. Finally, temperature effect of reactivity for both fuel salt and graphite should be calculated to find optimal effective multiplication factor range. 
+These results are contrary with those of Jeong and Park (2016) who suggested 
+two different unit cell models and uses \gls{MCNP} with Python-script to 
+simulate \gls{MSBR} online reprocessing to find equilibrium composition. This 
+inconsistency may be due to different fuel fraction in the unit cell (Jeong and 
+Park selected 20.6\% salt fraction). To obtain better results in online 
+reprocessing simulation number of future efforts expected. First, depletion 
+simulation will be performed using full-core tree-dimensional high-fidelity 
+model of \gls{MSBR} developed in Serpent 2. In this case, different 
+fuel-moderator volume ratios for the reactor Zone I, Zone II, annulus, 
+reflectors would be taken into account to find accurate multiplication factor, 
+neutron spectrum and, hence, depleted composition. Secondly, additional Serpent 
+2 flow control system subroutine should be developed to simulate adjusting 
+material flows (e.g. rate of removing $^{233}$Pa from the salt and adding 
+fissile $^{233}$U from the tank for protactinium decay) depending upon current 
+reactivity value which is more promising reactivity control method than moving 
+control and safety rods. Finally, temperature effect of reactivity for both 
+fuel salt and graphite should be calculated to find optimal effective 
+multiplication factor range. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{ans}
