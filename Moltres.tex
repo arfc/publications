@@ -28,6 +28,7 @@
 \usepackage{cleveref}
 \usepackage{minted}
 \usepackage{ifthen}
+\usepackage{subcaption}
 %% \usepackage{listings}  % Allows code printing
 %% \definecolor{codegreen}{rgb}{0,0.6,0}
 %% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -274,7 +275,7 @@ input files used for generating the group constants can be found in the
 
 Building on the massively parallelizable \gls{MOOSE} framework allows Moltres
 to be run on super-computing platforms like \gls{NCSA}'s Blue Waters. For some
-three-dimensional simulations (results not discussed here), the number of
+three-dimensional simulations, the number of
 elements in the mesh and total number of degrees of freedom exceed one million
 and ten million respectively. To handle problems of this size, Moltres has been
 run on up to 608 cores. However, reducing the problem dimension from three to
@@ -284,11 +285,11 @@ five minutes.
 
 \section{Model Description}
 
-As a proof of concept and to ease resolution of strong transient gradients in
-temperature between fuel and moderator, the physical three dimensional problem
-is reduced to a two dimensional axisymmetric model. The model molten salt
-reactor is based on the \gls{MSRE}. To approximately simulate the lattice
-structure of the \gls{MSRE}, a geometry is constructed with 14 repeating
+The model molten salt
+reactor is based on the \gls{MSRE}. When developing new physics or investigating
+different types of transients, the model problem can be reduced to a two
+dimensional axisymmetric one for rapid proof of concept. To approximately simulate the lattice
+structure of the \gls{MSRE} under 2D conditions, a geometry is constructed with 14 repeating
 fuel-moderator regions, as shown in \Cref{fig:geom}. The fuel and moderator
 radii are chosen such that the resulting area/volume fraction of fuel is .225 as
 for the \gls{MSRE}.
@@ -440,7 +441,16 @@ increasing radius and decreasing neutron flux.
   \label{fig:pre6}
 \end{figure}
 
-\subsection{3D}
+\subsection{Three dimensional simulation capability}
+
+\Cref{fig:3d_group1,fig:3d_temp} show Moltres physics applied to a three
+dimensional geometry. The fast group flux (\cref{fig:3d_group1}) is in good
+qualitative agreement with the two dimensional axisymmetric case shown in
+\cref{fig:group1}. \Cref{fig:3d_temp} is in similarly good agreement with
+\cref{fig:temp}. \Cref{fig:3d_temp_fuel_outlet} shows the temperature profile at
+the outlet of the reactor (z = H). This three dimensional case contained
+1,155,045 degrees of freedom and took only 2.5 hours to solve on 160 Blue Waters
+cores.
 
 \begin{figure}[htpb]
   \centering
@@ -458,28 +468,56 @@ increasing radius and decreasing neutron flux.
   \label{fig:3d_temp}
 \end{figure}
 
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{3d_gamma_heating_z_slice_temp.eps}
+        \caption{Temperature at the reactor outlet for 3D \gls{MSRE}-like
+          model.}
+  \label{fig:3d_temp_fuel_outlet}
+\end{figure}
+
+
 
 \subsection{Comparison with \gls{MSRE}}
 
+\Cref{fig:temp_compare} shows a comparison between Moltres predicted temperature
+profiles with cosinusoidal gamma heating and \gls{MSRE} design models
+\cite{briggs_molten-salt_1964} along the reactor center-line (r = 0).
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{fuel_vs_moderator_axial_sweep.eps}
+      \caption{Moltres predicted axial temperature profiles near r = 0}
+      \label{fig:moltres_axial_temps}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_temps.png}
+      \caption{\gls{MSRE} design axial temperature profiles near r = 0
+        \cite{briggs_molten-salt_1964}}
+      \label{fig:msre_axial_temps}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
+      temperature profiles}
+    \label{fig:temp_compare}
+\end{figure}
+
+
 \begin{figure}[htpb]
   \centering
-  \includegraphics{fuel_vs_moderator_axial_sweep.eps}
-        \caption{Moltres predicted axial temperature profiles near r = 0}
-  \label{fig:moltres_axial_temps}
+  \includegraphics[width=\maxwidth{\textwidth}]{msre_radial_fluxes.png}
+  \caption{\gls{MSRE} design radial flux profiles at reactor mid-plane
+    \cite{briggs_molten-salt_1964}}
+  \label{fig:msre_radial_fluxes}
 \end{figure}
 
 \begin{figure}[htpb]
   \centering
-  \includegraphics{msre_axial_temps.png}
-        \caption{\gls{MSRE} design axial temperature profiles near r = 0}
-  \label{fig:msre_axial_temps}
-\end{figure}
-
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[width=\maxwidth{\textwidth}]{fast_vs_thermal_nt_flux_msre.png}
-  \caption{\gls{MSRE} design radial temperature profiles at reactor mid-plane}
-  \label{fig:msre_radial_temps}
+  \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_fluxes.png}
+  \caption{\gls{MSRE} design axial flux profiles at r = 0
+    \cite{briggs_molten-salt_1964}}
+  \label{fig:msre_axial_fluxes}
 \end{figure}
 
 \subsection{Scaling study}
