@@ -70,7 +70,7 @@
 \makeatother
 
 \title{Introduction to Moltres: an Application for Simulation of Molten Salt Reactors}
-\author{Alexander Lindsay, Kathryn Huff}
+\author{Alexander Lindsay, Gavin Ridley, Kathryn Huff}
 
 \begin{document}
 \maketitle
@@ -381,22 +381,6 @@ the fast group preferring the fuel and the thermal group preferring the moderato
   \label{fig:group2}
 \end{figure}
 
-\Cref{fig:flux_comparison} compares the fast and thermal neutron fluxes at the
-reactor mid-plane ($z=H/2$). Local thermal flux growth and fast flux decay in
-moderator regions and visa versa in fuel regions are even more apparent. The
-larger fast flux magnitude is attributable to using \gls{BOL} fuel
-composition. As the fuel salt reaches an equilibrium composition, the fast to
-thermal flux ratio is expected to decrease.
-
-\begin{figure}[htpb]
-  \centering
-  \includegraphics{radial_group_comparison.eps}
-  \caption{The thermal and fast flux profiles are compared at the core mid-plane
-    ($z=H/2$) in this 2-D cylindrical axisymmetric model ($r=0$ is radial center
-    of core). }
-  \label{fig:flux_comparison}
-\end{figure}
-
 The effect of the advecting fuel is seen in \Cref{fig:temp} where the temperature
 rises steadily with increasing z-coordinate. As is expected, the temperature
 gradient is negative in the radial direction.
@@ -482,20 +466,26 @@ cores.
 
 \Cref{fig:temp_compare} shows a comparison between Moltres predicted temperature
 profiles with cosinusoidal gamma heating and \gls{MSRE} design models
-\cite{briggs_molten-salt_1964} along the reactor center-line (r = 0).
+\cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite. The
+profiles are in good agreement. In the \gls{MSRE} design, the moderator
+temperature at the reactor inlet is about 20 degrees Faerenheit larger than the
+fuel temperature, whereas the temperatures are about the same in the Moltres
+model. This difference can perhaps be attributed to the neglection of axial
+conduction in the \gls{MSRE} design model \cite[p. 99]{briggs_molten-salt_1964}.
 
 \begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{.5\textwidth}
       \includegraphics[width=\maxwidth{\textwidth}]{fuel_vs_moderator_axial_sweep.eps}
-      \caption{Moltres predicted axial temperature profiles near r = 0}
+      \caption{Moltres predicted axial temperature profiles in hottest channel
+        and adjacent graphite}
       \label{fig:moltres_axial_temps}
     \end{subfigure}
     %\quad
     \begin{subfigure}[b]{.5\textwidth}
       \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_temps.png}
-      \caption{\gls{MSRE} design axial temperature profiles near r = 0
-        \cite{briggs_molten-salt_1964}}
+      \caption{\gls{MSRE} design axial temperature profiles in hottest channel
+        and adjacent graphite stringer \cite[p. 99]{briggs_molten-salt_1964}}
       \label{fig:msre_axial_temps}
     \end{subfigure}
     \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
@@ -504,20 +494,69 @@ profiles with cosinusoidal gamma heating and \gls{MSRE} design models
 \end{figure}
 
 
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[width=\maxwidth{\textwidth}]{msre_radial_fluxes.png}
-  \caption{\gls{MSRE} design radial flux profiles at reactor mid-plane
-    \cite{briggs_molten-salt_1964}}
-  \label{fig:msre_radial_fluxes}
-\end{figure}
+\Cref{fig:moltres_radial_fluxes} compares the fast and thermal neutron fluxes at the
+reactor mid-plane ($z=H/2$). Local thermal flux growth and fast flux decay in
+moderator regions and visa versa in fuel regions are apparent. The flux
+magnitudes are in good agreement with the magnitudes from the \gls{MSRE} design
+calculations \cite[p. 92]{briggs_molten-salt_1964} as shown in
+\cref{fig:msre_radial_fluxes}. The peak fast to thermal flux ratio is
+approximately 3.5 in the \gls{MSRE} design calculation as opposed to a ratio of
+3 for the Moltres calculation. The depression in the thermal flux in
+\cref{fig:msre_radial_fluxes} is caused by control rod thimbles and an extra
+volume of surrounding fuel that is not included in the Moltres calculations.
 
 \begin{figure}[htpb]
-  \centering
-  \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_fluxes.png}
-  \caption{\gls{MSRE} design axial flux profiles at r = 0
-    \cite{briggs_molten-salt_1964}}
-  \label{fig:msre_axial_fluxes}
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{moltres_radial_fluxes.eps}
+      \caption{The thermal and fast flux profiles at the core mid-plane
+        ($z=H/2$) for Moltres 2-D cylindrical axisymmetric model ($r=0$ is radial center
+        of core)}
+      \label{fig:moltres_radial_fluxes}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_radial_fluxes.png}
+      \caption{The thermal and fast flux profiles at the core mid-plane
+        ($z=H/2$) for \gls{MSRE} design model \cite{briggs_molten-salt_1964}
+        ($r=0$ is radial center of core)}
+      \label{fig:msre_radial_fluxes}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted radial
+      flux profiles}
+    \label{fig:radial_fluxes_compare}
+\end{figure}
+
+\Cref{fig:axial_fluxes_compare} compares the axial flux profiles calculated by
+Moltres and the \gls{ORNL} \gls{MSRE} design model. Note that the radius for the
+plots are chosen to correspond to the peak of the thermal flux in both cases;
+for the \gls{ORNL} calculations this is 8.4 inches from the core center-line
+because of the effect of the control rod thimbles and extra fuel along the
+center-line. Once again, the plots are in decent agreement. The \gls{ORNL}
+calculations include the lower and upper plena which are not included in this
+report's Moltres model. Consequently, the plot in \cref{fig:msre_axial_fluxes}
+extends to lower and higher z-values than
+\cref{fig:moltres_axial_fluxes}. Additionally, the deviation of the thermal flux
+from a sinusoidal shape in \cref{fig:msre_axial_fluxes} is due to absorption in
+the plena.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{moltres_axial_fluxes.eps}
+      \caption{Moltres axial flux profiles along core center line}
+      \label{fig:moltres_axial_fluxes}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_fluxes.png}
+      \caption{\gls{MSRE} design axial flux profiles 8.4 inches from the core
+        center line \cite{briggs_molten-salt_1964}}
+      \label{fig:msre_axial_fluxes}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
+      flux profiles}
+    \label{fig:axial_fluxes_compare}
 \end{figure}
 
 \subsection{Scaling study}
@@ -544,20 +583,25 @@ which leads to slower convergence in terms of iterations \cite{satish_balay_pets
 This work introduces the open source \gls{MSR} simulation code Moltres. Moltres
 solves arbitrary-group neutron diffusion, temperature, and precursor governing
 equations in anywhere from one to three dimensions and can be deployed on an
-arbitrary number of processing units. The model problem presented here has a
-2D-axisymmetric geometry with heterogeneous group constants for fuel and
-moderator regions. Fuel volume fraction and fuel salt composition are based on
-the \gls{MSRE}. Neutron fluxes show expected cosinusoidal shapes in radial and
-axial directions with visible striations between fuel and moderator regions. The
-fast group flux is enhanced in fuel regions while the thermal group flux in
-enhanced in moderator regions. Due to advection the temperature profile
-increases monotonically in the direction of salt flow. The role of advection is
-also seen in precursor concentrations. Long lived precursors exhibit maximum
-concentrations at the core outlet. As the decay constant increases across
-precursor groups the maximum concentrations moves towards the reactor center
-where the precursor production rate is maximum. Future Moltres work includes
-generating a high-fidelity 3D model as well as investigating various transient
-accident scenarios.
+arbitrary number of processing units. The 2D-axisymmetric and 3D models
+presented here employ heterogeneous group constants for fuel and moderator
+regions generated with SCALE. Fuel volume fraction and fuel salt composition are
+based on the \gls{MSRE}. Neutron fluxes show expected cosinusoidal shapes in
+radial and axial directions with visible striations between fuel and moderator
+regions. The fast group flux is enhanced in fuel regions while the thermal group
+flux in enhanced in moderator regions. Due to advection the temperature profile
+in the fuel increases monotonically in the direction of salt flow, while the
+moderator temperature exhibits a maximum between the mid-plane and outlet. The
+role of advection is also seen in precursor concentrations. Long lived
+precursors exhibit maximum concentrations at the core outlet. As the decay
+constant increases across precursor groups the maximum concentrations moves
+towards the reactor center where the precursor production rate is
+maximum. Results from 2D-axisymmetric and 3D models show good qualitative
+agreement. Moreover, Moltres results compare favorably with the actual design
+calculations of the \gls{MSRE}. Strong parallel scaling was demonstrated on a
+typical Moltres model problem. Future Moltres publications will highlight
+transient simulation cases investigating control rod ejection, single channel
+blockage, loss of flow, and loss of secondary cooling.
 
 \FloatBarrier
 \clearpage
