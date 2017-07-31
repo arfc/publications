@@ -183,7 +183,8 @@ these with custom Python scripts to capture the impacts of reprocessing
 \cite{jeong_equilibrium_2016,park_whole_2015}. Serpent 2 is the 
 first commonly used monte carlo software to support continuous material 
 reprocessing. It does so by allowing the user to 
-create multiple material flows into and out of the fuel.
+define multiple material flows into and out of the fuel. This work applies this 
+Serpent 2 feature to the \gls{MSBR}. 
 
 The \gls{MSBR} has the capability to remove all poisons
 (e.g. 
@@ -225,8 +226,8 @@ This analysis models a single representative unit cell rather than the whole
 \gls{MSBR} core. Consequently, it does not take into consideration different 
 fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector. The 
 initial multiplication factor during depletion calculation is selected for 
-state with fully withdrawn control and poison rods position which gives high 
-excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
+state with fully withdrawn control and poison rods position which gives 
+considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
 Standard deviation for these calculations is approximately 100 pcm.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
@@ -240,17 +241,17 @@ Standard deviation for these calculations is approximately 100 pcm.
 \FloatBarrier
 
 Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
-reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
-high standard deviation causes the multiplication factor fluctuations. 
-Protactinium-233 continuously removing into the tank for protactinium decay. 
-$^{233}$Pa has a half-life of 27 days and beta decays into $^{233}$U which as 
-fresh fuel goes back to the reactor core. The infinite multiplication factor 
-decreases first 400 days of depletion due to strong absorbers (e.g. $^{233}$Th, 
-$^{234}$U) accumulation which causes relatively high fuel ($^{233}$U) refill 
-inflow to keep reactor critical. During reactor operation producing fissile 
-materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which 
-makes it possible to decrease fresh fuel refill rate after ~1 year of 
-operation.
+reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. A 
+significant standard deviation (100 pcm) causes the multiplication factor 
+fluctuations visible in this plot.  Protactinium-233 continuously removing into 
+the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
+beta decays into $^{233}$U which as fresh fuel goes back to the reactor core. 
+The infinite multiplication factor decreases first 400 days of depletion due to 
+strong absorbers (e.g. $^{233}$Th, $^{234}$U) accumulation which causes 
+relatively high fuel ($^{233}$U) refill inflow to keep reactor critical. During 
+reactor operation producing fissile materials other than $^{233}$U in the core 
+(e.g. $^{235}$U, $^{239}$Pu) which makes it possible to decrease fresh fuel 
+refill rate after ~1 year of operation.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
@@ -263,14 +264,14 @@ operation.
 \FloatBarrier
 
 The analysis of the fuel salt composition variation gives clearer information 
-about equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
-number density of important isotopes that have strong influence on the core 
+about the equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
+number density of isotopes influential to core 
 neutronics at the beginning of each depletion time interval. The number density 
 of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
-of it produced during 3-days reprocessing step. It can be seen that the 
-multiplication factor reaches the equilibrium state at about 950  days. 
-Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
-flows during 4 years of depletion calculations. 
+of it is produced during the 3-day reprocessing period. In this assessment, the multiplication 
+factor stabilizes after approximately 950 days. 
+Figure~\ref{fig:rates} represents the rates of online reprocessing material flows
+flows over the 4-year depletion calculation. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\captionsetup[table]{
 %  labelsep = newline,
