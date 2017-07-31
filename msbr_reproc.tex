@@ -226,7 +226,7 @@ This analysis models a single representative unit cell rather than the whole
 \gls{MSBR} core. Consequently, it does not take into consideration different 
 fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector. The 
 initial multiplication factor during depletion calculation is selected for 
-state with fully withdrawn control and poison rods position which gives 
+a state with fully withdrawn control rods, which gives 
 considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
 Standard deviation for these calculations is approximately 100 pcm.
 
@@ -371,13 +371,13 @@ reprocessing simulation, many future efforts are planned. First, a depletion
 simulation will be performed using a  full-core, three-dimensional, high-fidelity 
 model of \gls{MSBR} that has been developed in Serpent 2. In this case, different 
 fuel-moderator volume ratios for the reactor Zone I, Zone II, annulus, 
-reflectors would be taken into account to find accurate multiplication factor, 
-neutron spectrum and, hence, depleted composition. Secondly, additional Serpent 
+and reflectors will be taken into account to find accurate multiplication factor, 
+neutron spectrum and, hence, depleted composition. Secondly, an additional Serpent 
 2 flow control system subroutine should be developed to simulate adjusting 
 material flows (e.g. rate of removing $^{233}$Pa from the salt and adding 
-fissile $^{233}$U from the tank for protactinium decay) depending upon current 
-reactivity value which is more promising reactivity control method than moving 
-control and safety rods. Finally, temperature effect of reactivity for both 
+fissile $^{233}$U from the tank for protactinium decay) depending upon the 
+instantaneous reactivity value, which is a more promising reactivity control method than moving 
+control rods. Finally, the temperature effect of reactivity for both 
 fuel salt and graphite should be calculated to find optimal effective 
 multiplication factor range. 
 
