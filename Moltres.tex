@@ -148,9 +148,9 @@ enable extension and code reuse. Moreover, Moltres is built on
 top of the \gls{MOOSE} framework, \cite{gaston_physics-based_2015} another
 \gls{LGPL} code that itself leans on LibMesh \cite{kirk_libmesh:_2006}, a
 \gls{LGPL} finite element library, and PetSc \cite{satish_balay_petsc_2015}, a
-\gls{BSD}-licensed toolkit for solving nonlinear equations stemming from
-discretization of PDEs. \gls{MOOSE} and LibMesh handle translation of
-application (Moltres) defined weak PDE forms into residual and Jacobian
+\gls{BSD}-licensed toolkit for solving nonlinear equations yielded by 
+discretizing PDEs. \gls{MOOSE} and LibMesh translate weak PDE forms defined by
+applications (e.g. Moltres) into residual and Jacobian
 functions that are the inputs into PetSc Newton-Raphson solution routines. All
 codes use MPI for parallel communication and are easily deployed on
 massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
