@@ -155,8 +155,8 @@ functions. These functions are the inputs into PetSc Newton-Raphson solution rou
 codes use MPI for parallel communication and are easily deployed on
 massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
 default use monolithic and implicit methods that are ideal for closely-coupled
-and multi-scale physics. These methods are ideal for the model problem described
-in this work. However, it should be noted that Moltres can also use explicit
+and multi-scale physics, such as the model problem described
+in this work. However, Moltres can also use explicit
 time-stepping routines as well as segregated solution methods, making it 
 extensible to myriad future modeling challenges.
 
@@ -169,7 +169,7 @@ solving for neutron fluxes, temperature, and precursor concentrations. In \gls{M
 jargon, kernels are C++ classes that contain methods for computing residual and
 Jacobian contributions corresponding to individual piecies of governing
 equations. Developing the code-base in this way allows modular construction
-of equation systems; e.g. the same kernel that is used to represent heat
+of equation systems; e.g. the kernel used to represent heat
 conduction can also be used to represent generic chemical diffusion. Moltres
 also features neutron and precursor ``actions.'' These actions automatically 
 construct the systems of equations for an arbitrary number of neutron and
