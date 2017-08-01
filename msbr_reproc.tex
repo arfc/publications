@@ -39,8 +39,8 @@ reactor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 The thermal spectrum \gls{MSR} is an advanced type of reactor that consists of 
-constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or 
-$LiF-BeF_2-ZrF_4-UF_4$) and solid graphite moderator structures. This liquid 
+constantly circulating liquid fuel (i.e., mixture of LiF-BeF$_2$-ThF$_4$-UF$_4$ or 
+LiF-BeF$_2$-ZrF$_4$-UF$_4$) and solid graphite moderator structures. This liquid 
 fuel form leads to immediate advantages over traditional, 
 solid-fueled, reactors. The molten-salt carrier with dissolved 
 fissile and/or fertile material allows for online refueling and 
@@ -49,7 +49,7 @@ achieving maximum fuel utilization and outstanding neutron economy
 \cite{leblanc_molten_2010}. Moreover, this type of fuel does not need 
 complex fabrication since the fissile material could be transported from any 
 enrichment plant to the \gls{NPP} in the form 
-of uranium hexafluoride ($UF_6$).  Additionally, \glspl{MSR} have a high level 
+of uranium hexafluoride (UF$_6$).  Additionally, \glspl{MSR} have a high level 
 of inherent safety due to their characteristically 
 the strong negative temperature coefficient of reactivity, near-atmospheric 
 pressure in the primary loop, stable coolant, passive decay heat cooling, and 
@@ -58,7 +58,7 @@ small excess reactivity \cite{elsheikh_safety_2013}.
 The thorium-fueled \gls{MSBR} was developed in the early 1970s by \gls{ORNL} 
 specifically to realize the promise of the thorium fuel cycle which allows the 
 use of natural thorium instead of enriched uranium as the fertile element. 
-Thorium breeds the fissile $^{233}U$ and avoids uranium enrichment 
+Thorium breeds the fissile $^{233}$U and avoids uranium enrichment 
 \cite{robertson_conceptual_1971}. In the matter of nuclear fuel cycle, the 
 thorium cycle produces a reduced quantity of plutonium and \glspl{MA} 
 compared to the traditional uranium fuel cycle. Consequently, it may 
@@ -101,7 +101,7 @@ corresponding delayed neutron precursor drift, is not treated here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Description of the actual work}
 The \gls{MSBR} is a thermal spectrum reactor. The reactor vessel has a diameter of 
-$680 cm$ and a height of $610 cm$. It contains a molten fluoride fuel-salt mixture 
+680 cm and a height of 610 cm. It contains a molten fluoride fuel-salt mixture 
 which performs two functions: to generate heat in the moderated region and to 
 transport heat energy from the core to primary heat exchanger using the primary 
 salt pump. The vessel also contains graphite blocks for neutron moderation and 
@@ -124,6 +124,7 @@ skip = \medskipamount}
 \begin{table}[h!]
         %\centering
         %\begin{tabular}{p{0.46\linewidth} p{0.50\linewidth}} \toprule
+        \caption{Summary of principal data for MSBR.}
         \begin{tabularx}{\linewidth}{l X} \toprule 
                 Thermal capacity of reactor           & 2250 MW(t)
                 \\ \midrule
@@ -146,7 +147,6 @@ skip = \medskipamount}
                 \\
                 \bottomrule
         \end{tabularx}
-        \caption{Summary of principal data for MSBR.}
         \label{tab:data}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,16 +157,16 @@ Zone I composed of 1320 graphite cells, 2 graphite control rods, and
 2 safety rods consisting of boron carbide clad. The under-moderated zone, Zone 
 II, with 37\% fuel salt, and radial reflector, surrounds the Zone I core region 
 and serves to diminish neutron leakage. In this work, 
-only a Zone I element with a $3.42138 cm$ diameter central fuel channel and molten-salt 
+only a Zone I element with a 3.42138 cm diameter central fuel channel and molten-salt 
 fuel volume fraction of 0.132 was considered. Figure~\ref{fig:zoneI} shows the 
 geometry of the unit cell model. The boundary condition of the unit cell is 
-periodic. The density of the fuel salt is $3.3304 g/cm^3$ and the graphite density is 
-$1.843 g/cm^3$. The temperature of fuel and graphite is fixed at 908K for the whole 
+periodic. The density of the fuel salt is 3.3304 g/cm$^3$ and the graphite density is 
+1.843 g/cm$^3$. The temperature of fuel and graphite is fixed at 908K for the whole 
 reprocessing cycle \cite{robertson_conceptual_1971}.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
+        \includegraphics[width=0.95\linewidth]{zone_I_mesh.png}
         \caption{MSBR unit cell of Zone I geometry.}
         \label{fig:zoneI}
 \end{figure}
@@ -200,18 +200,6 @@ decays into $^{233}$U, and return it back to the primary loop. This feature allo
 avoid neutron losses to protactinium, keeps fission products to a very low level, and 
 increases the efficiency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
 
-<<<<<<< HEAD
-A major problem with the reprocessing method is that different nuclides have 
-specific removal rates. On the one hand, if the depletion time intervals are 
-very short it means specific isotope being instantly removed, and it is hard to 
-obtain equilibrium composition because of an enormously large number of depletion 
-steps. On the other hand, if the depletion calculation time interval is too 
-long the results would not truly represent the \gls{MSBR} conceptual design. 
-Following this idea, the time interval for depletion calculations was selected 
-as 3 days to correlate with the removal interval of $^{233}$Pa. Thorium is 
-continuously added to 
-maintain the initial mass fraction of $^{232}$ThF$_4$.
-=======
 Since removal rates vary among nuclides in this reactor concept, the Serpent 2 
 reprocessing method is unable to capture the desired reprocessing strategy. 
 The removal rates also dictate the necessary resolution of depletion 
@@ -223,21 +211,14 @@ products are not captured in a manner that is faithful \gls{MSBR} conceptual des
 To compromise, the time interval for depletion calculations in this model was selected 
 as 3 days to correlate with the removal interval of $^{233}$Pa and Thorium was 
 continuously added to maintain the initial mass fraction of $^{232}$ThF$_4$.
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
 
 Using the methodology described previously, the \gls{MSBR} unit cell depletion 
-<<<<<<< HEAD
-analysis was performed to find equilibrium core conditions. In this section, 
-the calculation results including multiplication factor, neutron flux energy 
-spectrum, atomic density of major isotopes are summarized.
-=======
 analysis was performed to find equilibrium core conditions. Calculation results reported 
 in this section include multiplication factor, neutron flux energy 
 spectrum, and atomic density of major isotopes.
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 \subsection{Equilibrium state analysis}
 
@@ -247,37 +228,23 @@ fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector
 initial multiplication factor during depletion calculation is selected for 
 a state with fully withdrawn control rods, which gives 
 considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
-Standard deviation for these calculations is approximately 100 pcm.
+Standard deviation for these calculations is approximately 100 pcm.Figure~\ref{fig:keff} 
+shows the infinite multiplication factor for 1200-days reprocessing cycle calculated by 
+Serpent 2 with ENDF/B-VII.0 nuclear data. A 
+significant standard deviation (100 pcm) causes the multiplication factor 
+fluctuations visible in this plot.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{keff.png}
-        \caption{Infinite multiplication factor during a 4-years depletion 
+        \caption{Infinite multiplication factor during a 1200 days depletion
         simulation.}
         \label{fig:keff}
 \end{figure}
 
 \FloatBarrier
 
-<<<<<<< HEAD
-Figure~\ref{fig:keff} shows the infinite multiplication factor for 1200-days
-reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
-high standard deviation causes the multiplication factor fluctuations. 
-Protactinium-233 continuously removing into the tank for protactinium decay. 
-$^{233}$Pa has a half-life of 27 days and beta decays into $^{233}$U which as 
-fresh fuel goes back to the reactor core. The infinite multiplication factor 
-decreases first 400 days of depletion due to strong absorbers (e.g. $^{233}$Th, 
-$^{234}$U) accumulation which causes relatively high fuel ($^{233}$U) refill 
-inflow to keep reactor critical. During reactor operation producing fissile 
-materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which 
-makes it possible to decrease fresh fuel refill rate after ~1 year of 
-operation.
-=======
-Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
-reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. A 
-significant standard deviation (100 pcm) causes the multiplication factor 
-fluctuations visible in this plot.  Protactinium-233 continuously removing into 
-the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
+Protactinium-233 continuously removing into the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
 beta decays into $^{233}$U which as fresh fuel goes back to the reactor core. 
 The infinite multiplication factor decreases first 400 days of depletion due to 
 strong absorbers (e.g. $^{233}$Th, $^{234}$U) accumulation which causes 
@@ -285,16 +252,11 @@ relatively high fuel ($^{233}$U) refill inflow to keep reactor critical. During
 reactor operation producing fissile materials other than $^{233}$U in the core 
 (e.g. $^{235}$U, $^{239}$Pu) which makes it possible to decrease fresh fuel 
 refill rate after ~1 year of operation.
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{fuel_composition.png}
-<<<<<<< HEAD
-        \caption{Normalized number density of major isotopes during 1200 days 
-=======
-        \caption{Normalized number density of major isotopes during 4 years of 
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
+        \caption{Normalized number density of major isotopes during 1200 days of 
         depletion.}
         \label{fig:compos}
 \end{figure}
@@ -305,12 +267,7 @@ The analysis of the fuel salt composition variation gives clearer information
 about the equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
 number density of isotopes influential to core 
 neutronics at the beginning of each depletion time interval. The number density 
-of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
-<<<<<<< HEAD
-of it produced during 3-days reprocessing step. It can be seen that the 
-multiplication factor reaches the equilibrium state at about 950  days. 
-
-=======
+of protactinium is very low (less than 10$^{16}$ 1/cm$^3$) but some small amount 
 of it is produced during the 3-day reprocessing period. In this assessment, the multiplication 
 factor stabilizes after approximately 950 days. 
 Figure~\ref{fig:rates} represents the rates of online reprocessing material flows
@@ -340,31 +297,21 @@ flows over the 4-year depletion calculation.
 %  \label{tab:rates}
 %\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=1.03\linewidth]{rates_fuel.png}
+        \includegraphics[width=1.04\linewidth]{rates_fuel.png}
         \caption{Materials flows rates during online reprocessing.}
         \label{fig:rates}
 \end{figure}
-<<<<<<< HEAD
-
-Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
-flows during 1200 days of depletion calculations. From the graph below we can 
-see that to keep reactor critical higher $^{233}$U 
-flow rate required for first 400 days of operation and after that much smaller 
-uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th 
-=======
 In Figure~\ref{fig:rates} we can see that, to keep the reactor critical, a higher $^{233}$U 
 flow rate from the protactinium decay tank was required for first 400 days of 
 operation. After that, the $^{233}$U flow rate can be reduced. The $^{232}$Th 
->>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 rate slightly decreases over 4 years of operation due to other than $^{233}$U 
 fissile materials accumulation.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=1.03\linewidth]{rates_outflow.png}
+        \includegraphics[width=1.04\linewidth]{rates_outflow.png}
         \caption{Materials flows rates for the protactinium decay tank during 
         \gls{MSBR} online reprocessing.}
         \label{fig:outflow}

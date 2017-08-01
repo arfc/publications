@@ -1,0 +1,56 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{leblanc_molten_2010}
+\MakeUppercase{D.~LeBlanc}, \enquote{Molten salt reactors: {A} new beginning
+  for an old idea,} \emph{Nuclear Engineering and Design}, \textbf{240},
+  \emph{6}, 1644--1656 (Jun. 2010).
+
+\bibitem{elsheikh_safety_2013}
+\MakeUppercase{B.~M. Elsheikh}, \enquote{Safety assessment of molten salt
+  reactors in comparison with light water reactors,} \emph{Journal of Radiation
+  Research and Applied Sciences}, \textbf{6}, \emph{2}, 63--70 (Oct. 2013).
+
+\bibitem{robertson_conceptual_1971}
+\MakeUppercase{R.~C. Robertson}, \enquote{Conceptual {Design} {Study} of a
+  {Single}-{Fluid} {Molten}-{Salt} {Breeder} {Reactor}.} Tech. Rep. ORNL--4541,
+  comp.; Oak Ridge National Lab., Tenn. (Jan. 1971).
+
+\bibitem{powers_new_2013}
+\MakeUppercase{J.~J. Powers}, \MakeUppercase{T.~J. Harrison}, and
+  \MakeUppercase{J.~C. Gehin}, \enquote{A new approach for modeling and
+  analysis of molten salt reactors using {SCALE},} Tech. rep., American Nuclear
+  Society, 555 North Kensington Avenue, La Grange Park, IL 60526 (United
+  States) (Jul. 2013).
+
+\bibitem{jeong_equilibrium_2016}
+\MakeUppercase{Y.~Jeong}, \MakeUppercase{J.~Park}, \MakeUppercase{H.~C. Lee},
+  and \MakeUppercase{D.~Lee}, \enquote{Equilibrium core design methods for
+  molten salt breeder reactor based on two-cell model,} \emph{Journal of
+  Nuclear Science and Technology}, \textbf{53}, \emph{4}, 529--536 (Apr. 2016).
+
+\bibitem{leppanen_serpent_2012}
+\MakeUppercase{J.~Lepp{\"a}nen}, \enquote{Serpent -- a {Continuous}-energy
+  {Monte} {Carlo} {Reactor} {Physics} {Burnup} {Calculation} {Code},} \emph{VTT
+  Technical Research Centre of Finland, Espoo, Finland} (2012).
+
+\bibitem{chadwick_endf/b-vii.0:_2006}
+\MakeUppercase{M.~B. Chadwick} \MakeUppercase{et~al.},
+  \enquote{{ENDF}/{B}-{VII}.0: {Next} {Generation} {Evaluated} {Nuclear} {Data}
+  {Library} for {Nuclear} {Science} and {Technology},} \emph{Nuclear Data
+  Sheets}, \textbf{107}, \emph{12}, 2931--3060 (Dec. 2006).
+
+\bibitem{leppanen_serpent_2015}
+\MakeUppercase{J.~Lepp{\"a}nen}, \MakeUppercase{M.~Pusa},
+  \MakeUppercase{T.~Viitanen}, \MakeUppercase{V.~Valtavirta}, and
+  \MakeUppercase{T.~Kaltiaisenaho}, \enquote{The {Serpent} {Monte} {Carlo}
+  code: {Status}, development and applications in 2013,} \emph{Annals of
+  Nuclear Energy}, \textbf{82}, 142--150 (Aug. 2015).
+
+\bibitem{park_whole_2015}
+\MakeUppercase{J.~Park}, \MakeUppercase{Y.~Jeong}, \MakeUppercase{H.~C. Lee},
+  and \MakeUppercase{D.~Lee}, \enquote{Whole core analysis of molten salt
+  breeder reactor with online fuel reprocessing,} \emph{International Journal
+  of Energy Research}, pp. 1673--1680 (Jul. 2015).
+
+\end{thebibliography}
