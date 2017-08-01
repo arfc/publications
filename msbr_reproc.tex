@@ -43,7 +43,7 @@ constantly circulating liquid fuel (i.e., mixture of $LiF-BeF_2-ThF_4-UF_4$ or
 $LiF-BeF_2-ZrF_4-UF_4$) and solid graphite moderator structures. This liquid 
 fuel form leads to immediate advantages over traditional, 
 solid-fueled, reactors. The molten-salt carrier with dissolved 
-fissile and/or fertile material allows for online refuelling and 
+fissile and/or fertile material allows for online refueling and 
 reprocessing. Thus, \glspl{MSR} can potentially operate years without shutdown, 
 achieving maximum fuel utilization and outstanding neutron economy 
 \cite{leblanc_molten_2010}. Moreover, this type of fuel does not need 
@@ -51,7 +51,7 @@ complex fabrication since the fissile material could be transported from any
 enrichment plant to the \gls{NPP} in the form 
 of uranium hexafluoride ($UF_6$).  Additionally, \glspl{MSR} have a high level 
 of inherent safety due to their characteristically 
-strong negative temperature coefficient of reactivity, near-atmospheric 
+the strong negative temperature coefficient of reactivity, near-atmospheric 
 pressure in the primary loop, stable coolant, passive decay heat cooling, and 
 small excess reactivity \cite{elsheikh_safety_2013}.
 
@@ -81,7 +81,7 @@ fuel salt composition changes due to online
 reprocessing and refueling based on the deterministic computer code NEWT in 
 SCALE \cite{powers_new_2013}. This approach was later used by Jeong \emph{et 
 al.} to find an equilibrium fuel composition for the \gls{MSBR} and was 
-validated with an \gls{MCNP}/CINDER90 model \cite{jeong_equilibrium_2016}. 
+validated with a \gls{MCNP}/CINDER90 model \cite{jeong_equilibrium_2016}. 
 
 The current paper presents a single-cell model developed using the
 continuous-energy Serpent 2 Monte Carlo reactor physics software. It was 
@@ -181,7 +181,7 @@ online reprocessing and refueling. Most utilize stochastic (i.e.
 \gls{MCNP}) or deterministic (i.e. SCALE) methods for depletion and supplement 
 these with custom Python scripts to capture the impacts of reprocessing 
 \cite{jeong_equilibrium_2016,park_whole_2015}. Serpent 2 is the 
-first commonly used monte carlo software to support continuous material 
+first commonly used Monte Carlo software to support continuous material 
 reprocessing. It does so by allowing the user to 
 create multiple material flows into and out of the fuel.
 
@@ -189,7 +189,7 @@ The \gls{MSBR} has the capability to remove all poisons
 (e.g. 
 $^{135}$Xe), noble metals, and gases (e.g. $^{75}$Se, $^{85}$Kr) 
 every 20 seconds. The $^{232}$Th in the fuel absorbs thermal 
-neutrons and produces $^{233}$Pa which then decay into the fissile $^{233}$U. 
+neutrons and produces $^{233}$Pa which then decays into the fissile $^{233}$U. 
 Protactinium presents a challenge, since it has a large absorption cross section in the thermal 
 energy spectrum. Accordingly, $^{233}$Pa is continuously removed from fuel salt 
 into a protactinium decay tank and allowing $^{233}$Pa to decay to $^{233}$U without 
@@ -203,7 +203,7 @@ increases the efficiency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
 A major problem with the reprocessing method is that different nuclides have 
 specific removal rates. On the one hand, if the depletion time intervals are 
 very short it means specific isotope being instantly removed, and it is hard to 
-obtain equilibrium composition because enormous large number of depletion 
+obtain equilibrium composition because of an enormously large number of depletion 
 steps. On the other hand, if the depletion calculation time interval is too 
 long the results would not truly represent the \gls{MSBR} conceptual design. 
 Following this idea, the time interval for depletion calculations was selected 
@@ -217,7 +217,7 @@ maintain the initial mass fraction of $^{232}$ThF$_4$.
 Using the methodology described previously, the \gls{MSBR} unit cell depletion 
 analysis was performed to find equilibrium core conditions. In this section, 
 the calculation results including multiplication factor, neutron flux energy 
-spectrum, atomic density of major isotopes are summarised.
+spectrum, atomic density of major isotopes are summarized.
 
 \subsection{Equilibrium state analysis}
 
@@ -239,7 +239,7 @@ Standard deviation is about 100 pcm.
 
 \FloatBarrier
 
-Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
+Figure~\ref{fig:keff} shows the infinite multiplication factor for 1200-days
 reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
 high standard deviation causes the multiplication factor fluctuations. 
 Protactinium-233 continuously removing into the tank for protactinium decay. 
@@ -255,7 +255,7 @@ operation.
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{fuel_composition.png}
-        \caption{Normalized number density of major isotopes during 4 years 
+        \caption{Normalized number density of major isotopes during 1200 days 
         depletion.}
         \label{fig:compos}
 \end{figure}
@@ -269,40 +269,17 @@ neutronics at the beginning of each depletion time interval. The number density
 of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
 of it produced during 3-days reprocessing step. It can be seen that the 
 multiplication factor reaches the equilibrium state at about 950  days. 
-Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
-flows during 4 years of depletion calculations. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\captionsetup[table]{
-%  labelsep = newline,
-%  name = TABLE, justification=justified,
-%  singlelinecheck=false,%%%%%%% a single line is centered by default
-%  labelsep=colon,%%%%%%
-%  skip = \medskipamount}
-%\begin{table}[h!]
-%\centering
-%\begin{tabular}{p{0.25\linewidth} p{0.3\linewidth} p{0.3\linewidth}} \toprule
-%      Isotope & First 400 days     & After 400 days          
-%\\ \midrule
-%$^{232}$Th  & 3.704$\times10^{12}$ & 3.086$\times10^{12}$
-%\\ \midrule
-%$^{233}$Pa  & 3.704$\times10^{12}$ & 3.086$\times10^{12}$
-%\\ \midrule
-%$^{233}$U  & $1.05134\pm0.00116$ & $1.00736$
-%\\
-%\bottomrule
-%\end{tabular}
-%  \caption{Materials flows rates during \gls{MSBR} online reprocessing 
-%  [1/s*cm$^3$].}
-%  \label{tab:rates}
-%\end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{rates_fuel.png}
         \caption{Materials flows rates during online reprocessing.}
         \label{fig:rates}
 \end{figure}
-From the graph below we can see that to keep reactor critical higher $^{233}$U 
+
+Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
+flows during 1200 days of depletion calculations. From the graph below we can 
+see that to keep reactor critical higher $^{233}$U 
 flow rate required for first 400 days of operation and after that much smaller 
 uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th 
 rate slightly decreases over 4 years of operation due to other than $^{233}$U 
