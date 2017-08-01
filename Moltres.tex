@@ -95,14 +95,14 @@ with development of the \gls{ARE} and later the \gls{MSRE} at \gls{ORNL}.  With
 the inclusion of the \gls{MSR} among the Generation-IV reactor designs
 \cite{noauthor_gif_2015}, this reactor concept has gained renewed research
 interest in the past decade, with many new nuclear companies proposing both
-fluid-fuelled and solid-fuelled commerical \gls{MSR} designs
+fluid-fuelled and solid-fuelled commercial \gls{MSR} designs
 \cite{hyde_liquid_2015,leblanc_integral_2015,noauthor_-able_2017,scarlat_design_2014,noauthor_neutronics_2016}. Two
 key advantages offered by the fluid-fuelled \gls{MSR} are improved fuel
 utilization and no radiation damage constraint on attainable fuel
 burn-up. Together, these attributes result in significantly reduced core fissile
 inventories and spent nuclear fuel mass \cite{noauthor_gen_2008}.  These
-characteristics give the \gls{MSR} a potentially unique capability for actinide
-burning and extension of fuel resources.
+Due to these characteristics give the \gls{MSR} potentially unique 
+capabilities burning actinides and extending fuel resources.
 
 \gls{MSR} modeling efforts describe steady-state and
 transient behavior. Krepel et. al. extended the in-house \gls{LWR}
@@ -167,7 +167,7 @@ use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework.
 Accordingly, Moltres includes physics kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
 jargon, kernels are C++ classes that contain methods for computing residual and
-Jacobian contributions corresponding to individual piecies of governing
+Jacobian contributions corresponding to individual pieces of governing
 equations. Developing the code-base in this way allows modular construction
 of equation systems; e.g. the kernel used to represent heat
 conduction can also represent generic chemical diffusion. Moltres
@@ -175,7 +175,7 @@ also features neutron and precursor ``actions.'' These actions automatically
 construct the systems of equations for an arbitrary number of neutron and
 precursor groups. This means that as long as group constants are provided in an appropriate
 tabular form, a user only has to modify a couple of lines in a Moltres input
-file to change from say two to fourty-four neutron groups.
+file to change from say two to forty-four neutron groups.
 
 In Moltres, neutrons are described with time-dependent multi-group diffusion theory as shown
 in \Cref{eq:neutrons}:
@@ -468,7 +468,7 @@ cores.
 profiles with cosinusoidal gamma heating and \gls{MSRE} design models
 \cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite. The
 profiles are in good agreement. In the \gls{MSRE} design, the moderator
-temperature at the reactor inlet is about 20 degrees Faerenheit larger than the
+temperature at the reactor inlet is about 20 degrees Fahrenheit larger than the
 fuel temperature, whereas the temperatures are about the same in the Moltres
 model. This difference is likely because axial the \gls{MSRE} design model 
 neglected axial heat conduction \cite[p. 99]{briggs_molten-salt_1964}.
