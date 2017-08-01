@@ -134,7 +134,7 @@ processing units. Through its computing power, Moltres is devoted to previously
 unmatched fidelity in coupled neutronics and thermal hydraulics \gls{MSR}
 simulation.
 
-Moltres is an open source code licensed under \gls{LGPL} terms so that the 
+Moltres is an open source code licensed under \gls{LGPL} terms so the 
 \gls{MSR} community can freely use, interrogate, and improve it.  Its openness 
 is a defining characteristic and promotes
 quality through transparency and ease of peer review. In the era of
@@ -154,7 +154,7 @@ applications (e.g. Moltres) into residual and Jacobian
 functions. These functions are the inputs into PetSc Newton-Raphson solution routines. All
 codes use MPI for parallel communication and are easily deployed on
 massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
-default use monolithic and implicit methods that are ideal for closely-coupled
+default use monolithic and implicit methods ideal for closely-coupled
 and multi-scale physics, such as the model problem described
 in this work. However, Moltres can also use explicit
 time-stepping routines as well as segregated solution methods, making it 
@@ -173,7 +173,7 @@ of equation systems; e.g. the kernel used to represent heat
 conduction can also represent generic chemical diffusion. Moltres
 also features neutron and precursor ``actions.'' These actions automatically 
 construct the systems of equations for an arbitrary number of neutron and
-precursor groups. This means that as long as group constants are provided in an appropriate
+precursor groups. Therefore, as long as group constants are provided in an appropriate
 tabular form, a user only has to modify a couple of lines in a Moltres input
 file to change from say two to forty-four neutron groups.
 
@@ -291,7 +291,7 @@ different types of transients, one can reduce the model problem to a two
 dimensional axisymmetric one for rapid proof of concept. To approximately simulate the lattice
 structure of the \gls{MSRE} under 2D conditions, a geometry is constructed with 14 repeating
 fuel-moderator regions, as shown in \Cref{fig:geom}. The fuel and moderator
-radii are chosen such that the resulting area/volume fraction of fuel is .225 as
+radii are chosen such that the resulting area/volume fraction of fuel is 0.225 as
 for the \gls{MSRE}.
 
 \begin{figure}[htpb]
@@ -528,7 +528,7 @@ cause the depression in the thermal flux in \cref{fig:msre_radial_fluxes}.
 \end{figure}
 
 \Cref{fig:axial_fluxes_compare} compares the axial flux profiles calculated by
-Moltres and the \gls{ORNL} \gls{MSRE} design model. Note that the radius for the
+Moltres and the \gls{ORNL} \gls{MSRE} design model. The radius for the
 plots are chosen to correspond to the peak of the thermal flux in both cases;
 for the \gls{ORNL} calculations this is 8.4 inches from the core center-line
 because of the effect of the control rod thimbles and extra fuel along the
