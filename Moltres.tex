@@ -77,14 +77,14 @@
 
 \begin{abstract}
 
-This work introduces Moltres, a new physics application for modeling coupled 
-physics in fluid-fuelled, molten salt reactors. The neutronics model, thermal
-hydraulics model, and their coupling in the MOOSE framework are
-described. Neutron and precursor equations are implemented using an Action
-system that allows use of an arbitrary number of groups with no change in the
-input card. Results for many-channel configurations in 2D-axisymmetric and 3D
-coordinates are presented and compared against other coupled models as
-well as the Molten Salt Reactor Experiment.
+Moltres is a new physics application for modeling coupled physics in 
+fluid-fuelled, molten salt reactors. This paper describes its neutronics model, 
+thermal hydraulics model, and their coupling in the MOOSE framework. Neutron 
+and precursor equations are implemented using an Action system that allows use 
+of an arbitrary number of groups with no change in the input card. Results for 
+many-channel configurations in 2D-axisymmetric and 3D coordinates are presented 
+and compared against other coupled models as well as the Molten Salt Reactor 
+Experiment.
 
 \end{abstract}
 
@@ -157,7 +157,7 @@ massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
 default use monolithic and implicit methods that are ideal for closely-coupled
 and multi-scale physics. These methods are ideal for the model problem described
 in this work. However, it should be noted that Moltres can also use explicit
-time-stepping routines as well as segregated solution methods, making it very
+time-stepping routines as well as segregated solution methods, making it 
 extensible to myriad future modeling challenges.
 
 \section{Methods}
@@ -564,7 +564,7 @@ deviation of the thermal flux from a sinusoidal shape in
 As described earlier, Moltres runs naturally in parallel. To test its
 performance, a scaling study was conducted using a typical 2D axisymmetric input
 file. Moltres's performance is shown in \cref{fig:scaling_study}. The solution
-time follows very closely to the ideal; slight deviations are expected due to
+time follows closely to the ideal; slight deviations are expected due to
 the expense of communication and the nature of iterative solvers. More
 parallelism means more ``older'' information is used in the solution process,
 which leads to slower convergence in terms of iterations \cite{satish_balay_petsc_2015}.
