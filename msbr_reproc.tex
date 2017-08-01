@@ -153,16 +153,16 @@ skip = \medskipamount}
 
 The \gls{MSBR} core consists of two different zones. The central 
 zone, Zone I, in which 13.2\% of the volume is fuel salt and 86.8\% graphite. 
-The first zone is composed of 1320 graphite cells, 2 graphite control rods, and 
+Zone I composed of 1320 graphite cells, 2 graphite control rods, and 
 2 safety rods consisting of boron carbide clad. The under-moderated zone, Zone 
-II, with 37\% fuel salt, and radial reflector, surrounding the more active 
-portion serves to diminish neutron leakage from the reactor core. In this work, 
+II, with 37\% fuel salt, and radial reflector, surrounds the Zone I core region 
+and serves to diminish neutron leakage. In this work, 
 only a Zone I element with a $3.42138 cm$ diameter central fuel channel and molten-salt 
 fuel volume fraction of 0.132 was considered. Figure~\ref{fig:zoneI} shows the 
 geometry of the unit cell model. The boundary condition of the unit cell is 
 periodic. The density of the fuel salt is $3.3304 g/cm^3$ and the graphite density is 
 $1.843 g/cm^3$. The temperature of fuel and graphite is fixed at 908K for the whole 
-reprocessing cycle\cite{robertson_conceptual_1971}.
+reprocessing cycle \cite{robertson_conceptual_1971}.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
@@ -183,7 +183,8 @@ these with custom Python scripts to capture the impacts of reprocessing
 \cite{jeong_equilibrium_2016,park_whole_2015}. Serpent 2 is the 
 first commonly used Monte Carlo software to support continuous material 
 reprocessing. It does so by allowing the user to 
-create multiple material flows into and out of the fuel.
+define multiple material flows into and out of the fuel. This work applies this 
+Serpent 2 feature to the \gls{MSBR}. 
 
 The \gls{MSBR} has the capability to remove all poisons
 (e.g. 
@@ -191,15 +192,15 @@ $^{135}$Xe), noble metals, and gases (e.g. $^{75}$Se, $^{85}$Kr)
 every 20 seconds. The $^{232}$Th in the fuel absorbs thermal 
 neutrons and produces $^{233}$Pa which then decays into the fissile $^{233}$U. 
 Protactinium presents a challenge, since it has a large absorption cross section in the thermal 
-energy spectrum. Accordingly, $^{233}$Pa is continuously removed from fuel salt 
+energy spectrum. Accordingly, $^{233}$Pa is continuously removed from the fuel salt 
 into a protactinium decay tank and allowing $^{233}$Pa to decay to $^{233}$U without 
 poisoning the reactor. The reactor reprocessing system is designed to separate 
 $^{233}$Pa from the molten-salt fuel over 3 days, hold it while $^{233}$Pa 
-decays into $^{233}$U 
-and return it back to the primary loop. This feature allows the reactor to 
+decays into $^{233}$U, and return it back to the primary loop. This feature allows the reactor to 
 avoid neutron losses to protactinium, keeps fission products to a very low level, and 
 increases the efficiency of $^{233}$U breeding \cite{robertson_conceptual_1971}.
 
+<<<<<<< HEAD
 A major problem with the reprocessing method is that different nuclides have 
 specific removal rates. On the one hand, if the depletion time intervals are 
 very short it means specific isotope being instantly removed, and it is hard to 
@@ -210,35 +211,55 @@ Following this idea, the time interval for depletion calculations was selected
 as 3 days to correlate with the removal interval of $^{233}$Pa. Thorium is 
 continuously added to 
 maintain the initial mass fraction of $^{232}$ThF$_4$.
+=======
+Since removal rates vary among nuclides in this reactor concept, the Serpent 2 
+reprocessing method is unable to capture the desired reprocessing strategy. 
+The removal rates also dictate the necessary resolution of depletion 
+calculations. If the depletion time intervals are 
+very short an enormous number of depletion steps are required to
+obtain the equilibrium composition. On the other hand, if the depletion 
+calculation time interval is too long, serious impacts of short lived fission 
+products are not captured in a manner that is faithful \gls{MSBR} conceptual design. 
+To compromise, the time interval for depletion calculations in this model was selected 
+as 3 days to correlate with the removal interval of $^{233}$Pa and Thorium was 
+continuously added to maintain the initial mass fraction of $^{232}$ThF$_4$.
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
 
 Using the methodology described previously, the \gls{MSBR} unit cell depletion 
+<<<<<<< HEAD
 analysis was performed to find equilibrium core conditions. In this section, 
 the calculation results including multiplication factor, neutron flux energy 
 spectrum, atomic density of major isotopes are summarized.
+=======
+analysis was performed to find equilibrium core conditions. Calculation results reported 
+in this section include multiplication factor, neutron flux energy 
+spectrum, and atomic density of major isotopes.
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 \subsection{Equilibrium state analysis}
 
-The method approximate a single representative unit cell for the whole 
-\gls{MSBR} core, consequently, it does not take into consideration different 
-fuel-moderator volume ratio for Zone I, Zone II, annulus, and reflector. The 
+This analysis models a single representative unit cell rather than the whole 
+\gls{MSBR} core. Consequently, it does not take into consideration different 
+fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector. The 
 initial multiplication factor during depletion calculation is selected for 
-state with fully withdrawn control and poison rods position which gives high 
-excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
-Standard deviation is about 100 pcm.
+a state with fully withdrawn control rods, which gives 
+considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
+Standard deviation for these calculations is approximately 100 pcm.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{keff.png}
-        \caption{Infinite multiplication factor during 4 years depletion 
+        \caption{Infinite multiplication factor during a 4-years depletion 
         simulation.}
         \label{fig:keff}
 \end{figure}
 
 \FloatBarrier
 
+<<<<<<< HEAD
 Figure~\ref{fig:keff} shows the infinite multiplication factor for 1200-days
 reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. The 
 high standard deviation causes the multiplication factor fluctuations. 
@@ -251,11 +272,29 @@ inflow to keep reactor critical. During reactor operation producing fissile
 materials other than $^{233}$U in the core (e.g. $^{235}$U, $^{239}$Pu) which 
 makes it possible to decrease fresh fuel refill rate after ~1 year of 
 operation.
+=======
+Figure~\ref{fig:keff} shows the infinite multiplication factor for 4-year 
+reprocessing cycle calculated by Serpent 2 with ENDF/B-VII.0 nuclear data. A 
+significant standard deviation (100 pcm) causes the multiplication factor 
+fluctuations visible in this plot.  Protactinium-233 continuously removing into 
+the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
+beta decays into $^{233}$U which as fresh fuel goes back to the reactor core. 
+The infinite multiplication factor decreases first 400 days of depletion due to 
+strong absorbers (e.g. $^{233}$Th, $^{234}$U) accumulation which causes 
+relatively high fuel ($^{233}$U) refill inflow to keep reactor critical. During 
+reactor operation producing fissile materials other than $^{233}$U in the core 
+(e.g. $^{235}$U, $^{239}$Pu) which makes it possible to decrease fresh fuel 
+refill rate after ~1 year of operation.
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{fuel_composition.png}
+<<<<<<< HEAD
         \caption{Normalized number density of major isotopes during 1200 days 
+=======
+        \caption{Normalized number density of major isotopes during 4 years of 
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
         depletion.}
         \label{fig:compos}
 \end{figure}
@@ -263,25 +302,63 @@ operation.
 \FloatBarrier
 
 The analysis of the fuel salt composition variation gives clearer information 
-about equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
-number density of important isotopes that have strong influence on the core 
+about the equilibrium core state. Figure~\ref{fig:compos} shows the normalized 
+number density of isotopes influential to core 
 neutronics at the beginning of each depletion time interval. The number density 
 of protactinium is very low (less than $10^{16}$1/cm$^3$) but some small amount 
+<<<<<<< HEAD
 of it produced during 3-days reprocessing step. It can be seen that the 
 multiplication factor reaches the equilibrium state at about 950  days. 
 
+=======
+of it is produced during the 3-day reprocessing period. In this assessment, the multiplication 
+factor stabilizes after approximately 950 days. 
+Figure~\ref{fig:rates} represents the rates of online reprocessing material flows
+flows over the 4-year depletion calculation. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\captionsetup[table]{
+%  labelsep = newline,
+%  name = TABLE, justification=justified,
+%  singlelinecheck=false,%%%%%%% a single line is centered by default
+%  labelsep=colon,%%%%%%
+%  skip = \medskipamount}
+%\begin{table}[h!]
+%\centering
+%\begin{tabular}{p{0.25\linewidth} p{0.3\linewidth} p{0.3\linewidth}} \toprule
+%      Isotope & First 400 days     & After 400 days          
+%\\ \midrule
+%$^{232}$Th  & 3.704$\times10^{12}$ & 3.086$\times10^{12}$
+%\\ \midrule
+%$^{233}$Pa  & 3.704$\times10^{12}$ & 3.086$\times10^{12}$
+%\\ \midrule
+%$^{233}$U  & $1.05134\pm0.00116$ & $1.00736$
+%\\
+%\bottomrule
+%\end{tabular}
+%  \caption{Materials flows rates during \gls{MSBR} online reprocessing 
+%  [1/s*cm$^3$].}
+%  \label{tab:rates}
+%\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=1.03\linewidth]{rates_fuel.png}
         \caption{Materials flows rates during online reprocessing.}
         \label{fig:rates}
 \end{figure}
+<<<<<<< HEAD
 
 Figure~\ref{fig:rates} represents the rates of materials in online reprocessing 
 flows during 1200 days of depletion calculations. From the graph below we can 
 see that to keep reactor critical higher $^{233}$U 
 flow rate required for first 400 days of operation and after that much smaller 
 uranium-233 flow rate from the protactinium decay tank needed. The $^{232}$Th 
+=======
+In Figure~\ref{fig:rates} we can see that, to keep the reactor critical, a higher $^{233}$U 
+flow rate from the protactinium decay tank was required for first 400 days of 
+operation. After that, the $^{233}$U flow rate can be reduced. The $^{232}$Th 
+>>>>>>> be4870b2c94ebcc77d2777e747e706d7fa13ac8c
 rate slightly decreases over 4 years of operation due to other than $^{233}$U 
 fissile materials accumulation.
 
@@ -293,8 +370,8 @@ fissile materials accumulation.
         \label{fig:outflow}
 \end{figure}
 As shown in Figure~\ref{fig:outflow}, the tank for protactinium decay 
-accumulates $^{233}$Pa approximately 200 days and fresh fuel ($^{233}$U) flow 
-established also after 200 days. Uranium produced in the tank by protactinium 
+accumulates $^{233}$Pa for approximately 200 days. Fresh $^{233}$U fuel flow is 
+also established after 200 days. Uranium produced in the tank by protactinium 
 decay is separated by circulation of the salt through a flourinator. The fully 
 processed molten salt, on its way back to the primary loop, has uranium added 
 at the rate required to maintain or adjust the fissile material concentration 
@@ -316,10 +393,11 @@ products.
 
 \FloatBarrier 
 
-In this work only Zone I unit cell with 0.132 volume fraction of fuel 
-considered, neutron spectrum for Zone II cell where salt fraction is 37\% 
-should be harder and the peak in thermal energy region predicted to be much 
-lower. To obtain high fidelity neutron energy spectrum whole \gls{MSBR} core 
+In this work, only the Zone I unit cell, where the fuel salt volume fraction is 
+13.2\%, was considered. The neutron spectrum for Zone II cell, where the fuel 
+salt volume fraction is 37\% is expected to be harder and the peak in thermal 
+energy region is predicted to be much 
+lower. To obtain a high-fidelity neutron energy spectrum, a full-core \gls{MSBR}
 analysis is required.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
@@ -328,7 +406,7 @@ equilibrium states was performed using the Serpent 2 Monte Carlo code to
 simulate simplified case of the online reprocessing and refueling to find 
 equilibrium material composition. When running depletion calculation, the 
 fission products are removed and fertile/fissile materials are added to fuel 
-salt every 3 days. The important MSR feature, online reprocessing I\& refueling 
+salt every 3 days. The important MSR feature, online reprocessing \& refueling 
 is implemented in the Serpent 2 material burnup routine. The results of this 
 study indicate that from the depletion calculation the multiplication factor 
 slowly decreases and reaches to the equilibrium state. The most obvious finding 
@@ -341,18 +419,18 @@ These results are contrary with those of Jeong and Park (2016) who suggested
 two different unit cell models and uses \gls{MCNP} with Python-script to 
 simulate \gls{MSBR} online reprocessing to find equilibrium composition. This 
 inconsistency may be due to different fuel fraction in the unit cell (Jeong and 
-Park selected 20.6\% salt fraction). To obtain better results in online 
-reprocessing simulation number of future efforts expected. First, depletion 
-simulation will be performed using full-core tree-dimensional high-fidelity 
-model of \gls{MSBR} developed in Serpent 2. In this case, different 
+Park selected 20.6\% salt fraction). To obtain better results for this online 
+reprocessing simulation, many future efforts are planned. First, a depletion 
+simulation will be performed using a  full-core, three-dimensional, high-fidelity 
+model of \gls{MSBR} that has been developed in Serpent 2. In this case, different 
 fuel-moderator volume ratios for the reactor Zone I, Zone II, annulus, 
-reflectors would be taken into account to find accurate multiplication factor, 
-neutron spectrum and, hence, depleted composition. Secondly, additional Serpent 
+and reflectors will be taken into account to find accurate multiplication factor, 
+neutron spectrum and, hence, depleted composition. Secondly, an additional Serpent 
 2 flow control system subroutine should be developed to simulate adjusting 
 material flows (e.g. rate of removing $^{233}$Pa from the salt and adding 
-fissile $^{233}$U from the tank for protactinium decay) depending upon current 
-reactivity value which is more promising reactivity control method than moving 
-control and safety rods. Finally, temperature effect of reactivity for both 
+fissile $^{233}$U from the tank for protactinium decay) depending upon the 
+instantaneous reactivity value, which is a more promising reactivity control method than moving 
+control rods. Finally, the temperature effect of reactivity for both 
 fuel salt and graphite should be calculated to find optimal effective 
 multiplication factor range. 
 
