@@ -171,8 +171,8 @@ Jacobian contributions corresponding to individual piecies of governing
 equations. Developing the code-base in this way allows modular construction
 of equation systems; e.g. the same kernel that is used to represent heat
 conduction can also be used to represent generic chemical diffusion. Moltres
-also features neutron and precursor ``actions.'' These actions enable automatic
-construction of the systems of equations for an arbitrary number of neutron and
+also features neutron and precursor ``actions.'' These actions automatically 
+construct the systems of equations for an arbitrary number of neutron and
 precursor groups. This means that as long as group constants are provided in an appropriate
 tabular form, a user only has to modify a couple of lines in a Moltres input
 file to change from say two to fourty-four neutron groups.
