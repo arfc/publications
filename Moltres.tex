@@ -168,7 +168,7 @@ Accordingly, Moltres includes physics kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
 jargon, kernels are C++ classes that contain methods for computing residual and
 Jacobian contributions corresponding to individual piecies of governing
-equations. Developing the code-base in this way allows very modular construction
+equations. Developing the code-base in this way allows modular construction
 of equation systems; e.g. the same kernel that is used to represent heat
 conduction can also be used to represent generic chemical diffusion. Moltres
 also features neutron and precursor ``actions.'' These actions enable automatic
