@@ -27,6 +27,33 @@
 % cleveref only behaves if after hyperref & glossaries
 \usepackage{cleveref}
 \usepackage{minted}
+\usepackage{ifthen}
+\usepackage{subcaption}
+%% \usepackage{listings}  % Allows code printing
+%% \definecolor{codegreen}{rgb}{0,0.6,0}
+%% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+%% \definecolor{codepurple}{rgb}{0.58,0,0.82}
+%% \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+%% \lstdefinestyle{mystyle}{
+%%     backgroundcolor=\color{backcolour},
+%%     commentstyle=\color{codegreen},
+%%     keywordstyle=\color{magenta},
+%%     numberstyle=\tiny\color{codegray},
+%%     stringstyle=\color{codepurple},
+%%     basicstyle=\footnotesize,
+%%     breakatwhitespace=false,
+%%     breaklines=true,
+%%     captionpos=b,
+%%     keepspaces=true,
+%%     numbers=left,
+%%     numbersep=5pt,
+%%     showspaces=false,
+%%     showstringspaces=false,
+%%     showtabs=false,
+%%     tabsize=2
+%% }
+%% \lstset{style=mystyle}
+
 
 \let\Oldsection\section
 \renewcommand{\section}{\FloatBarrier\Oldsection}
@@ -38,115 +65,106 @@
 \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
 \newcommand{\code}[1]{\texttt{#1}}
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
 
 \title{Introduction to Moltres: an Application for Simulation of Molten Salt Reactors}
-\author{Alexander Lindsay, Kathryn Huff}
+\author{Alexander Lindsay, Gavin Ridley, Kathryn Huff}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-        This work introduces Moltres, a new physics application for multiphysics modeling of 
-        fluid-fuelled molten salt reactors. The neutronics model, thermal 
-        hydraulics model, and their coupling in the MOOSE framework are 
-        described. Validation against other coupled models as well as experimental 
-        results from the Molten Salt Reactor Experiment are demonstrated.
+
+This work introduces Moltres, a new physics application for multiphysics
+modeling of fluid-fuelled molten salt reactors. The neutronics model, thermal
+hydraulics model, and their coupling in the MOOSE framework are
+described. Neutron and precursor equations are implemented using an Action
+system that allows use of an arbitrary number of groups with no change in the
+input card. Results for many-channel configurations in 2D-axisymmetric and 3D
+coordinates are presented. These are compared against other coupled models as
+well as the Molten Salt Reactor Experiment.
+
 \end{abstract}
 
 \section{Introduction}
 
-Molten salt reactor concepts received considerable interest
-in the 1950s and 60s with development of the \gls{ARE} and
-later the \gls{MSRE} at \gls{ORNL}. With the inclusion of the \gls{MSR} in the
-Generation-IV reactor designs, the reactor concept has gained renewed research
-interest in the past decade. Some of the advantages offered by the \gls{MSR}
-include lower fissile inventories, no radiation damage constraint on attainable
-fuel burn-up, no spent nuclear fuel, no requirement to fabricate and handle
-solid fuel, and a homogeneous isotopic composition of fuel in the
-reactor \cite{noauthor_gen_2008}. These characteristics give the \gls{MSR} a
-potentially unique capability for actinide burning and extension of fuel
-resources.
+Molten salt reactor concepts garnered considerable interest in the 1950s and 60s
+with development of the \gls{ARE} and later the \gls{MSRE} at \gls{ORNL}.  With
+the inclusion of the \gls{MSR} among the Generation-IV reactor designs
+\cite{noauthor_gif_2015}, this reactor concept has gained renewed research
+interest in the past decade, with many new nuclear companies proposing both
+fluid-fuelled and solid-fuelled commerical \gls{MSR} designs
+\cite{hyde_liquid_2015,leblanc_integral_2015,noauthor_-able_2017,scarlat_design_2014,noauthor_neutronics_2016}. Two
+key advantages offered by the fluid-fuelled \gls{MSR} are improved fuel
+utilization and no radiation damage constraint on attainable fuel
+burn-up. Together, these attributes result in significantly reduced core fissile
+inventories and spent nuclear fuel mass \cite{noauthor_gen_2008}.  These
+characteristics give the \gls{MSR} a potentially unique capability for actinide
+burning and extension of fuel resources.
 
 \gls{MSR} modeling efforts are focused on description of steady-state and
-transient behavior. Krepel et. al. extended the in-house light-water reactor
+transient behavior. Krepel et. al. extended the in-house \gls{LWR}
 diffusion code DYN3D to consider drift of delayed neutron precursors alongside
 the reactor temperature profile, re-casting the extended code as
 DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. DYN3D-MSR was compared against
 experimental \gls{MSRE} data and was then used to simulate local fuel channel
 blockages as well as local temperature perturbations. In a similar vein, Kophazi
-et. al. used iterative coupling between in-house three dimensional neutronic and
+et. al. used iterative coupling between in-house three-dimensional neutronic and
 one-dimensional heat conduction models DALTON and THERM to analyze the normal
-operational state of the \gls{MSRE} and some channel-blocking-incident
+operational state of the \gls{MSRE} as well as channel-blocking-incident
 transients \cite{kophazi_development_2009}. Additions in the Kophazi model
 included entrance effects of heat transfer coefficients as well as thermal
 coupling between fuel channels through moderator heat conduction. More recently,
 Cammi et. al. performed a 2D-axisymmetric single-channel analysis of the
 \gls{MSBR} using the commercial finite element package COMSOL
-Multiphysics \cite{cammi_multi-physics_2011}. Advances in this work included
+Multiphysics \cite{cammi_multi-physics_2011}. Advances in that work included
 solution of the fuel salt velocity field, use of heterogeneous group constants
 in fuel and moderator regions, and employment of a software package (COMSOL)
 intrinsically designed for coupled multi-physics simulation.
 
-This work does not introduce new science relative to the current literature so
-much as it introduces a new open tool, Moltres
-\cite{lindsay_arfc/moltres_nodate}, for \gls{MSR} simulation. Moltres is an
-open source code licensed under \gls{LGPL} terms that aims to be a tool that can be
-freely used, studied, critiqued, and developed by the \gls{MSR}
-community. Though Moltres is devoted to an accurate description of \gls{MSR}
-physics, its openness is its defining characteristic and one that actually
-promotes the former quality through transparency and easy peer review. In the
-era of github and global development, open and modern software practices must be
-employed in order for nuclear engineering simulation capability to keep pace
-with that of fields like astronomy whose multitude of open simulation tools
-(Enzo, Gadget, Flash, Gizmo, Ramses, Mesa) allows them to be the darlings of
-scientific visualization and documentaries. In that vein Moltres uses
+The present work introduces the open source simulation tool, Moltres
+\cite{lindsay_arfc/moltres_nodate}, for \gls{MSR} simulation.  By implementing
+deterministic neutronics and thermal hydraulics in the context of the
+\gls{MOOSE} finite element modeling framework, Moltres solves arbitrary-group
+neutron diffusion, temperature, and precursor governing equations in anywhere
+from one to three dimensions and can be deployed on an arbitrary number of
+processing units. Through its computing power, Moltres is devoted to previously
+unmatched fidelity in coupled neutronics and thermal hydraulics \gls{MSR}
+simulation.
+
+Moltres is an open source code licensed under \gls{LGPL} terms that aims to be a
+tool that can be freely used, studied, interrogated, and improved by the
+\gls{MSR} community.  Its openness is a defining characteristic and promotes
+quality through transparency and ease of peer review. In the era of
+GitHub\cite{noauthor_build_nodate} and international scientific collaboration,
+open and modern software practices must be employed in order for nuclear
+engineering simulation capability to enable discovery and support the regulatory
+needs presented by new reactor designs. In that vein, Moltres uses
 \mintinline{latex}{git} for version control, integration testing to protect
 developed physics capabilities, and a C++ object-oriented design to allow easy
 class extensibility and minimal code duplication. Moreover, Moltres is built on
-top of the \gls{MOOSE} framework, \cite{gaston_physics-based_2015} another \gls{LGPL}
-code that itself leans on LibMesh \cite{kirk2006libmesh}, a \gls{LGPL} finite element
-library, and PetSc \cite{petsc-user-ref}, a \gls{BSD}-licensed toolkit for solving nonlinear
-equations stemming from discretization of PDEs. \gls{MOOSE} and LibMesh handle
-translation of application (Moltres) defined weak PDE forms into residual and
-Jacobian functions that are the inputs into PetSc Newton-Raphson solution
-routines. All codes use MPI for parallel communication and are easily deployed
-on massively-parallel cluster-computing platforms. \gls{MOOSE} applications by default
-use monolithic and implicit methods that are ideal for closely-coupled and
-multi-scale physics. These methods are ideal for the model problem described in
-this work. However, it should be noted that Moltres can also use explicit
-time-stepping routines as well as segregated solution methods, making it more
-extensible to future problems.
+top of the \gls{MOOSE} framework, \cite{gaston_physics-based_2015} another
+\gls{LGPL} code that itself leans on LibMesh \cite{kirk_libmesh:_2006}, a
+\gls{LGPL} finite element library, and PetSc \cite{satish_balay_petsc_2015}, a
+\gls{BSD}-licensed toolkit for solving nonlinear equations stemming from
+discretization of PDEs. \gls{MOOSE} and LibMesh handle translation of
+application (Moltres) defined weak PDE forms into residual and Jacobian
+functions that are the inputs into PetSc Newton-Raphson solution routines. All
+codes use MPI for parallel communication and are easily deployed on
+massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
+default use monolithic and implicit methods that are ideal for closely-coupled
+and multi-scale physics. These methods are ideal for the model problem described
+in this work. However, it should be noted that Moltres can also use explicit
+time-stepping routines as well as segregated solution methods, making it very
+extensible to myriad future modeling challenges.
 
-\section{Model Description}
+\section{Methods}
 
-As a proof of concept and to ease resolution of strong transient gradients in
-temperature between fuel and moderator, the physical three dimensional problem
-is reduced to a two dimensional axisymmetric model. The model molten salt
-reactor is based on the \gls{MSRE}. To approximately simulate the lattice
-structure of the \gls{MSRE}, a geometry is constructed with 14 repeating
-fuel-moderator regions, as shown in \cref{fig:geom}. The fuel and moderator
-radii are chosen such that the resulting area/volume fraction of fuel is .225 as
-for the \gls{MSRE}.
-
-\begin{figure}
-  \centering
-  \includegraphics{geometry.eps}
-  \label{fig:geom}
-  \caption{A sketch of the \gls{MSR} model geometry}
-\end{figure}
-
-The model is implemented using the \gls{MOOSE} \cite{gaston_physics-based_2015} application code
-Moltres \cite{lindsay_arfc/moltres_nodate}. Building on the massively
-parallelizable \gls{MOOSE} framework allows Moltres to be run on super-computing
-platforms like \gls{NCSA}'s Blue Waters. For some three-dimensional simulations
-(results not discussed here), the number of elements in the mesh and total
-number of degrees of freedom exceed one million and ten million respectively. To
-handle problems of this size, Moltres has been run on up to 608 cores. However,
-reducing the problem dimension from three to two and using a structured mesh
-that can be much more coarse in the axial direction allows problem solution to
-be carried out on a single core in under five minutes.
-
-The Moltres code-base currently includes kernels and boundary conditions for
+Moltres \cite{lindsay_arfc/moltres_nodate} is implemented as an application for
+use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework.
+Accordingly, Moltres includes physics kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
 jargon, kernels are C++ classes that contain methods for computing residual and
 Jacobian contributions corresponding to individual piecies of governing
@@ -160,104 +178,221 @@ tabular form, a user only has to modify a couple of lines in a Moltres input
 file to change from say two to fourty-four neutron groups.
 
 In Moltres, neutrons are described with time-dependent multi-group diffusion theory as shown
-in \cref{eq:neutrons}:
+in \Cref{eq:neutrons}:
 
-\begin{equation}
+\begin{align}
 %% \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
 %% + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
 %% \nu \Sigma_{g'}^f \phi_{g'}
-\frac{1}{v_g}\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla \phi_g
-+ \Sigma_g^r \phi_g = \sum_{g \ne g'}^G \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 - \beta)
-\nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
+        \frac{1}{v_g}\frac{\partial \phi_g}{\partial t} &- \nabla \cdot D_g
+        \nabla \phi_g + \Sigma_g^r \phi_g = \sum_{g \ne g'}^G
+        \Sigma_{g'\rightarrow g}^s \phi_{g'} + \chi_g^p \sum_{g' = 1}^G (1 -
+        \beta) \nu \Sigma_{g'}^f \phi_{g'} + \chi_g^d \sum_i^I \lambda_i C_i
 \label{eq:neutrons}
-\end{equation}
+        \intertext{where}
+        v_g &= \mbox{speed of neutrons in group g} \\
+        \phi_g &= \mbox{flux of neutrons in group g} \\
+        t &= \mbox{time} \\
+        D_g &= \mbox{Diffusion coefficient for neutrons in group g} \\
+        \Sigma_g^r &= \mbox{macroscopic cross-section for removal of neutrons
+        from group g} \\
+        \Sigma_{g'\rightarrow g}^s &= \mbox{macroscopic cross-section of
+        scattering from g' to g} \\
+        \chi_g^p &= \mbox{prompt fission spectrum, neutrons in group g} \\
+        G &= \mbox{number of discrete groups, g} \\
+        \nu &= \mbox{number of neutrons produced per fission} \\
+        \Sigma_g^f &= \mbox{macroscopic cross section for fission due to neutrons in group g} \\
+        \chi_g^d &= \mbox{delayed fission spectrum, neutrons in group g} \\
+        I &= \mbox{number of delayed neutron precursor groups} \\
+        \beta &= \mbox{delayed neutron fraction}\\
+        \lambda_i &= \mbox{average decay constant of delayed neutron precursors
+        in precursor group i} \\
+        C_i &= \mbox{concentration of delayed neutron precursors in precursor
+        group i} .
+\end{align}
 
-Delayed neutron precursors are described by \cref{eq:precursors}:
+Delayed neutron precursors are described by \Cref{eq:precursors}:
 
-\begin{equation}
-\frac{\partial C_i}{\partial t} = \sum_{g'= 1}^G \beta_i \nu \Sigma_{g'}^f
-\phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u C_i
-\label{eq:precursors}
-\end{equation}
+\begin{align}
+        \frac{\partial C_i}{\partial t} &= \sum_{g'= 1}^G \beta_i \nu
+        \Sigma_{g'}^f \phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u
+        C_i \label{eq:precursors}
+\end{align}
 
 with the last term representing the effect of fuel advection. The governing
 equation for the temperature is given by:
 
-\begin{equation}
-  \rho_fc_{p,f}\frac{\partial T_f}{\partial t} + \nabla\cdot\left(\rho_f c_{p,f}
-  \vec{u}\cdot T_f -k_f\nabla T_f\right) =  Q_f
+\begin{align}
+        \rho_fc_{p,f}\frac{\partial T_f}{\partial t} &+ \nabla\cdot\left(\rho_f
+        c_{p,f} \vec{u}\cdot T_f -k_f\nabla T_f\right) =  Q_f
   \label{eq:fuel_temp}
-\end{equation}
+  \intertext{where}
+  \rho_f &= \mbox{density of fuel salt}\\
+  c_{p,f} &= \mbox{specific heat capacity of fuel salt}\\
+  T_f &= \mbox{temperature of fuel salt}\\
+  \vec{u} &= \mbox{velocity of fuel salt}\\
+  k_f &= \mbox{thermal conductivity of fuel salt}\\
+  Q_f &= \mbox{source term}\\
+\end{align}
 
-in the fuel and by:
-
-\begin{equation}
-  \rho_gc_{p,g}\frac{\partial T_g}{\partial t} + \nabla\cdot\left(-k_g\nabla T_g\right) =  Q_g
-  \label{eq:moderator_temp}
-\end{equation}
-
-in the moderator. $Q_f$ is defined by:
+in the fuel, where the source term $Q_f$ is defined by:
 
 \begin{equation}
   Q_f = \sum_{g=1}^G \epsilon_{f,g}\Sigma_{f,g}\phi_g
   \label{eq:fuel_source}
 \end{equation}
 
-and $Q_g$ is equal to $\gamma Q_f$, representing heat dissipation by gamma and
-neutron irradiation in the moderator.
+In the moderator, the governing equation for temperature is given by:
 
-Reactor composition is based on the enriched uranium design for the \gls{MSRE}
-and is given in \cref{table:comp} \cite{robertson_msre_1965}. Group constants
-are generated with either Serpent \cite{leppanen_serpent_2015} or Scale
-\cite{dehart_reactor_2011}. Temperature vs group constant interpolation tables
-are constructed separately for fuel and moderator regions.
+\begin{align}
+        \rho_gc_{p,g}\frac{\partial T_g}{\partial t} &+
+        \nabla\cdot\left(-k_g\nabla T_g\right) =  Q_g
+  \label{eq:moderator_temp}
+  \intertext{where}
+  \rho_g &= \mbox{density of graphite moderator}\\
+  c_{p,g} &= \mbox{specific heat capacity of graphite moderator}\\
+  T_g &= \mbox{temperature of graphite moderator}\\
+  k_g &= \mbox{thermal conductivity of graphite moderator}\\
+  Q_g &= \mbox{source term in graphite moderator}\\
+\end{align}
+
+In this work $Q_g$ is set equal to $\gamma Q_f$, where $\gamma$ is a factor
+representing heat dissipation by gamma and neutron irradiation in the moderator.
+
+Group constants are generated by the modeler with either Serpent
+\cite{leppanen_serpent_2015} or SCALE \cite{dehart_reactor_2011}. Group constant
+temperature dependence is implemented via interpolation tables, which must be
+constructed separately for fuel and moderator regions. For this report,
+SCALE-generated group constants were used. To generate the group constants, an
+infinite square pitch lattice of cylindrical fuel channels surrounded by
+graphite was used, maintaining a fuel fraction of .225 to be consistent with the
+\gls{MSRE}. Subsequently, a critical buckling calculation was applied. The SCALE
+input files used for generating the group constants can be found in the
+\code{io/msre\_conc\_cuboid\_lattice} directory of the
+\url{github.com/arfc/scale_io} repository.
+
+\subsection{Performance}
+
+Building on the massively parallelizable \gls{MOOSE} framework allows Moltres
+to be run on super-computing platforms like \gls{NCSA}'s Blue Waters. For some
+three-dimensional simulations, the number of
+elements in the mesh and total number of degrees of freedom exceed one million
+and ten million respectively. To handle problems of this size, Moltres has been
+run on up to 608 cores. However, reducing the problem dimension from three to
+two and using a structured mesh that can be much more coarse in the axial
+direction allows problem solution to be carried out on a single core in under
+five minutes.
+
+\section{Model Description}
+
+The model molten salt
+reactor is based on the \gls{MSRE}. When developing new physics or investigating
+different types of transients, the model problem can be reduced to a two
+dimensional axisymmetric one for rapid proof of concept. To approximately simulate the lattice
+structure of the \gls{MSRE} under 2D conditions, a geometry is constructed with 14 repeating
+fuel-moderator regions, as shown in \Cref{fig:geom}. The fuel and moderator
+radii are chosen such that the resulting area/volume fraction of fuel is .225 as
+for the \gls{MSRE}.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{geometry.eps}
+  \label{fig:geom}
+  \caption{A sketch of the \gls{MSR} model geometry}
+\end{figure}
+
+
+The fuel composition is based on the \gls{BOL} enriched uranium composition in the \gls{MSRE}
+and is given in \Cref{table:comp} \cite{robertson_msre_1965}.
+
 
 \begin{table}[htpb]
   \begin{center}
     \begin{tabular}{l | r}
       Component & Mass Fraction\\\hline\hline
       Li-7 & .1090\\
-      Li-6 & 5$\cdot$10$^{-6}$\\
+      Li-6 & 5$\times$10$^{-6}$\\
       F-19 & .6680\\
       Be-9 & .0627\\
       U-235 & .0167\\
       U-238 & .0344\\
     \end{tabular}
   \end{center}
-  \caption{Fuel salt composition based on enriched Uranium \gls{MSRE} design \cite{robertson_msre_1965}}
+        \caption{Fuel salt composition is based on the \gls{BOL} enriched
+        uranium composition in the \gls{MSRE} design
+        \cite{robertson_msre_1965}.}
   \label{table:comp}
+\end{table}
+
+Other simulation inputs are outlined in \Cref{table:params}. It should be noted
+that the reactor simulation height of 151.75 cm was chosen to produce an
+approximately critical reactor configuration corresponding to \gls{BOL}
+\gls{MSRE} composition. It is about 10 cm shorter than the actual \gls{MSRE}
+height of 162.56 cm.
+
+\begin{table}[htpb]
+  \begin{center}
+    \begin{tabular}{l|c|c|c}
+      Parameter & Value & Units & Source\\\hline\hline
+      Inlet temp. & 922 & $K$ & \gls{MSRE} nominal \cite{robertson_msre_1965}\\
+      Wall temp. & 922 & $K$ & \gls{MSRE} nominal \cite{robertson_msre_1965}\\
+      Neutron groups & 2 & 1 & User\\
+      Precursor groups & 6 & 1 & User\\
+      Reactor radius & 72.5 & $cm$ & $\approx$\gls{MSRE} radius (70.2 cm) \cite{robertson_msre_1965}\\
+      Reactor height & 151.75 & $cm$ & User\\
+      $k{_f}$ & .0553 & $W cm^{-1} K^{-1}$ & \cite{robertson_msre_1965}\\
+      $c_{p,f}$ & 1967 & $J K^{-1} kg^{-1}$ & \cite{robertson_msre_1965}\\
+      $\rho_f$ & $2.146\cdot 10^{-3} e^{-\alpha_f (T_f - 922)}$ & $kg\ cm^{-3}$ & \cite{robertson_msre_1965}\\
+      $\alpha_f$ & $2.12\cdot 10^{-4}$ & $K^{-1}$ &
+      \cite{haubenreich_experience_1970}\\
+      $k_g$ & .312 & $W cm^{-1} K^{-1}$ & \cite{cammi_multi-physics_2011}\\
+      $c_{p,g}$ & 1760 & $J K^{-1} kg^{-1}$ & \cite{cammi_multi-physics_2011}\\
+      $\rho_g$ & $1.86\cdot 10^{-3} e^{-\alpha_g (T_g - 922)}$ & $kg\ m^{-3}$ &
+      \cite{robertson_msre_1965}\\
+      $\alpha_g$ & $1.8\cdot 10^{-5}$ & $K^{-1}$ &
+      \cite{haubenreich_experience_1970}\\
+    \end{tabular}
+  \end{center}
+  \caption{Simulation input parameters}
+  \label{table:params}
 \end{table}
 
 
 \section{Results \& Discussion}
 
-Group fluxes are shown in \cref{fig:group1,fig:group2}. The effect of the vacuum
+Group fluxes are shown in \Cref{fig:group1,fig:group2}. The effect of the vacuum
 boundary conditions is shown clearly in the cosinusoidal shapes in radial and
 axial directions. Striations are observed in both fast and thermal fluxes, with
 the fast group preferring the fuel and the thermal group preferring the moderator.
 
-\begin{figure}
+\begin{figure}[htpb]
   \centering
-  \includegraphics{auto_diff_rho_group1.eps}
-  \caption{Group 1 flux}
+  \includegraphics{2d_gamma_heating_group1.eps}
+        \caption{The group 1 flux in this 2-D cylindrical axisymmetric model
+        has the anticipated magnitude and canonical cosine shape ($r=0$ is center of core). }
   \label{fig:group1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htpb]
   \centering
-  \includegraphics{auto_diff_rho_group2.eps}
-  \caption{Group 2 flux}
+  \includegraphics{2d_gamma_heating_group2.eps}
+        \caption{The group 2 flux in this 2-D cylindrical axisymmetric model
+        has the anticipated magnitude and canonical cosine shape ($r=0$ is center of core). }
   \label{fig:group2}
 \end{figure}
 
-The effect of the advecting fuel is seen in \cref{fig:temp} where the temperature
-rises steadily with increasing z-coordinate. As one might expect, the temperature
+The effect of the advecting fuel is seen in \Cref{fig:temp} where the temperature
+rises steadily with increasing z-coordinate. As is expected, the temperature
 gradient is negative in the radial direction.
 
-\begin{figure}
+\begin{figure}[htpb]
   \centering
-  \includegraphics{auto_diff_rho_temp.eps}
-  \caption{Temperature}
+  \includegraphics{2d_gamma_heating_temp.eps}
+        \caption{The reactor core temperature peaks near the reactor outlet in
+          this 2-D axisymmetric model because of fuel advection ($r=0$ is center
+          of core). Because of heating by gammas and other radiation the
+          moderator regions are hotter than the fuel, consistent with
+          observations of the \gls{MSRE}}
   \label{fig:temp}
 \end{figure}
 
@@ -265,48 +400,208 @@ gradient is negative in the radial direction.
 reactor. Not surprisingly, the channel concentrations are higher in fuel channels
 with higher neutron fluxes and consequently a higher number of fission
 events. Because of the small decay constant of the precursor, the maximum
-concentration in any given channel occurs at the core outlet.
+concentration in any given channel occurs at the core outlet due to advection.
 
-% Fix me! Precursor concentrations have goofy scaling
-\begin{figure}
+\begin{figure}[htpb]
   \centering
-  \includegraphics{auto_diff_rho_pre1.eps}
-  \caption{Longest lived precursor concentration}
+  \includegraphics{2d_gamma_heating_pre1_scaled.eps}
+        \caption{The concentration of the group of longest lived precursors
+        ($\lambda = 1.24\cdot 10^{-2} s^{-1}$) peaks near the reactor outlet
+        in this 2-D axisymmetric model ($r=0$ is center of core).}
   \label{fig:pre1}
 \end{figure}
 
 With its much larger decay constant, the sixth and last precursor has its
 maximum concentration around the center-plane of the reactor as shown in
-\cref{fig:pre6}. As for all other precursors, its concentration decreases with
+\Cref{fig:pre6}. As for all other precursors, its concentration decreases with
 increasing radius and decreasing neutron flux.
 
-% Fix me! Precursor concentrations have goofy scaling
-\begin{figure}
+\begin{figure}[htpb]
   \centering
-  \includegraphics{auto_diff_rho_pre6.eps}
-  \caption{Shortest lived precursor concentration}
+  \includegraphics{2d_gamma_heating_pre6_scaled.eps}
+        \caption{The concentration of the group of shortest lived precursors
+        ($\lambda = 3.07 s^{-1}$) peaks near the reactor center
+        in this 2-D axisymmetric model ($r=0$ is center of core).}
   \label{fig:pre6}
 \end{figure}
+
+\subsection{Three dimensional simulation capability}
+
+\Cref{fig:3d_group1,fig:3d_temp} show Moltres physics applied to a three
+dimensional geometry. The fast group flux (\cref{fig:3d_group1}) is in good
+qualitative agreement with the two dimensional axisymmetric case shown in
+\cref{fig:group1}. \Cref{fig:3d_temp} is in similarly good agreement with
+\cref{fig:temp}. \Cref{fig:3d_temp_fuel_outlet} shows the temperature profile at
+the outlet of the reactor (z = H). This three dimensional case contained
+1,155,045 degrees of freedom and took only 2.5 hours to solve on 160 Blue Waters
+cores.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{3d_gamma_heating_group1.eps}
+        \caption{Fast flux for 3D \gls{MSRE}-like model. Magnitude and shape in
+          good agreement with 2D axisymmetric model (see \cref{fig:group1})}
+  \label{fig:3d_group1}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{3d_gamma_heating_temp.eps}
+        \caption{Temperature for 3D \gls{MSRE}-like model. Magnitude and shape in
+          good agreement with 2D axisymmetric model (see \cref{fig:temp})}
+  \label{fig:3d_temp}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{3d_gamma_heating_z_slice_temp.eps}
+        \caption{Temperature at the reactor outlet for 3D \gls{MSRE}-like
+          model.}
+  \label{fig:3d_temp_fuel_outlet}
+\end{figure}
+
+
+
+\subsection{Comparison with \gls{MSRE}}
+
+\Cref{fig:temp_compare} shows a comparison between Moltres predicted temperature
+profiles with cosinusoidal gamma heating and \gls{MSRE} design models
+\cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite. The
+profiles are in good agreement. In the \gls{MSRE} design, the moderator
+temperature at the reactor inlet is about 20 degrees Faerenheit larger than the
+fuel temperature, whereas the temperatures are about the same in the Moltres
+model. This difference can perhaps be attributed to the neglection of axial
+conduction in the \gls{MSRE} design model \cite[p. 99]{briggs_molten-salt_1964}.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{fuel_vs_moderator_axial_sweep.eps}
+      \caption{Moltres predicted axial temperature profiles in hottest channel
+        and adjacent graphite}
+      \label{fig:moltres_axial_temps}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_temps.png}
+      \caption{\gls{MSRE} design axial temperature profiles in hottest channel
+        and adjacent graphite stringer \cite[p. 99]{briggs_molten-salt_1964}}
+      \label{fig:msre_axial_temps}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
+      temperature profiles}
+    \label{fig:temp_compare}
+\end{figure}
+
+
+\Cref{fig:moltres_radial_fluxes} compares the fast and thermal neutron fluxes at the
+reactor mid-plane ($z=H/2$). Local thermal flux growth and fast flux decay in
+moderator regions and visa versa in fuel regions are apparent. The flux
+magnitudes are in good agreement with the magnitudes from the \gls{MSRE} design
+calculations \cite[p. 92]{briggs_molten-salt_1964} as shown in
+\cref{fig:msre_radial_fluxes}. The peak fast to thermal flux ratio is
+approximately 3.5 in the \gls{MSRE} design calculation as opposed to a ratio of
+3 for the Moltres calculation. The depression in the thermal flux in
+\cref{fig:msre_radial_fluxes} is caused by control rod thimbles and an extra
+volume of surrounding fuel that is not included in the Moltres calculations.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{moltres_radial_fluxes.eps}
+      \caption{The thermal and fast flux profiles at the core mid-plane
+        ($z=H/2$) for Moltres 2-D cylindrical axisymmetric model ($r=0$ is radial center
+        of core)}
+      \label{fig:moltres_radial_fluxes}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_radial_fluxes.png}
+      \caption{The thermal and fast flux profiles at the core mid-plane
+        ($z=H/2$) for \gls{MSRE} design model \cite{briggs_molten-salt_1964}
+        ($r=0$ is radial center of core)}
+      \label{fig:msre_radial_fluxes}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted radial
+      flux profiles}
+    \label{fig:radial_fluxes_compare}
+\end{figure}
+
+\Cref{fig:axial_fluxes_compare} compares the axial flux profiles calculated by
+Moltres and the \gls{ORNL} \gls{MSRE} design model. Note that the radius for the
+plots are chosen to correspond to the peak of the thermal flux in both cases;
+for the \gls{ORNL} calculations this is 8.4 inches from the core center-line
+because of the effect of the control rod thimbles and extra fuel along the
+center-line. Once again, the plots are in decent agreement. The \gls{ORNL}
+calculations include the lower and upper plena which are not included in this
+report's Moltres model. Consequently, the plot in \cref{fig:msre_axial_fluxes}
+extends to lower and higher z-values than
+\cref{fig:moltres_axial_fluxes}. Additionally, the deviation of the thermal flux
+from a sinusoidal shape in \cref{fig:msre_axial_fluxes} is due to absorption in
+the plena.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{moltres_axial_fluxes.eps}
+      \caption{Moltres axial flux profiles along core center line}
+      \label{fig:moltres_axial_fluxes}
+    \end{subfigure}
+    %\quad
+    \begin{subfigure}[b]{.5\textwidth}
+      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_fluxes.png}
+      \caption{\gls{MSRE} design axial flux profiles 8.4 inches from the core
+        center line \cite{briggs_molten-salt_1964}}
+      \label{fig:msre_axial_fluxes}
+    \end{subfigure}
+    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
+      flux profiles}
+    \label{fig:axial_fluxes_compare}
+\end{figure}
+
+\subsection{Scaling study}
+
+As described earlier, Moltres runs naturally in parallel. To test its
+performance, a scaling study was conducted using a typical 2D axisymmetric input
+file. Moltres's performance is shown in \cref{fig:scaling_study}. The solution
+time follows very closely to the ideal; slight deviations are expected due to
+the expense of communication and the nature of iterative solvers. More
+parallelism means more ``older'' information is used in the solution process,
+which leads to slower convergence in terms of iterations \cite{satish_balay_petsc_2015}.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{scaling_study.eps}
+  \caption{Moltres performance on a typical 2D axisymmetric problem for
+    different numbers of processors}
+  \label{fig:scaling_study}
+\end{figure}
+
 
 \section{Conclusion}
 
 This work introduces the open source \gls{MSR} simulation code Moltres. Moltres
 solves arbitrary-group neutron diffusion, temperature, and precursor governing
 equations in anywhere from one to three dimensions and can be deployed on an
-arbitrary number of processing units. The model problem presented here has a
-2D-axisymmetric geometry with heterogeneous group constants for fuel and
-moderator regions. Fuel volume fraction and fuel salt composition are based on
-the \gls{MSRE}. Neutron fluxes show expected cosinusoidal shapes in radial and
-axial directions with visible striations between fuel and moderator regions. The
-fast group flux is enhanced in fuel regions while the thermal group flux in
-enhanced in moderator regions. Due to advection the temperature profile
-increases monotonically in the direction of salt flow. The role of advection is
-also seen in precursor concentrations. Long lived precursors exhibit maximum
-concentrations at the core outlet. As the decay constant increases across
-precursor groups the maximum concentrations moves towards the reactor center
-where the precursor production rate is maximum. Future Moltres work includes
-generating a high-fidelity 3D model as well as investigating various transient
-accident scenarios.
+arbitrary number of processing units. The 2D-axisymmetric and 3D models
+presented here employ heterogeneous group constants for fuel and moderator
+regions generated with SCALE. Fuel volume fraction and fuel salt composition are
+based on the \gls{MSRE}. Neutron fluxes show expected cosinusoidal shapes in
+radial and axial directions with visible striations between fuel and moderator
+regions. The fast group flux is enhanced in fuel regions while the thermal group
+flux in enhanced in moderator regions. Due to advection the temperature profile
+in the fuel increases monotonically in the direction of salt flow, while the
+moderator temperature exhibits a maximum between the mid-plane and outlet. The
+role of advection is also seen in precursor concentrations. Long lived
+precursors exhibit maximum concentrations at the core outlet. As the decay
+constant increases across precursor groups the maximum concentrations moves
+towards the reactor center where the precursor production rate is
+maximum. Results from 2D-axisymmetric and 3D models show good qualitative
+agreement. Moreover, Moltres results compare favorably with the actual design
+calculations of the \gls{MSRE}. Strong parallel scaling was demonstrated on a
+typical Moltres model problem. Future Moltres publications will highlight
+transient simulation cases investigating control rod ejection, single channel
+blockage, loss of flow, and loss of secondary cooling.
 
 \FloatBarrier
 \clearpage
