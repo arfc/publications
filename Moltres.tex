@@ -563,11 +563,12 @@ deviation of the thermal flux from a sinusoidal shape in
 
 As described earlier, Moltres runs naturally in parallel. To test its
 performance, a scaling study was conducted using a typical 2D axisymmetric input
-file. Moltres's performance is shown in \cref{fig:scaling_study}. The solution
-time follows closely to the ideal; slight deviations are expected due to
+file. \Cref{fig:scaling_study} shows Moltres's performance. The solution
+time follows the ideal closely; slight deviations are expected due to
 the expense of communication and the nature of iterative solvers. More
-parallelism means more ``older'' information is used in the solution process,
-which leads to slower convergence in terms of iterations \cite{satish_balay_petsc_2015}.
+parallelism means the solution process uses more ``older'' information, 
+which leads to slower convergence in terms of iterations 
+\cite{satish_balay_petsc_2015}.
 
 \begin{figure}[htpb]
   \centering
