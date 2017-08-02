@@ -467,7 +467,10 @@ cores.
 \Cref{fig:temp_compare} shows a comparison between Moltres predicted temperature
 profiles with cosinusoidal gamma heating and \gls{MSRE} design models
 \cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite. The
-profiles are in good agreement. In the \gls{MSRE} design, the moderator
+profile shapes are in decent qualitative agreement with both Moltres and
+\gls{MSRE} calculations showing a peak in graphite temperature before the
+reactor outlet. Fuel temperature increases monotonically in both Moltres and
+\gls{MSRE} models. In the \gls{MSRE} design, the moderator
 temperature at the reactor inlet is about 20 degrees Fahrenheit larger than the
 fuel temperature, whereas the temperatures are about the same in the Moltres
 model. This difference is likely because the \gls{MSRE} design model 
@@ -475,87 +478,52 @@ neglected axial heat conduction \cite[p. 99]{briggs_molten-salt_1964}.
 
 \begin{figure}[htpb]
     \centering
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{fuel_vs_moderator_axial_sweep.eps}
-      \caption{Moltres predicted axial temperature profiles in hottest channel
-        and adjacent graphite}
-      \label{fig:moltres_axial_temps}
-    \end{subfigure}
-    %\quad
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_temps.png}
-      \caption{\gls{MSRE} design axial temperature profiles in hottest channel
-        and adjacent graphite stringer \cite[p. 99]{briggs_molten-salt_1964}}
-      \label{fig:msre_axial_temps}
-    \end{subfigure}
-    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
-      temperature profiles}
+    \includegraphics[width=\maxwidth{\textwidth}]{combined_msre_moltres_axial_temps.eps}
+    \caption{Moltres and \gls{MSRE} design
+      \cite[p. 99]{briggs_molten-salt_1964} predicted axial temperature profiles in hottest channel
+      and adjacent graphite}
     \label{fig:temp_compare}
 \end{figure}
 
 
-\Cref{fig:moltres_radial_fluxes} compares the fast and thermal neutron fluxes at the
-reactor mid-plane ($z=H/2$). Local thermal flux growth and fast flux decay in
-moderator regions and visa versa in fuel regions are apparent. The flux
+\Cref{fig:radial_fluxes_compare} compares the fast and thermal neutron fluxes at
+the reactor mid-plane ($z=H/2$) for Moltres and \gls{MSRE} design models. Local
+thermal flux growth and fast flux decay in moderator regions and visa versa in
+fuel regions are apparent in the Moltres calculation. The Moltres flux
 magnitudes are in good agreement with the magnitudes from the \gls{MSRE} design
-calculations \cite[p. 92]{briggs_molten-salt_1964} as shown in
-\cref{fig:msre_radial_fluxes}. The peak fast to thermal flux ratio is
-approximately 3.5 in the \gls{MSRE} design calculation as opposed to a ratio of
-3 for the Moltres calculation. Control rod thimbles and
-an extra volume of surrounding fuel not included in the Moltres calculations
-cause the depression in the thermal flux in \cref{fig:msre_radial_fluxes}.
+calculations \cite[p. 92]{briggs_molten-salt_1964}. The peak fast to thermal
+flux ratio is approximately 3.5 in the \gls{MSRE} design calculation as opposed
+to a ratio of 3 for the Moltres calculation. Control rod thimbles and an extra
+volume of surrounding fuel not included in the Moltres calculations cause the
+depression in the thermal flux in the \gls{MSRE} profile.
 
 \begin{figure}[htpb]
     \centering
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{moltres_radial_fluxes.eps}
+      \includegraphics[width=\maxwidth{\textwidth}]{combined_msre_moltres_radial.eps}
       \caption{The thermal and fast flux profiles at the core mid-plane
-        ($z=H/2$) for Moltres 2-D cylindrical axisymmetric model ($r=0$ is radial center
-        of core)}
-      \label{fig:moltres_radial_fluxes}
-    \end{subfigure}
-    %\quad
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{msre_radial_fluxes.png}
-      \caption{The thermal and fast flux profiles at the core mid-plane
-        ($z=H/2$) for \gls{MSRE} design model \cite{briggs_molten-salt_1964}
-        ($r=0$ is radial center of core)}
-      \label{fig:msre_radial_fluxes}
-    \end{subfigure}
-    \caption{Comparison of \gls{MSRE} design and Moltres predicted radial
-      flux profiles}
+        ($z=H/2$) for the Moltres 2-D cylindrical axisymmetric model and the
+        \gls{MSRE} design model \cite[p. 92]{briggs_molten-salt_1964} ($r=0$ is
+        radial center of core).}
     \label{fig:radial_fluxes_compare}
 \end{figure}
 
 \Cref{fig:axial_fluxes_compare} compares the axial flux profiles calculated by
-Moltres and the \gls{ORNL} \gls{MSRE} design model. The radii for the
-plots are chosen to correspond to the peak of the thermal flux in both cases;
-for the \gls{ORNL} calculations this is 8.4 inches from the core center-line
-because of the effect of the control rod thimbles and extra fuel along the
+Moltres and the \gls{ORNL} \gls{MSRE} design model. The radii for the plots are
+chosen to correspond to the peak of the thermal flux in both cases; for the
+\gls{ORNL} calculations this is 8.4 inches from the core center-line because of
+the effect of the control rod thimbles and extra fuel along the
 center-line. Once again, the plots are in decent agreement. The \gls{ORNL}
 calculations include the lower and upper plena which are not included in this
-report's Moltres model. Consequently, the plot in \cref{fig:msre_axial_fluxes}
-extends to lower and higher z-values than
-\cref{fig:moltres_axial_fluxes}. Additionally, absorption in the plena caused 
-deviation of the thermal flux from a sinusoidal shape in 
-\cref{fig:msre_axial_fluxes}.
+report's Moltres model. Consequently, the \gls{MSRE} lines extend to lower and
+higher z-values than the Moltres lines. Additionally, absorption
+in the plena cause deviation of the thermal flux from a sinusoidal shape in the
+\gls{MSRE} design case.
 
 \begin{figure}[htpb]
     \centering
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{moltres_axial_fluxes.eps}
-      \caption{Moltres axial flux profiles along core center line}
-      \label{fig:moltres_axial_fluxes}
-    \end{subfigure}
-    %\quad
-    \begin{subfigure}[b]{.5\textwidth}
-      \includegraphics[width=\maxwidth{\textwidth}]{msre_axial_fluxes.png}
-      \caption{\gls{MSRE} design axial flux profiles 8.4 inches from the core
-        center line \cite{briggs_molten-salt_1964}}
-      \label{fig:msre_axial_fluxes}
-    \end{subfigure}
-    \caption{Comparison of \gls{MSRE} design and Moltres predicted axial
-      flux profiles}
+    \includegraphics[width=\maxwidth{\textwidth}]{combined_msre_moltres_axial.eps}
+    \caption{Moltres axial flux profiles along core center line and \gls{MSRE}
+      design axial flux profiles 8.4 inches from core center line \cite[p. 91]{briggs_molten-salt_1964}.}
     \label{fig:axial_fluxes_compare}
 \end{figure}
 
