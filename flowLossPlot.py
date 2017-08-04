@@ -27,7 +27,7 @@ rc('text', usetex=True)
 pl.style.use('ggplot')  # mwahaha, now people think i know R
 
 fig, ax = pl.subplots( figsize=(6,4))
-ax.set_title('Power vs. salt flow velocity in core')
+ax.set_title('Power and salt flow velocity in core versus time')
 ax.set_xlabel('Time (s)')
 ax2 = ax.twinx()
 ax.set_ylabel('Salt flow velocity (cm/s)', color='b')
