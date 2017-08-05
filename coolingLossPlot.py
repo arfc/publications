@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# makes a plot for the flow loss case
+# makes a plot for the cooling loss case
 # note: you need to comment out the header on the csv file
 import matplotlib.pyplot as pl
 from matplotlib import rc
@@ -7,7 +7,7 @@ import numpy as np
 
 # directory with output data:
 outdir = ('/home/gav/projects/moltres/problems/'
-          'LOFA/')
+          'publication_level_cases/LOSCA/HXFail/')
 
 data = np.loadtxt(outdir+'out.csv', delimiter=',')
 
@@ -26,19 +26,17 @@ rc('font', **{'family': 'sans-serif', 'sans-serif': ['Helvetica'], 'size': 20})
 rc('text', usetex=True)
 pl.style.use('ggplot')  # mwahaha, now people think i know R
 
+tmax = 200.0
 fig, ax = pl.subplots( figsize=(6,4))
-ax.set_title('Power and salt flow velocity in core versus time')
+ax.set_title('Power and temperatures in core')
 ax.set_xlabel('Time (s)')
 ax2 = ax.twinx()
-ax.set_ylabel('Salt flow velocity (cm/s)', color='b')
+ax.set_ylabel('Temperature (K)', color='b')
 ax2.set_ylabel('Average nuclear power (W/cm$^3$)', color='r')
-def flowRate(t):
-    """ gives fixed flow rate as a function of time
-    notice that it depends on pump coastdown time constant, so
-    be sure to change that if needed. right now, it's set to 5s """
-    tau = 5.0
-    return 21.7 * np.exp(-t/tau)
+for a in [ax, ax2]:
+    a.set_xlim([0,tmax])
 ax.plot(data[:,0], data[:,1], 'r-*')
-ax2.plot(data[:,0], flowRate(data[:,0]), 'b-*')
+ax2.plot(data[:,0], data[:,2], 'b-*', data[:,0], data[:,3], 'g-*')
+ax2.legend(['Inlet Mean Temp.', 'Fuel Average Temp.'])
 
-fig.savefig('pumpFail.png')
+fig.savefig('coolingLoss.png')
