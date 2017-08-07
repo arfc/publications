@@ -167,7 +167,7 @@ reprocessing cycle \cite{robertson_conceptual_1971}.
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
         \includegraphics[width=0.95\linewidth]{zone_I_mesh.png}
-        \caption{MSBR unit cell of Zone I geometry.}
+        \caption{MoltenSalt Breeder Reactor (MSBR) unit cell of Zone I geometry.}
         \label{fig:zoneI}
 \end{figure}
 
@@ -228,23 +228,22 @@ fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector
 initial multiplication factor during depletion calculation is selected for 
 a state with fully withdrawn control rods, which gives 
 considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
-Standard deviation for these calculations is approximately 100 pcm.Figure~\ref{fig:keff} 
+Standard deviation for these calculations is approximately 100 pcm. Figure~\ref{fig:keff} 
 shows the infinite multiplication factor for 1200-days reprocessing cycle calculated by 
-Serpent 2 with ENDF/B-VII.0 nuclear data. A 
-significant standard deviation (100 pcm) causes the multiplication factor 
-fluctuations visible in this plot.
+Serpent 2 with ENDF/B-VII.0 nuclear data. A significant standard deviation causes the 
+multiplication factor fluctuations visible in this plot.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=1.03\linewidth]{keff.png}
+        \includegraphics[width=1.05\linewidth]{keff.png}
         \caption{Infinite multiplication factor during a 1200 days depletion
-        simulation.}
+        simulation.The confidence interval $\pm\sigma$ is shaded.}
         \label{fig:keff}
 \end{figure}
 
 \FloatBarrier
 
-Protactinium-233 continuously removing into the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
+Protactinium-233 is continuously removing into the tank for protactinium decay.  $^{233}$Pa has a half-life of 27 days and 
 beta decays into $^{233}$U which as fresh fuel goes back to the reactor core. 
 The infinite multiplication factor decreases first 400 days of depletion due to 
 strong absorbers (e.g. $^{233}$Th, $^{234}$U) accumulation which causes 
@@ -255,7 +254,7 @@ refill rate after ~1 year of operation.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=1.03\linewidth]{fuel_composition.png}
+        \includegraphics[width=1.04\linewidth]{fuel_composition.png}
         \caption{Normalized number density of major isotopes during 1200 days of 
         depletion.}
         \label{fig:compos}
@@ -326,15 +325,15 @@ and, hence, the reactivity, in the reactor core as desired.
 
 \subsection{Neutron spectrum}
 
-Figure~\ref{fig:spectrum} represents the normalized neutron flux distribution 
+Figure~\ref{fig:spectrum} represents the neutron flux per lethargy energy distribution 
 of the initial and the equilibrium core compositions. The spectrum for the 
 equilibrium state is harder than the initial state due to heavy fission 
 products.  
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=1.04\linewidth]{spectrum.png}
-        \caption{Normalized neutron energy spectrum for initial and equilibrium 
-        composition.}
+        \includegraphics[width=1.05\linewidth]{spectrum.png}
+        \caption{Neutron spectrum for initial and equilibrium 
+        composition (normalized per lethargy).}
         \label{fig:spectrum}
 \end{figure}
 
