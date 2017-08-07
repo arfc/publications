@@ -1,0 +1,93 @@
+% Plain Cover Letter
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Rensselaer Polytechnic Institute (http://www.rpi.edu/dept/arc/training/latex/resumes/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%       PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{letter} % Default font size of the document, change to 10pt to fit more text
+\usepackage{graphicx}
+%\usepackage{newcent} % Default font is the New Century Schoolbook PostScript font
+%\usepackage{helvet} % Uncomment this (while commenting the above line) to use the Helvetica font
+
+% Margins
+\topmargin=-1in % Moves the top of the document 1 inch above the default
+\textheight=10in % Total height of the text on the page before text goes on to the next page, this can be increased in a longer letter
+%\oddsidemargin=-10pt % Position of the left margin, can be negative or positive if you want more or less room
+%\textwidth=6.5in % Total width of the text, increase this if the left margin was decreased and vice-versa
+
+%\let\raggedleft\raggedright % Pushes the date (at the top) to the left, comment this line to have the date on the right
+%\usepackage{wallpaper}
+%\ULCornerWallPaper{0.97}{bk_logo.eps}
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%       ADDRESSEE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{letter}{Lynn Weaver, Mostafa Ghiaasiaan, Imre Pazsit\\
+Editors\\
+Annals of Nuclear Energy}
+
+%----------------------------------------------------------------------------------------
+%       YOUR NAME & ADDRESS SECTION
+%----------------------------------------------------------------------------------------
+
+\address{Department of Nuclear, Plasma, and Radiological Engineering\\
+Talbot Hall, Room 226\\
+104 S Wright St\\
+University of Illinois, Urbana-Champaign\\
+Urbana, IL 61801}
+
+\name{\vspace{5mm}
+Alexander Lindsay\\
+Postdoctoral Scholar}
+
+%----------------------------------------------------------------------------------------
+%       LETTER CONTENT SECTION
+%----------------------------------------------------------------------------------------
+
+\opening{Dear Professors Weaver, Ghiaasiann, Pazsit:}
+
+Please find enclosed a manuscript entitled: ``Introduction to Moltres: an
+Application for Simulation of Molten Salt Reactors'' which I am submitting for
+exclusive consideration of publication as a research article in Annals of
+Nuclear Energy.
+
+This manuscript describes the new molten salt simulation package Moltres, built
+on top of the Multiphysics Object-Oriented Simulation Environment (MOOSE). In
+its current version, Moltres combines neutron diffusion, heat transport, and
+precursor drift for simulation of thermal molten-salt reactors in two and three
+dimensions. Through its MOOSE infrastructure, Moltres is inherently parallel; to
+date simulations have been run on as many as 640 cpu cores. The enclosed
+manuscript details application of Moltres for reproducing the predicted and
+observed steady-state physics of the Molten Salt Reactor Experiment (MSRE)
+conducted at Oak Ridge during the 1960s. Good qualitative agreement between
+Moltres calculations and the MSRE design is demonstrated. Additionally, we show
+nearly perfect parallel scaling of Moltres with increasing processor
+count. Though this publication focuses on thermal molten salt reactors (MSRs), the code
+in Moltres is general, and simulations of fast MSRs and liquid metal reactors
+are planned in the upcoming months. 
+
+Thank you for your consideration of our work.  I expect it will be of interest
+to a broad readership concerned with multi-physics simulation of next generation
+reactors.  Please address all correspondence concerning this manuscript to me
+at alexlindsay239@gmail.com.
+
+\closing{Sincere regards,}
+%----------------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}
+
