@@ -96,8 +96,8 @@ the inclusion of the \gls{MSR} among the Generation-IV reactor designs
 \cite{gif_generation_2008,gif_generation_2015}, this reactor concept has gained renewed research
 interest in the past decade, with many new nuclear companies proposing both
 fluid-fuelled and solid-fuelled commercial \gls{MSR} designs
-\cite{hyde_liquid_2015,leblanc_integral_2015,thorcon_-able_2017,scarlat_design_2014,transatomic_neutronics_2016}. Two
-key advantages offered by the fluid-fuelled \gls{MSR} are improved fuel
+\cite{hyde_liquid_2015,leblanc_integral_2015,thorcon_-able_2017,scarlat_design_2014,transatomic_power_corporation_neutronics_2016}. 
+Two key advantages offered by the fluid-fuelled \gls{MSR} are improved fuel
 utilization and no radiation damage constraint on attainable fuel
 burn-up. Together, these attributes result in significantly reduced core fissile
 inventories and spent nuclear fuel mass 
@@ -129,7 +129,7 @@ approach transient simulations in the \gls{MSFR} by directly coupling Serpent 2
 Monte Carlo neutronics with OpenFOAM \cite{weller_tensorial_1998} thermal-hydraulics.
 
 The present work introduces the open source simulation tool, Moltres
-\cite{lindsay_arfc/moltres_nodate}, for simulating \glspl{MSR}.  By implementing
+\cite{lindsay_moltres_2017}, for simulating \glspl{MSR}.  By implementing
 deterministic neutronics and thermal hydraulics in the context of the
 \gls{MOOSE} finite element modeling framework, Moltres solves arbitrary-group
 neutron diffusion, temperature, and precursor governing equations in anywhere
@@ -166,7 +166,7 @@ extensible to myriad future modeling challenges.
 
 \section{Methods}
 
-Moltres \cite{lindsay_arfc/moltres_nodate} is implemented as an application for
+Moltres \cite{lindsay_moltres_2017} is implemented as an application for
 use atop the \gls{MOOSE} \cite{gaston_physics-based_2015} framework.
 Accordingly, Moltres includes physics kernels and boundary conditions for
 solving for neutron fluxes, temperature, and precursor concentrations. In \gls{MOOSE}
