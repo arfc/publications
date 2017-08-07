@@ -1,7 +1,4 @@
-# Paper, maybe, i dunno
+Note: the main document here is in a submodule that goes to an Overleaf document. 
+In this repo are some scripts that I used for plotting.
 
-So, it would be good to at least *shoot* for making this summer project into a paper,
-even if it never culminates to being submitted.
-
-SROP programs require me to write, so I'll use this repo for holding that stuff. This README
-could be updated in the future to include less informal language.
+This paper was submitted to the UIUC SROP program for fulfillment of summer program requirements.
