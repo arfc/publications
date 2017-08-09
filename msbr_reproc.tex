@@ -128,9 +128,10 @@ skip = \medskipamount}
         \begin{tabularx}{\linewidth}{l X} \toprule 
                 Thermal capacity of reactor           & 2250 MW(t)
                 \\ \midrule
-                %Net electrical output                 & 1000 MW(e) \\ \midrule
-                %Net thermal efficiency        & 44.4\%
-                %\\ \midrule
+                Net electrical output                 & 1000 MW(e) 
+                \\ \midrule
+                Net thermal efficiency        & 44.4\%
+                \\ \midrule
                 Salt volume fraction in central core zone     & 0.132
                 \\ \midrule
                 Salt volume fraction in outer core zone       & 0.37
@@ -138,6 +139,8 @@ skip = \medskipamount}
                 Fuel-salt inventory (Zone I)                  & 8.2 m$^3$	
                 \\ \midrule
                 Fuel-salt inventory (Zone II)                 & 10.8 m$^3$	
+                \\ \midrule
+                Fuel-salt inventory (annulus)                 & 3.8 m$^3$	
                 \\ \midrule
                 Fuel salt components                  & 
                 LiF-BeF$_2$-ThF$_4$-$^{233}$UF$_4$-$^{239}$PuF$_3$	\\ 
@@ -166,8 +169,8 @@ reprocessing cycle \cite{robertson_conceptual_1971}.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
         \centering
-        \includegraphics[width=0.95\linewidth]{zone_I_mesh.png}
-        \caption{MoltenSalt Breeder Reactor (MSBR) unit cell of Zone I geometry.}
+        \includegraphics[width=0.90\linewidth]{zone_I_mesh.png}
+        \caption{\glsfirst{MSBR} unit cell of Zone I geometry.}
         \label{fig:zoneI}
 \end{figure}
 
@@ -228,7 +231,7 @@ fuel-moderator volume ratios for Zone I, Zone II, the annulus, and the reflector
 initial multiplication factor during depletion calculation is selected for 
 a state with fully withdrawn control rods, which gives 
 considerable excess reactivity in the beginning of the cycle (approximately 5000 pcm). 
-Standard deviation for these calculations is approximately 100 pcm. Figure~\ref{fig:keff} 
+The standard deviation for these calculations is approximately 100 pcm. Figure~\ref{fig:keff} 
 shows the infinite multiplication factor for 1200-days reprocessing cycle calculated by 
 Serpent 2 with ENDF/B-VII.0 nuclear data. A significant standard deviation causes the 
 multiplication factor fluctuations visible in this plot.
