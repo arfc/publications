@@ -52,7 +52,7 @@ LiF-BeF$_2$-ThF$_4$-UF$_4$-PuF$_3$ has a melting point of $499^\circ$C, a low
 vapor pressure at operating temperatures, and good flow and heat transfer 
 properties \cite{robertson_conceptual_1971}. The \gls{MSBR} complex geometry is 
 challenging to describe in software input and usually require major geometric 
-approximations\cite{park_whole_2015}. 
+approximations \cite{park_whole_2015}. 
 
 We used the continuous-energy Serpent 2 Monte Carlo particle transport code to 
 calulate whole-core depletion in the \gls{MSBR}. We then compare these results 
@@ -91,8 +91,15 @@ salt.
 Fig.~\ref{fig:plan} shows the plan view of the whole-core configuration at the 
 expected reactor operational level when both graphite control rods are fully 
 inserted, and the safety rods are fully withdrawn. The safety rods only get 
-inserted during an accident.  \begin{figure}[htbp!] % replace 't' with 'b' to 
-        force it to be on the bottom
+inserted during an accident.  
+
+Fig.~\ref{fig:elevation} shows the longitudinal section of the reactor. The 
+violet color represents bare graphite, and the yellow represents fuel salt. The 
+blue color shows Hastelloy-N, a material used for the plenum and vessel wall, 
+and the black color is a void space. In this work, all figures of the core were 
+generated using the built-in Serpent plotter.
+
+\begin{figure}[hbp!] % replace 't' with 'b' to 
   \centering
   \vspace{-0.3em}
   \includegraphics[width=0.95\linewidth]{figure_2_1.png}
@@ -101,26 +108,20 @@ inserted during an accident.  \begin{figure}[htbp!] % replace 't' with 'b' to
   \label{fig:plan}
 \end{figure}
 \FloatBarrier
-Fig.~\ref{fig:elevation} shows the longitudinal section of the reactor. The 
-violet color represents bare graphite, and the yellow represents fuel salt. The 
-blue color shows Hastelloy-N, a material used for the plenum and vessel wall, 
-and the black color is a void space. In this work, all figures of the core were 
-generated using the built-in Serpent plotter.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \includegraphics[width=\linewidth]{figure_2_2.}
+  \includegraphics[width=\linewidth]{figure_2_2.png}
   \caption{Elevation view of \gls{MSBR} core.}
   \label{fig:elevation}
 \end{figure}
 
-
 \subsection{Core Zone I}
 
 The central portion, called Zone I, is made up of 1320 graphite elements, each 
-$10.16$cm$\times10.16$cm$\times396.24$cm.
+$10.16$cm$\times$10.16cm$\times$396.24cm.
 In Zone I, 13\% of the volume is fuel salt and 87\% is graphite. Zone I is 
-composed of 1320 graphite cells and 4 channels for control rods : two for 
+composed of 1320 graphite cells and 4 channels for control rods: two for 
 graphite rods which both regulate and shim during normal operation, and two
 for backup safety rods to assure sufficient negative reactivity for emergency 
 situations.
@@ -132,8 +133,7 @@ local graphite damage. Figure~\ref{fig:zone12A} demonstrates the elevation and
 sectional views of graphite elements exactly as they are represented in this 
 Monte Carlo model.
 
-\subsection{Core Zone II-B}
-
+\subsection{Core Zone II}
 The undermoderated zone, Zone II, surrounds Zone I.
 Combined with the bounding radial reflector, Zone II serves to diminish neutron 
 leakage. This zone is formed of two kinds of elements: elements like those in 
@@ -156,12 +156,13 @@ These graphite elements were simplified into right-circular cylindrical shapes
 with central channels. This is the only simplification made to the \gls{MSBR} 
 conceptual geometry in this work.
 \FloatBarrier
-\begin{figure}[htp!] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=\linewidth]{figure_2_4.png}
   \caption{Zone I (left) and Zone II-A (right) elements.}
   \label{fig:zone12A}
 \end{figure}
+\FloatBarrier
 \subsection{Material composition}
 The fuel salt, the reactor graphite, and the modified HastelloyN are materials 
 unique of the \gls{MSBR} and were created at \gls{ORNL}. The initial fuel salt 
@@ -177,13 +178,14 @@ Serpent generate problem-oriented nuclear data library.
 %and has been applied to Serpent model without any modification. %
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \includegraphics[width=0.96\linewidth]{figure_2_5.png}
+  \includegraphics[width=0.89\linewidth]{figure_2_5.png}
   \caption{Plan view that includes Zone I, II-A, and II-B elements.}
+    \vspace{-0.6em}
   \label{fig:zone2B}
 \end{figure}
 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{R}
+\section{Results}
 This section presents calculation results, such as the effective multiplication 
 factor for whole core, neutron flux spectrum, and temperature reactivity 
 coefficients. The normalized neutron flux distribution is calculated for the 
@@ -196,8 +198,8 @@ in the working range.
 Fig.~\ref{fig:spectrum} demonstrates the normalized neutron flux spectrum for 
 the whole core in the energy range from $10^{-9}$ to $10$ MeV. The results show 
 close fit with the MCNP simulation \cite{park_whole_2015}, especially in 
-thermal energy range.  \begin{figure}[h!] % replace 't' with 'b' to force it to 
-        be on the bottom
+thermal energy range.  
+\begin{figure}[b!] % replace 't' with 'b' to force it to 
   \centering
   \includegraphics[width=1.05\linewidth]{figure_3_1.png} \caption{Neutron flux 
   spectrum of \gls{MSBR} for MCNP6 and Serpent 2 model.}
@@ -216,7 +218,7 @@ and Serpent 2 whole core models. The factor obtained using Serpent 2 is 300 pcm
 lower than that obtained by Park \emph{et al.} using MCNP6 
 \cite{park_whole_2015}. Standard deviations are 5 and 9 pcm, respectively. The 
 discrepancy is likely due to simplificiations to the Zone II geometry model 
-used in Park \emph{et al.}.
+used in Park \emph{et al.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \captionsetup[table]{
   labelsep = newline,
