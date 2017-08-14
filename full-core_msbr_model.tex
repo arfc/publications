@@ -1,11 +1,13 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Full-core analysis of thorium-fueled Molten Salt Breeder Reactor using the SERPENT 2 Monte Carlo code}
+\title{Full-core analysis of thorium-fueled Molten Salt Breeder Reactor using 
+the SERPENT 2 Monte Carlo code}
 
 \author{Andrei Rykhlevskii, Alexander Lindsay, Kathryn Huff}
 
 \institute{
-Department of Nuclear, Plasma, and Radiological Engineering, University of Illinois at Urbana-Champaign \break
+Department of Nuclear, Plasma, and Radiological Engineering, University of 
+Illinois at Urbana-Champaign \break
 Urbana, IL
 }
 
@@ -32,20 +34,65 @@ Urbana, IL
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The \gls{MSR} is an advanced type of reactor which was developed at \gls{ORNL} in the 1950s and was operated in the 1960s. In the MSR, fluorides of fissile and/or fertile materials (i.e. UF$_4$, PuF$_3$ and/or ThF$_4$) are mixed with carrier salts to form a liquid fuel which is circulated in a loop-type primary circuit \cite{haubenreich_experience_1970}. This innovation leads to immediate advantages over traditional, solid-fueled, reactors. These include near-atmospheric pressure in the primary loop, relatively high coolant temperature, outstanding neutron economy, a high level of inherent safety, reduced fuel preprocessing, and the ability to continuously remove fission products and add fissile and/or fertile elements \cite{leblanc_molten_2010}. 
+The \gls{MSR} is an advanced type of reactor which was developed at \gls{ORNL} 
+in the 1950s and was operated in the 1960s. In the MSR, fluorides of fissile 
+and/or fertile materials (i.e. UF$_4$, PuF$_3$ and/or ThF$_4$) are mixed with 
+carrier salts to form a liquid fuel which is circulated in a loop-type primary 
+circuit \cite{haubenreich_experience_1970}. This innovation leads to immediate 
+advantages over traditional, solid-fueled, reactors. These include 
+near-atmospheric pressure in the primary loop, relatively high coolant 
+temperature, outstanding neutron economy, a high level of inherent safety, 
+reduced fuel preprocessing, and the ability to continuously remove fission 
+products and add fissile and/or fertile elements \cite{leblanc_molten_2010}. 
 
-The thermal spectrum \gls{MSBR} was designed specifically to realize the promise of the thorium fuel cycle which allows the use of natural thorium instead of enriched uranium as the fertile element. Thorium breeds the fissile $^{233}$U and avoids uranium enrichment. The mixture of LiF-BeF$_2$-ThF$_4$-UF$_4$-PuF$_3$ has a melting point of $499^\circ$C, a low vapor pressure at operating temperatures, and good flow and heat transfer properties \cite{robertson_conceptual_1971}. The \gls{MSBR} geometry is difficult to describe in computer code input and usually require major approximations to proceed \cite{park_whole_2015}. 
+The thermal spectrum \gls{MSBR} was designed to realize the promise of the 
+thorium fuel cycle, which uses of natural thorium instead of enriched uranium.  
+Thorium breeds fissile $^{233}$U and avoids uranium enrichment. The mixture of 
+LiF-BeF$_2$-ThF$_4$-UF$_4$-PuF$_3$ has a melting point of $499^\circ$C, a low 
+vapor pressure at operating temperatures, and good flow and heat transfer 
+properties \cite{robertson_conceptual_1971}. The \gls{MSBR} complex geometry is 
+challenging to describe in software input and usually require major geometric 
+approximations\cite{park_whole_2015}. 
 
-For the development of MSBR research, this paper demonstrates an advanced whole-core three-dimensional model developed using a continuous-energy the Serpent 2 Monte Carlo reactor physics calculation code and cross-verification with existing MCNP6 results \cite{park_whole_2015,leppanen_serpent_2012}. This neutronics model is of sufficient fidelity to inform optimization of fuel salt composition and fuel utilization, neutron fluxes and spectrum evaluation. Moreover, this model in the future will be employed for depeletion calculations, generation problem-oriented homogenized nuclear data (multi-group cross sections and diffusion constants) for deterministic reactor codes, multi-physics simulations \cite{fridman_use_2011,valtavirta_coupled_2017}, and for routine applications.
+We used the continuous-energy Serpent 2 Monte Carlo particle transport code to 
+calulate whole-core depletion in the \gls{MSBR}. We then compare these results 
+with existing MCNP6 results with a more simplified geometric model 
+\cite{park_whole_2015,leppanen_serpent_2012}. This neutronics model is of 
+sufficient fidelity to inform optimization of fuel salt composition, fuel 
+utilization, neutron fluxes, and spectrum evaluation. Moreover, this model  
+will be employed for depeletion calculations, generation of problem-oriented 
+homogenized nuclear data (multi-group cross sections and diffusion constants) 
+for deterministic reactor codes, and multi-physics simulations 
+\cite{fridman_use_2011,valtavirta_coupled_2017}.
 
-All calculations presented in this paper were performed using the Serpent 2 code version 2.1.28. Compared to Serpent 1, Serpent 2 has many more useful features and contains a complete redesign of memory management using hybrid OpenMP + MPI parallelization, which is important in depletion calculations using computer clusters with multiple cores \cite{leppanen_serpent_2015}. In Section 2, a brief description of the MSBR geometry model is given. In Section 3 the results are presented and discussed. Section 4 reflected conclusions and plans for the future research.
+All calculations presented in this paper were performed using Serpent 2 version 
+2.1.28. Serpent 2 levereges hybrid OpenMP + MPI parallelized memory management, 
+which enabled us to conduct depletion calculations on computer clusters with 
+multiple cores \cite{leppanen_serpent_2015}. 
+
+In Section 2, a brief description of the \gls{MSBR} geometry model is given. In 
+Section 3 the results are presented and discussed. Section 4 reflects 
+conclusions and plans for future research.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MSBR design description}
-The MSBR vessel has diameter of 680 cm and a height of 610 cm. It contains molten fluoride fuel-salt mixture which performs two functions: to generate heat in the moderated region and to transport heat energy from the core to primary heat exchanger using the primary salt pump. The vessel also contains graphite blocks for neutron moderation and reflection. The reactor core has a central zone, Zone I, in which 13\% of the volume is fuel salt and 87\% graphite. The first zone is composed of 1320 graphite cells and 4 holes for control rods. Two holes are for graphite control rods which have both regulating and shimming functions for normal operation regimes, and two holes are for safety rods which are primarily for backup to assure sufficient negative reactivity for emergency situations. The undermoderated zone, Zone II, with 37\% fuel salt, and radial reflector, surrounding the more active portion serves to diminish neutron leakage from the reactor core. This zone is formed of two kinds of elements: elements like those in Zone I except for a larger hole size (Zone II-A), and radially spread graphite slats (Zone II-B). At the outer of the core, there are graphite reflector and vessel wall. Zones I and II are surrounded radially and axially by fuel salt. This space for fuel is necessarily for injection and flow of molten salt.
+The \gls{MSBR} vessel has diameter of 680 cm and a height of 610 cm. It 
+contains a molten fluoride fuel-salt mixture that generates heat in the active 
+core region and transports that heat to the primary heat exchanger by way of 
+the primary salt pump.
+In the active core region, the salt flows through channels in moderating and 
+reflecting graphite blocks.
 
-Fig.~\ref{fig:plan} shows the plan view of the whole-core configuration at the expected reactor operational level when both graphite control rods are fully inserted, and the safety rods are fully withdrawn. The safety rods only get inserted during an accident. 
-\begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
+The core has two radial zones bounded by a solid cylindrical graphite reflector 
+and the vessel wall.  Zones I and II are surrounded radially and axially by 
+fuel salt. This space for fuel is necessary for injection and flow of molten 
+salt.
+
+Fig.~\ref{fig:plan} shows the plan view of the whole-core configuration at the 
+expected reactor operational level when both graphite control rods are fully 
+inserted, and the safety rods are fully withdrawn. The safety rods only get 
+inserted during an accident.  \begin{figure}[htbp!] % replace 't' with 'b' to 
+        force it to be on the bottom
   \centering
   \vspace{-0.3em}
   \includegraphics[width=0.95\linewidth]{figure_2_1.png}
@@ -54,20 +101,60 @@ Fig.~\ref{fig:plan} shows the plan view of the whole-core configuration at the e
   \label{fig:plan}
 \end{figure}
 \FloatBarrier
-Fig.~\ref{fig:elevation} shows the longitudinal section of the reactor. The violet color represents bare graphite, and the yellow represents fuel salt. The blue color shows Hastelloy-N, a material used for the plenum and vessel wall, and the black color is a void space. In this work, all figures of the core were generated using the built-in Serpent plotter.
+Fig.~\ref{fig:elevation} shows the longitudinal section of the reactor. The 
+violet color represents bare graphite, and the yellow represents fuel salt. The 
+blue color shows Hastelloy-N, a material used for the plenum and vessel wall, 
+and the black color is a void space. In this work, all figures of the core were 
+generated using the built-in Serpent plotter.
 
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \includegraphics[width=\linewidth]{figure_2_2.png}
+  \includegraphics[width=\linewidth]{figure_2_2.}
   \caption{Elevation view of \gls{MSBR} core.}
   \label{fig:elevation}
 \end{figure}
 
-\subsection{Core Zone I and II-A}
-The central portion, called Zone I, is made up of 10.16cm$\times$10.16cm$\times$396.24cm-long graphite elements. The fuel salt to graphite volume ratio of Zone I is 13\%, and the central hole has a diameter of 3.42cm. Zone II has 37\% salt and the central hole diameter of 6.604cm. Both types of elements mostly have a rectangular shape with a part of cylinder sticking out at each corner to form salt flow between the graphite channels. Different sizes of elements are necessary to reduce the peak damage flux and power density in the center of the core to prevent local graphite damage. Figure~\ref{fig:zone12A} demonstrates the elevation and sectional views of graphite elements utilized for this Monte Carlo model.
+
+\subsection{Core Zone I}
+
+The central portion, called Zone I, is made up of 1320 graphite elements, each 
+$10.16$cm$\times10.16$cm$\times396.24$cm.
+In Zone I, 13\% of the volume is fuel salt and 87\% is graphite. Zone I is 
+composed of 1320 graphite cells and 4 channels for control rods : two for 
+graphite rods which both regulate and shim during normal operation, and two
+for backup safety rods to assure sufficient negative reactivity for emergency 
+situations.
+
+These graphite elements have a mostly rectangular shape with lengthwise ridges 
+at each corner that leave space for salt flow elements. Various element sizes 
+reduce the peak damage flux and power density in the center of the core prevent 
+local graphite damage. Figure~\ref{fig:zone12A} demonstrates the elevation and 
+sectional views of graphite elements exactly as they are represented in this 
+Monte Carlo model.
 
 \subsection{Core Zone II-B}
-The second core zone is divided into two different zones: Zone II-A and Zone II-B. The graphite elements for Zone II-A are prismatic and form the first reflecting layer surrounding the core zone I. Zone II-B elements are in the form of rectangular slats spaced far enough apart to provide the 0.37 fuel salt volume fraction. Fig.~\ref{fig:zone2B} shows the outer Zone II, 5.08cm-wide annular space between the core graphite and the radial reflector graphite. The annulus contains 100\% fuel salt and serves to reduce the damage flux at the internal surface of the graphite reflector blocks. The reactor Zone II-B graphite 5.08cm-thick slats and various length in width (average width is about 26.67cm) are reconstructed as is in the model without any approximation. From the ORNL report \cite{robertson_conceptual_1971}, the suggested design of Zone II-B has 8 graphite elements every 45$^\circ$ with irregular shape as well as holes for the flow of salt and were simplified into a right circular hollow cylinder sector shape with the central hole. This is the only simplification for this model.
+
+The undermoderated zone, Zone II, surrounds Zone I.
+Combined with the bounding radial reflector, Zone II serves to diminish neutron 
+leakage. This zone is formed of two kinds of elements: elements like those in 
+Zone I with a larger channel diameter (Zone II-A), and radial
+graphite slats (Zone II-B). 
+
+Zone II is Zone II 37\% salt by volume and each element has a fuel channel 
+diameter of 6.604cm. It is divided into two different zones: Zone II-A and Zone 
+II-B. The graphite elements for Zone II-A are prismatic. Zone II-B elements are 
+rectangular slats spaced far enough apart to provide the 0.37 fuel salt volume 
+fraction. Fig.~\ref{fig:zone2B} additionally shows the 5.08cm-wide annular 
+space between the core graphite and the radial reflector graphite. The annulus 
+contains 100\% fuel salt and serves to reduce the damage flux at the internal 
+surface of the graphite reflector blocks. The reactor Zone II-B graphite 
+5.08cm-thick slats vary in the radial dimension (average width is 26.67cm) but 
+are reconstructed without any approximation. From the ORNL report 
+\cite{robertson_conceptual_1971}, the suggested design of Zone II-B has 8 
+irregularly-shaped graphite elements every 45$^\circ$ as well as salt channels. 
+These graphite elements were simplified into right-circular cylindrical shapes 
+with central channels. This is the only simplification made to the \gls{MSBR} 
+conceptual geometry in this work.
 \FloatBarrier
 \begin{figure}[htp!] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -76,36 +163,64 @@ The second core zone is divided into two different zones: Zone II-A and Zone II-
   \label{fig:zone12A}
 \end{figure}
 \subsection{Material composition}
-The fuel salt, the reactor graphite, and the modified HastelloyN are materials unique of the MSBR and were created at \gls{ORNL}. The initial fuel salt loading composition is LiF-BeF$_2$-ThF$_4$-$^{233}$UF$_4$ (71.8-16-12-0.2 mole \%). The lithium in the molten salt fuel is a fully enriched $^{7}$Li because $^{6}$Li is a very strong neutron poison and becomes tritium upon neutron capture. For cross section data generation ENDF/B-VII was employed \cite{chadwick_endf/b-vii.0:_2006}. The specific temperature was fixed for each material to correctly model the Doppler-broadening of resonance peaks when Serpent generate problem-oriented nuclear data library.
-%The isotope composition of each material at the initial state was described in detail in the MSBR conceptual design study \cite{robertson_conceptual_1971} and has been applied to Serpent model without any modification. %
+The fuel salt, the reactor graphite, and the modified HastelloyN are materials 
+unique of the \gls{MSBR} and were created at \gls{ORNL}. The initial fuel salt 
+loading composition is LiF-BeF$_2$-ThF$_4$-$^{233}$UF$_4$ (71.8-16-12-0.2 mole 
+\%). The lithium in the molten salt fuel is a fully enriched $^{7}$Li because 
+$^{6}$Li is a very strong neutron poison and becomes tritium upon neutron 
+capture. For cross section generation, ENDF/B-VII was employed 
+\cite{chadwick_endf/b-vii.0:_2006}. The specific temperature was fixed for each 
+material to correctly model the Doppler-broadening of resonance peaks when 
+Serpent generate problem-oriented nuclear data library.
+%The isotope composition of each material at the initial state was described in 
+%detail in the MSBR conceptual design study \cite{robertson_conceptual_1971} 
+%and has been applied to Serpent model without any modification. %
 \begin{figure}[htbp!] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.96\linewidth]{figure_2_5.png}
-  \caption{Plan view of Zone II-B.}
+  \caption{Plan view that includes Zone I, II-A, and II-B elements.}
   \label{fig:zone2B}
 \end{figure}
 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and Analysis}
-The reactor physics calculation was carried out using the methods described earlier. This section presents calculation results, such as the effective multiplication factor for whole core, neutron flux spectrum, and temperature reactivity coefficients. The normalized neutron flux distribution is calculated for the whole core using continuous-energy nuclear data which allows to obtaining very smooth distribution. The temperature coefficients for both fuel salt solution and reactor graphite are computed by comparing effective multiplication factors for two temperatures in the working range.
+\section{R}
+This section presents calculation results, such as the effective multiplication 
+factor for whole core, neutron flux spectrum, and temperature reactivity 
+coefficients. The normalized neutron flux distribution is calculated for the 
+whole core using continuous-energy nuclear data.
+The temperature coefficients for both fuel salt solution and reactor graphite 
+are computed by comparing effective multiplication factors for two temperatures 
+in the working range.
  	
 \subsection{Neutron spectrum}
-Fig.~\ref{fig:spectrum} demonstrates the normalized neutron flux spectrum for the whole core in the energy range from $10^{-9}$ to $10$ MeV. The results show close fit with the MCNP simulation \cite{park_whole_2015}, especially in thermal energy range. 
-\begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
+Fig.~\ref{fig:spectrum} demonstrates the normalized neutron flux spectrum for 
+the whole core in the energy range from $10^{-9}$ to $10$ MeV. The results show 
+close fit with the MCNP simulation \cite{park_whole_2015}, especially in 
+thermal energy range.  \begin{figure}[h!] % replace 't' with 'b' to force it to 
+        be on the bottom
   \centering
-  \includegraphics[width=1.05\linewidth]{figure_3_1.png} 
-  \caption{Neutron flux spectrum of MSBR for MCNP6 and Serpent 2 model.}
+  \includegraphics[width=1.05\linewidth]{figure_3_1.png} \caption{Neutron flux 
+  spectrum of \gls{MSBR} for MCNP6 and Serpent 2 model.}
   \label{fig:spectrum}
 \end{figure}
-It is important to obtain the epithermal and thermal spectrum to produce $^{233}$U from $^{232}$Th because radiative capture cross section of thorium monotonically decreasing from $10^{-10}$ MeV to $10^{-5}$ MeV. Hardening the spectrum tends to significantly increase resonance absorption in thorium and decreasing the absorptions in fissile and construction materials thus large amount of fissile material will be needed to make the reactor critical.
+It is important to obtain the epithermal and thermal spectrum to produce 
+$^{233}$U from $^{232}$Th because radiative capture cross section of thorium 
+monotonically decreases from $10^{-10}$ MeV to $10^{-5}$ MeV. Hardening the 
+spectrum tends to significantly increase resonance absorption in thorium and 
+decrease the absorptions in fissile and construction materials. Thus, a 
+signficant amount fissile material will be needed to make the reactor critical.
 
 \subsection{Effective multiplication factor}
-Table~\ref{tab:keff} shows the effective multiplication factor for both MCNP6 and Serpent 2 whole core models. The factor obtained using Serpent 2 is about 300 pcm lower than MCNP6 one, while standard deviations are 5 and 9 pcm, respectively. The discrepancy might occurred because the model used in Park \emph{et al.} has few simplification in Zone II geometry.
+Table~\ref{tab:keff} shows the effective multiplication factor for both MCNP6 
+and Serpent 2 whole core models. The factor obtained using Serpent 2 is 300 pcm 
+lower than that obtained by Park \emph{et al.} using MCNP6 
+\cite{park_whole_2015}. Standard deviations are 5 and 9 pcm, respectively. The 
+discrepancy is likely due to simplificiations to the Zone II geometry model 
+used in Park \emph{et al.}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \captionsetup[table]{
   labelsep = newline,
-  name = TABLE, 
-  justification=justified,
+  name = TABLE, justification=justified,
   singlelinecheck=false,%%%%%%% a single line is centered by default
   labelsep=colon,%%%%%%
   skip = \medskipamount}
@@ -113,8 +228,7 @@ Table~\ref{tab:keff} shows the effective multiplication factor for both MCNP6 an
 %\centering
 \caption{Effective multiplication factor of whole core model.}
 \begin{tabular}{p{0.15\linewidth} p{0.3\linewidth} p{0.3\linewidth}} \toprule
-      & Serpent2      & MCNP6 \cite{park_whole_2015}          
-\\ \midrule
+      & Serpent2      & MCNP6 \cite{park_whole_2015}          \\ \midrule
 K$_{eff}$  & 1.00389$\pm$0.00005 & 1.00736$\pm$0.00009
 \\
 \bottomrule
@@ -123,46 +237,88 @@ K$_{eff}$  & 1.00389$\pm$0.00005 & 1.00736$\pm$0.00009
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Temperature effect of reactivity}
-Table~\ref{tab:tcoef} represents the quantitive analysis of temperature effects on reactivity. Uncertainty for each temperature coefficient also was calculated and shown in Table~\ref{tab:tcoef}. The main physical principle underlying the reactor temperature feedback is an expansion of matter when it is heated. When the fuel salt temperature increases, the density of the salt decreases, but at the same time, the total volume of fuel salt in the core remains constant because it is defined by the space for fuel bounded by the graphite. When the reactor graphite temperature grows, the density of graphite declines which also frees up space for fuel salt. To determine temperature coefficients the cross-section temperatures for fuel and moderator were changed from 900K to 1200K. Three different cases were considered:
-\begin{enumerate}  
-\item Temperature of fuel salt rising from 900K to 1200K.
-\item Temperature of graphite rising from 900K to 1200K. 
-\item Whole reactor temperature rising from 900K to 1200K.
+Table~\ref{tab:tcoef} shows temperature effects on reactivity calculated in 
+this work as compared to both \cite{park_whole_2015} and 
+\cite{robertson_conceptual_1971}. Uncertainty for each temperature coefficient 
+also appears in Table~\ref{tab:tcoef}. The main physical principle underlying 
+the reactor temperature feedback is an expansion of matter when it is heated.  
+When the fuel salt temperature increases, the density of the salt decreases, 
+but at the same time, the total volume of fuel salt in the core remains 
+constant because it is bounded by the graphite. When the reactor graphite 
+temperature grows, the density of graphite declines creating additional space 
+for fuel salt. To determine temperature coefficients, the cross-section 
+temperatures for fuel and moderator were changed from 900K to 1200K. Three 
+different cases were considered:
+\begin{enumerate}  \item Temperature of fuel salt rising from 900K to 1200K.
+\item Temperature of graphite rising from 900K to 1200K.  \item Whole reactor 
+        temperature rising from 900K to 1200K.
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \captionsetup[table]{
   labelsep = newline,
-  name = TABLE, 
-  justification=justified,
+  name = TABLE, justification=justified,
   singlelinecheck=false,%%%%%%% a single line is centered by default
   labelsep=colon,%%%%%%
   skip = \medskipamount}
 \begin{table}[h!]
 %\centering
   \caption{Temperature coefficients of reactivity.}
-\begin{tabular}{p{0.22\linewidth} p{0.22\linewidth} p{0.21\linewidth} p{0.15\linewidth}} \toprule
-   Reactivity coefficient [pcm/K]  & Serpent2      & MCNP6 \cite{park_whole_2015}   & Reference \cite{robertson_conceptual_1971}      
-\\ \midrule
-Fuel salt        & $-3.70\pm0.016$ & $-3.20\pm0.05$ & $-3.22$ 
-\\ \midrule
-Moderator        & $+2.33\pm0.027$ & $-0.11\pm0.05$ & $+2.35$ 
-\\ \midrule
-Total            & $-1.57\pm0.033$ & $-3.21\pm0.04$ & $-0.87$ 
-\\
+\begin{tabular}{p{0.22\linewidth} p{0.22\linewidth} p{0.21\linewidth} 
+        p{0.15\linewidth}} \toprule
+   Reactivity coefficient [pcm/K]  & Serpent2      & MCNP6 
+        \cite{park_whole_2015}   & Reference \cite{robertson_conceptual_1971}      
+        \\ \midrule
+Fuel salt        & $-3.70\pm0.016$ & $-3.20\pm0.05$ & $-3.22$ \\ \midrule
+Moderator        & $+2.33\pm0.027$ & $-0.11\pm0.05$ & $+2.35$ \\ \midrule
+Total            & $-1.57\pm0.033$ & $-3.21\pm0.04$ & $-0.87$ \\
 \bottomrule
 \end{tabular}
   \label{tab:tcoef}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-On the one hand, changes in fuel temperature cause only density variation, geometry keeps the same because fuel is in the form of liquid. On the other hand, when moderator heats up both the density and the geometry changes due to thermal expansion of the graphite blocks and the reflector. New graphite density was calculated using linear temperature expansion coefficient of reactor graphite which is 1.3$\times10^{-6}$1/K \cite{robertson_conceptual_1971}. Based on this information new geometry input, which takes into account graphite expansion, was created.
+In the first case, changes in the fuel temperature only impact fuel density. In 
+this case, the geometry is unchanged because fuel is a liquid. However, when 
+the moderator heats up, both the density and the geometry change due to thermal 
+expansion of the solid graphite blocks and reflector. Accordingly, the new 
+graphite density was calculated using a linear temperature expansion 
+coefficient of 1.3$\times10^{-6}$1/K \cite{robertson_conceptual_1971}. A new 
+geometry input was created based on this information.
 
-The fuel temperature coefficient (FTC) is positive due to thermal Doppler broadening of the resonance capture cross sections in the thorium and is in a good agreement with early research \cite{robertson_conceptual_1971,park_whole_2015}. The moderator temperature coefficient is negative due to changing density and would increases during reactor operation because of spectrum hardening along with fuel depletion \cite{park_whole_2015}. Finally, the total temperature coefficient of reactivity is relatively large and negative, despite graphite components, and affords excellent reactor stability and controllability.
+The fuel temperature coefficient (FTC) is negative due to thermal Doppler 
+broadening of the resonance capture cross sections in the thorium and is in a 
+good agreement with early research 
+\cite{robertson_conceptual_1971,park_whole_2015}. The moderator temperature 
+coefficient is positive due to changing density and would increase during 
+reactor operation because of spectrum hardening along with fuel depletion 
+\cite{park_whole_2015}. Finally, the total temperature coefficient of 
+reactivity is relatively large and negative, despite graphite components, and 
+affords excellent reactor stability and controllability.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-The MSBR full-core analysis was performed using the Serpent 2 Monte Carlo code. The complex geometry of the reactor is reconstructed in three-dimensional space without any major approximations. Accurate material data was employed to calculate reactor key design parameters. The effective multiplication factor for initial fuel composition is slightly higher than 1 (1.00389) which allows reactor operation from startup to first online reprocessing cycle. The neutron flux energy spectrum was calculated for the whole core and represents the epithermal spectrum of the MSBR. The total temperature coefficient is negative, consequently, the MSBR has negative temperature feedback, but MTC is negative which has a negligible effect on safety because it is outweighed by the strong, negative FTC.
+We performed \gls{MSBR} full-core analysis using the Serpent 2 Monte Carlo 
+code. The complex geometry of the reactor is reconstructed in three-dimensional 
+space without any major approximations. Accurate material data was employed to 
+calculate reactor key design parameters. The effective multiplication factor 
+for initial fuel composition is slightly higher than 1 (1.00389) which allows 
+reactor operation from startup to the first online reprocessing cycle. The 
+neutron flux energy spectrum was calculated for the whole core and represents 
+the epithermal spectrum of the MSBR. The total temperature coefficient is 
+negative, consequently, the MSBR has negative temperature feedback, but MTC is 
+negative which has a negligible effect on safety because it is outweighed by 
+the strong, negative FTC.
 
-This high-fidelity full-core model will be employed for a number of future efforts. First, depletion simulation will be performed using built-in Serpent 2 depletion capabilities to find the equilibrium state of the MSBR, its optimal fuel salt composition, reprocessing characteristics (i.e. rates of removing fission products, the rate of adding thorium), and fuel utilization. Secondly, the model will be used to generate problem-oriented nuclear data libraries for multi-physics models of \glspl{MSR} developed in the MOOSE-based coupled neutronics/thermal-hydraulics code Moltres \cite{lindsay_arfc/moltres:_2017}. Finally, transient accident simulations for safety investigation of the reactor core will be performed to study the dynamic behavior of Molten Salt Breeder Reactor. 
+This high-fidelity full-core model will be employed for a number of future 
+efforts. First, depletion simulation will be performed using Serpent 2 
+depletion capabilities to find the equilibrium state of the MSBR, its optimal 
+fuel salt composition, reprocessing characteristics (i.e. rates of removing 
+fission products, the rate of adding thorium), and fuel utilization. Secondly, 
+the model will be used to generate problem-oriented nuclear data libraries for 
+multi-physics models of \glspl{MSR} developed in the MOOSE-based coupled 
+neutronics/thermal-hydraulics code Moltres \cite{lindsay_arfc/moltres:_2017}.  
+Finally, transient accident simulations for safety investigation of the reactor 
+core will be performed to study the dynamic behavior of Molten Salt Breeder 
+Reactor. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
