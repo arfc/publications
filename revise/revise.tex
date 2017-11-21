@@ -264,7 +264,7 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The proposed scaling test is very limited. Proper scaling tests would require weak and strong scaling tests, an assessment on the impact of the size of problem per core, a separate assessment of intra-node and extra-node scaling, etc. In addition, information should be provided on the employed numerical algorithms and on the parallelization strategy. The authors should either extend significantly the section, or remove it completely.
 \begin{solution}
-        <++>
+        We are performed strong and weak scaling up to 768 cores separately for intra-node and extra-node cases. Parallelization implemented using LibMesh library (for automatical domain decomposition) and PetSc library which contains set of parallel solvers. Detailed information added in Section 4.3 introduction.
 \end{solution}
 
 
