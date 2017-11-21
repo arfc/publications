@@ -1,6 +1,6 @@
 NAME=Moltres
-AUX=$(NAME).aux
-INTERMEDIATES=$(NAME).bbl $(NAME).blg $(NAME).log $(NAME).out
+AUX=$(NAME).aux acros.aux
+INTERMEDIATES=$(NAME).bbl $(NAME).blg $(NAME).log $(NAME).out $(NAME).alg $(NAME).acn $(NAME).gls $(NAME).ist $(NAME).glg $(NAME).glo $(NAME).acr
 
 all: $(NAME).pdf
 
