@@ -156,7 +156,8 @@ particular the authors should deepen their bibliographical research, and
 include a comparison either with experimental results or with other
 state-of-the-art tools.
 \begin{solution}
-        <++>
+        The statement concerning `unmatched' fidelity has been removed 
+        entirely.
 \end{solution}
 
 
@@ -188,7 +189,74 @@ A. Laureau, D. Heuer, E. Merle-Lucotte, P.R. Rubiolo, M. Allibert, M. Aufiero, T
 
 Other important works have been prepared in China in the frame of the Chinese MSR program.
 \begin{solution}
-        <++>
+        Thank you for the excellent recommendations. The new text reads thus:
+
+
+        Simulation tools developed by many authors successfully describe 
+        steady-state and
+        transient behavior of myriad MSR concepts. Krepel et al. extended 
+        the in-house LWR
+        diffusion code DYN3D to consider drift of delayed neutron precursors 
+        alongside
+        the reactor temperature profile, re-casting the extended code as
+        DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. That work compared DYN3D-MSR 
+        against
+        experimental MSRE data and then used it to simulate local fuel 
+        channel
+        blockages as well as local temperature perturbations. 
+
+        In a similar vein, Kophazi et al. used iterative coupling between 
+        in-house
+        three-dimensional neutronic and one-dimensional heat conduction models 
+        DALTON
+        and THERM to analyze normal MSRE operation as well as
+        channel-blocking-incident transients \cite{kophazi_development_2009}. 
+        The
+        Kophazi model added entrance effects of heat transfer coefficients as 
+        well as
+        thermal coupling between fuel channels through moderator heat 
+        conduction. More
+        recently, Cammi et al. performed a 2D-axisymmetric single-channel 
+        analysis of
+        the MSBR using the commercial finite element package COMSOL 
+        Multiphysics
+        \cite{cammi_multi-physics_2011}. That work directly solved the fuel 
+        salt
+        velocity field, used heterogeneous group constants in fuel and 
+        moderator
+        regions, and employed the COMSOL software package intrinsically 
+        designed
+        for coupled multi-physics simulation.  Fiorina, Lathouwers, and their
+        colleagues conducted a benchmarking exercise 
+        \cite{fiorina_modelling_2013} in
+        which this Politecnico di Milano approach was expanded to a 
+        multi-channel model 
+        of the MSFR and compared to code from the University of Delft
+        \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach 
+        in
+        \cite{kophazi_development_2009}. These models showed good agreement for
+        multiple accident transients. Meanwhile, leveraging lessons learned 
+        from these 
+        efforts has resulted in a multiscale approach from Zanetti et al. 
+        \cite{zanetti_geometric_2015} successfully combines high and low 
+        geometric 
+        fidelity for graphite-moderated MSRs.
+
+        More recently, Aufiero et al. \cite{aufiero_development_2014} have 
+        begun to
+        approach transient simulations in the MSFR within the finite 
+        volume
+        OpenFOAM multiphysics toolkit\cite{weller_tensorial_1998}.  This 
+        approach
+        benefits from pre-implemented turbulence models available in the 
+        OpenFOAM
+        library and captures the full-core three-dimensional geometry of the 
+        reactor
+        primary circuit.  OpenFOAM CFD has additionally been shown by 
+        Laureau et
+        al. \cite{laureau_transient_2017} to couple well with Transient Fission 
+        Matrix
+        neutronics within the MSFR.
 \end{solution}
 
 \question The authors should deepen the discussion on the current state of the art, mentioning at least the several efforts spent in the Evol project, and re-balancing their claims accordingly.
@@ -269,6 +337,8 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 
 \end{questions}
+\bibliographystyle{unsrt}
+\bibliography{Moltres}
   \end{document}
 
   %
