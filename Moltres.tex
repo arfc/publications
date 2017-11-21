@@ -105,8 +105,8 @@ inventories and spent nuclear fuel mass
 Due to these characteristics, the \gls{MSR} is potentially uniquely capable of 
 burning actinides and extending fuel resources.
 
-\gls{MSR} modeling efforts describe steady-state and
-transient behavior. Krepel et al. extended the in-house \gls{LWR}
+Simulation tools developed by many authors successfully describe steady-state and
+transient behavior of myriad \gls{MSR} concepts. Krepel et al. extended the in-house \gls{LWR}
 diffusion code DYN3D to consider drift of delayed neutron precursors alongside
 the reactor temperature profile, re-casting the extended code as
 DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. That work compared DYN3D-MSR against
@@ -126,16 +126,16 @@ velocity field, used heterogeneous group constants in fuel and moderator
 regions, and employed the \gls{COMSOL} software package intrinsically designed
 for coupled multi-physics simulation.  Fiorina, Lathouwers, and their
 colleagues conducted a benchmarking exercise \cite{fiorina_modelling_2013} in
-which this Politecnico di Milano approach was expanded to a multi-channel model
-and compared to code from the University of Delft
+which this Politecnico di Milano approach was expanded to a multi-channel model 
+of the \gls{MSFR} and compared to code from the University of Delft
 \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach in
 \cite{kophazi_development_2009}. These models showed good agreement for
-accident transients in the \gls{MSFR}. 
+multiple accident transients.
 
 More recently, Aufiero et.  al \cite{aufiero_development_2014} have begun to
 approach transient simulations in the \gls{MSFR} within the finite volume
 OpenFOAM multiphysics toolkit\cite{weller_tensorial_1998}.  This approach
-benefits from pre-implemented turbulence models availble in the OpenFOAM
+benefits from pre-implemented turbulence models available in the OpenFOAM
 library and captures the full-core three-dimensional geometry of the reactor
 primary circuit.  OpenFOAM \gls{CFD} has additionally been shown by Laureau et
 al. \cite{laureau_transient_2017} to couple well with Transient Fission Matrix
