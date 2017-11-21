@@ -533,28 +533,37 @@ in the plena cause deviation of the thermal flux from a sinusoidal shape in the
 
 \subsection{Scaling performance}
 
-Parallelization in Moltres implemented via LibMesh, which includes a set of utilities
- for massively parallel finite element based computations, including mesh input/output,
- finite element library and interface for connections with solver packages. Employing 
-the interfaces in LibMesh provides Moltres a significant flexibility including the ability 
-to swap out solver libraries such as PetSc, which includes an expanding suite of parallel 
-linear and nonlinear solvers. Problem domain decomposition utilized using LibMesh mesh 
-adaptation capabilities for running on a specific number of processors and can either be 
-performed manually before the start of the simulation or automatically at the parameters of computation. 
+Parallelization in Moltres implemented via LibMesh, which includes a set of
+utilities for massively parallel finite element based computations, including
+mesh input/output, finite element library and interface for connections with
+solver packages. Employing the interfaces in LibMesh provides Moltres a
+significant flexibility including the ability to swap out solver libraries
+such as PetSc, which includes an expanding suite of parallel linear and
+nonlinear solvers. Problem domain decomposition utilized using LibMesh mesh
+adaptation capabilities for running on a specific number of processors and
+can either be performed manually before the start of the simulation or
+automatically at the parameters of computation. 
 
-In case of strong scaling, the problem size keeps fixed but the number of processors is increased. 
-The goal of strong scaling study is to find an optimal ratio between a number of processors and elements 
-that allows the computation to finish in a reasonable amount of time, and does not waste too much computational
- power due to parallel overhead. We measured Moltres performance for the strong scaling of a simple 2D 
-axisymmetric case for various problem sizes separately for intra-node (2,820; 5,640; 11,280 and 28,200 elements) 
-and extra-node (86,655; 173,310; 317,735; 664,355 elements) setup on Blue Waters' XK7 nodes (1 AMD 6276 Interlagos 
-CPU, 16 integer scheduling units, 32 virtual cores, nominal clock speed 2.3 GHz). 
+In case of strong scaling, the problem size keeps fixed but the number of
+processors is increased. The goal of strong scaling study is to find an
+optimal ratio between a number of processors and elements that allows the
+computation to finish in a reasonable amount of time, and does not waste
+too much computational power due to parallel overhead. We measured
+Moltres performance for the strong scaling of a simple 2D axisymmetric
+case for various problem sizes separately for intra-node (2,820; 5,640;
+11,280 and 28,200 elements) and extra-node (86,655; 173,310; 317,735;
+664,355 elements) setup on Blue Waters' XK7 nodes (1 AMD 6276 Interlagos 
+CPU, 16 integer scheduling units, 32 virtual units, nominal clock speed
+2.3 GHz). 
 
-\Cref{fig:intra_strong_scaling} shows Moltres performance, i.e. seconds per element vs. number of cores on 1 node
- (maximum 32 cores). As can be seen, up to 8 cores larger problem required considerably more time per element 
- because of cache overhead, but beyond this scaling demonstrates asymptotic dependence of the number of processors 
- due to increasing communication costs. The best parallel efficiency for intra-node study is approximately 89\% and 
- has been achieved for the largest problem (28,200 elements). 
+\Cref{fig:intra_strong_scaling} shows Moltres performance, i.e. seconds
+per element vs. number of cores on 1 node (maximum 32 cores). As can be
+seen, up to 8 cores larger problem required considerably more time per
+element because of cache overhead, but beyond this scaling demonstrates
+asymptotic dependence of the number of processors due to increasing
+communication costs. The best parallel efficiency for intra-node study
+is approximately 89\% and has been achieved for the largest problem
+(28,200 elements). 
 
 \begin{figure}[htpb]
   \centering
@@ -563,11 +572,14 @@ CPU, 16 integer scheduling units, 32 virtual cores, nominal clock speed 2.3 GHz)
   \label{fig:intra_strong_scaling}
 \end{figure}
 
-\Cref{fig:extra_strong_scaling} shows Moltres strong scaling up to 768 processors which takes into account communication costs 
-between nodes. Similarly to intra-node study, up to 128 cores cache overhead causes performance slow down for a larger problem, 
-while beyond 256 cores time per element stays almost constant for small cases (86,655 and 173,310 elements) and slighly 
-decreasing for two larger problems. For extra-node scaling parallel efficiency also growth with the problem size and reach 
-optimal value about 73\% for 664,355 elements.
+\Cref{fig:extra_strong_scaling} shows Moltres strong scaling up to 768
+processors which takes into account communication costs between nodes.
+Similarly to intra-node study, up to 128 cores cache overhead causes
+performance slow down for a larger problem, while beyond 256 cores
+time per element stays almost constant for small cases (86,655 and
+173,310 elements) and slighly decreasing for two larger problems.
+For extra-node scaling parallel efficiency also growth with the
+problem size and reach optimal value about 73\% for 664,355 elements.
 
 \begin{figure}[htpb]
   \centering
@@ -576,21 +588,31 @@ optimal value about 73\% for 664,355 elements.
   \label{fig:extra_strong_scaling}
 \end{figure}
 
-For the weak scaling study, the part of the problem (workload) assigned to each processor stays constant and additional elements are 
-used to solve a bigger problem which would not fit in memory on a single node. Thus, the weak scaling measurement is justification
- for memory-bound application such as multiphysics code. Linear weak scaling is achieved when the execution time stays constant 
- while the workload increasing in direct proportion to the number of cores. We performed Moltres weak-scaling tests on Blue Waters, 
- keeping the workload constant at 581, 985, 1970 and 3940 elements per core. \Cref{fig:intra_weak} shows Moltres weak scaling 
-performance measured for 1 \ldots 32 core within one Blue Waters node and \Cref{fig:extra_weak} demonstrates performance for 
-32 \ldots 128 core. As expected, the largest drop in performance occurs when the number of cores increases from one to $\approx$ 8, which 
-corresponds to switching from no communication to a 2-D domain decomposition. The further reduction in performance of only about 50\% over 
-a range of 32 cores is likely caused by increased communication latency appearing from collective MPI calls. For extra-node case, performance
- drops about three times most likely because of poor node selection by job scheduler and significantly increased latency and bandwidth costs.
+For the weak scaling study, the part of the problem (workload) assigned
+to each processor stays constant and additional elements are used to
+solve a bigger problem which would not fit in memory on a single node.
+Thus, the weak scaling measurement is justification for memory-bound
+application such as multiphysics code. Linear weak scaling is achieved
+when the execution time stays constant while the workload increasing
+in direct proportion to the number of cores. We performed Moltres
+weak-scaling tests on Blue Waters, keeping the workload constant at
+581, 985, 1970 and 3940 elements per core. \Cref{fig:intra_weak} shows
+Moltres weak scaling performance measured for 1 \ldots 32 core within
+one Blue Waters node and \Cref{fig:extra_weak} demonstrates performance
+for 32 \ldots 128 core. As expected, the largest drop in performance
+occurs when the number of cores increases from one to $\approx$ 8, which 
+corresponds to switching from no communication to a 2-D domain
+decomposition. The further reduction in performance of only about 50\%
+over a range of 32 cores is likely caused by increased communication
+latency appearing from collective \gls{MPI} calls. For extra-node case,
+performance drops about three times most likely because of poor node
+selection by job scheduler and significantly increased latency and
+bandwidth costs.
 
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=0.75\textwidth]{intra-node_weak.png}
-  \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of particles
+  \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
 per processor, for 1 \ldots 32 cores.}
   \label{fig:intra_weak}
 \end{figure} 
@@ -598,17 +620,25 @@ per processor, for 1 \ldots 32 cores.}
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=0.75\textwidth]{extra-node_weak.png}
-  \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of particles
+  \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
 per processor, for 32 \ldots 128 cores.}
   \label{fig:extra_weak}
 \end{figure} 
 
-Moltres scalability study results clearly indicate that parallelization using LibMesh automatical domain decomposition is not perfectly efficient and
- further parallel performance optimization needed. Thus, focus on communication patterns study necessarily to identify latency and bandwidth costs
- and to optimize communications. Moreover, Moltres is memory-bound code and very sensitive to host memory and memory bandwidth, consequently, we will
- consider a transition from CPUs computing to GPU-accelerated computing which much faster for this type of algorithms because operates on the fly with global 
- memory instead of store in a CPU's cache before computations. Another way to improve parallel performance is to force the solver use more ``older'' 
- information from previous iteration, which leads to slower convergence in terms of iterations and workload increasing \cite{satish_balay_petsc_2015}.
+Moltres scalability study results clearly indicate that parallelization
+using LibMesh automatical domain decomposition is not perfectly
+efficient and further parallel performance optimization needed. Thus,
+focus on communication patterns study necessarily to identify latency
+and bandwidth costs and to optimize communications. Moreover, Moltres
+is memory-bound code and very sensitive to host memory and memory
+bandwidth, consequently, we will consider a transition from CPUs
+computing to GPU-accelerated computing which much faster for this
+type of algorithms because operates on the fly with global memory
+instead of store in a CPU's cache before computations. Another way
+to improve parallel performance is to force the solver use more
+``older'' information from previous iteration, which leads to slower
+convergence in terms of iterations and workload
+increasing \cite{satish_balay_petsc_2015}.
 
 \section{Conclusion}
 
