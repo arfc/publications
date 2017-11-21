@@ -533,58 +533,60 @@ in the plena cause deviation of the thermal flux from a sinusoidal shape in the
 
 \subsection{Scaling performance}
 
-Parallelization in Moltres implemented via LibMesh, which includes a set of
+Parallelization in Moltres is implemented via LibMesh, which includes a set of
 utilities for massively parallel finite element based computations, including
-mesh input/output, finite element library and interface for connections with
-solver packages. Employing the interfaces in LibMesh provides Moltres a
+mesh input/output, a finite element library, and an interface for connections with
+solver packages. Employing LibMesh provides Moltres
 significant flexibility including the ability to swap out solver libraries
 such as PetSc, which includes an expanding suite of parallel linear and
-nonlinear solvers. Problem domain decomposition utilized using LibMesh mesh
+nonlinear solvers. Problem domain decomposition relies on LibMesh mesh
 adaptation capabilities for running on a specific number of processors and
 can either be performed manually before the start of the simulation or
 automatically at the parameters of computation. 
 
-In case of strong scaling, the problem size keeps fixed but the number of
-processors is increased. The goal of strong scaling study is to find an
-optimal ratio between a number of processors and elements that allows the
-computation to finish in a reasonable amount of time, and does not waste
-too much computational power due to parallel overhead. We measured
-Moltres performance for the strong scaling of a simple 2D axisymmetric
+We conducted strong and weak scaling studies to characterize parallel 
+performance in Moltres.
+In case of strong scaling, the problem size remains fixed but the number of
+processors is increased. Strong scaling studies seek to identify an
+optimal ratio between the number of processors and elements for the most
+rapid and power-efficient computation for a given problem. We measured
+Moltres strong scaling with a simple 2D axisymmetric
 case for various problem sizes separately for intra-node (2,820; 5,640;
 11,280 and 28,200 elements) and extra-node (86,655; 173,310; 317,735;
 664,355 elements) setup on Blue Waters' XK7 nodes (1 AMD 6276 Interlagos 
 CPU, 16 integer scheduling units, 32 virtual units, nominal clock speed
 2.3 GHz). 
 
-\Cref{fig:intra_strong_scaling} shows Moltres performance, i.e. seconds
-per element vs. number of cores on 1 node (maximum 32 cores). As can be
-seen, up to 8 cores larger problem required considerably more time per
-element because of cache overhead, but beyond this scaling demonstrates
-asymptotic dependence of the number of processors due to increasing
-communication costs. The best parallel efficiency for intra-node study
+\Cref{fig:intra_strong_scaling} shows the simulation speed in seconds
+per element vs. the number of cores on 1 node (maximum 32 cores). Up to 8 
+cores, larger problems required considerably more time per
+element because of cache overhead. However, beyond 8 cores, scaling demonstrates
+asymptotic dependence on the number of processors due to increasing
+communication costs. The best parallel efficiency for the intra-node study
 is approximately 89\% and has been achieved for the largest problem
 (28,200 elements). 
 
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=\maxwidth{\textwidth}]{intra-node_strong.png}
-  \caption{Moltres intra-node strong scaling efficiency for various problem size, for 1 \ldots 32 cores.}
+  \caption{Moltres intra-node strong scaling efficiency for various problem 
+        sizes, for $n_{cores} \in [1,32]$.}
   \label{fig:intra_strong_scaling}
 \end{figure}
 
 \Cref{fig:extra_strong_scaling} shows Moltres strong scaling up to 768
-processors which takes into account communication costs between nodes.
-Similarly to intra-node study, up to 128 cores cache overhead causes
-performance slow down for a larger problem, while beyond 256 cores
-time per element stays almost constant for small cases (86,655 and
-173,310 elements) and slighly decreasing for two larger problems.
-For extra-node scaling parallel efficiency also growth with the
-problem size and reach optimal value about 73\% for 664,355 elements.
+processors. This takes into account communication costs between nodes.
+Similar to the intra-node study, when fewer than 128 cores were used, 
+cache overhead causes performance slow down for larger problems. However, 
+beyond 256 cores, the simulation time per element remains almost constant for small cases (86,655 and
+173,310 elements) and slighly decreases for the two larger problems.
+For extra-node scaling, parallel efficiency also grows with the
+problem size and reaches an optimal value of 73\% for 664,355 elements.
 
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=\maxwidth{\textwidth}]{extra-node_strong.png}
-  \caption{Moltres extra-node strong scaling efficiency for various problem size, for 1 \ldots 24 nodes.}
+  \caption{Moltres extra-node strong scaling efficiency for various problem size, for $n_{nodes} \in [1,24]$.}
   \label{fig:extra_strong_scaling}
 \end{figure}
 
@@ -597,23 +599,23 @@ when the execution time stays constant while the workload increasing
 in direct proportion to the number of cores. We performed Moltres
 weak-scaling tests on Blue Waters, keeping the workload constant at
 581, 985, 1970 and 3940 elements per core. \Cref{fig:intra_weak} shows
-Moltres weak scaling performance measured for 1 \ldots 32 core within
+Moltres weak scaling performance measured for $n_{cores} \in [1,32]$ within
 one Blue Waters node and \Cref{fig:extra_weak} demonstrates performance
-for 32 \ldots 128 core. As expected, the largest drop in performance
+for $n_{cores} \in [32,128]$. As expected, the largest drop in performance 
 occurs when the number of cores increases from one to $\approx$ 8, which 
 corresponds to switching from no communication to a 2-D domain
 decomposition. The further reduction in performance of only about 50\%
 over a range of 32 cores is likely caused by increased communication
-latency appearing from collective \gls{MPI} calls. For extra-node case,
-performance drops about three times most likely because of poor node
-selection by job scheduler and significantly increased latency and
+latency appearing from collective \gls{MPI} calls. In the extra-node case,
+the performance drops by a factor of three, which is most likely due to poor node
+selection by the Blue Waters job scheduler and significantly increased latency and
 bandwidth costs.
 
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=0.75\textwidth]{intra-node_weak.png}
   \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
-per processor, for 1 \ldots 32 cores.}
+        per processor, and $n_{cores}\in[1,32]$.}
   \label{fig:intra_weak}
 \end{figure} 
 
@@ -621,24 +623,21 @@ per processor, for 1 \ldots 32 cores.}
   \centering
   \includegraphics[width=0.75\textwidth]{extra-node_weak.png}
   \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
-per processor, for 32 \ldots 128 cores.}
+        per processor, for and $n_{cores}\in[32,128]$.}
   \label{fig:extra_weak}
 \end{figure} 
 
 Moltres scalability study results clearly indicate that parallelization
-using LibMesh automatical domain decomposition is not perfectly
-efficient and further parallel performance optimization needed. Thus,
-focus on communication patterns study necessarily to identify latency
-and bandwidth costs and to optimize communications. Moreover, Moltres
-is memory-bound code and very sensitive to host memory and memory
-bandwidth, consequently, we will consider a transition from CPUs
-computing to GPU-accelerated computing which much faster for this
-type of algorithms because operates on the fly with global memory
-instead of store in a CPU's cache before computations. Another way
-to improve parallel performance is to force the solver use more
-``older'' information from previous iteration, which leads to slower
-convergence in terms of iterations and workload
-increasing \cite{satish_balay_petsc_2015}.
+using LibMesh's automatic domain decomposition is good, but not perfectly
+efficient. This scaling performance is satisfactory for \gls{MSR} simulations 
+approached thus far and improved parallel performance would require further optimization
+within LibMesh.  Moreover, Moltres is memory-bound and therefore very sensitive to host memory and memory
+bandwidth. Consequently, if improved performance is needed, one could consider a transition from CPUs
+computing to GPU-accelerated computing because GPUs operate on the fly with 
+global memory, avoiding CPU cache storage issues. Another way
+to improve parallel performance is to force the solver to use
+``older'' information from previous iterations. However, this has been shown to 
+slow convergence in terms of iterations and increased workload \cite{satish_balay_petsc_2015}.
 
 \section{Conclusion}
 
