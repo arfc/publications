@@ -130,7 +130,10 @@ which this Politecnico di Milano approach was expanded to a multi-channel model
 of the \gls{MSFR} and compared to code from the University of Delft
 \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach in
 \cite{kophazi_development_2009}. These models showed good agreement for
-multiple accident transients.
+multiple accident transients. Meanwhile, leveraging lessons learned from these 
+efforts has resulted in a multiscale approach from Zanetti et al. 
+\cite{zanetti_geometric_2015} successfully combines high and low geometric 
+fidelity for graphite-moderated \glspl{MSR}.
 
 More recently, Aufiero et.  al \cite{aufiero_development_2014} have begun to
 approach transient simulations in the \gls{MSFR} within the finite volume
@@ -139,7 +142,7 @@ benefits from pre-implemented turbulence models available in the OpenFOAM
 library and captures the full-core three-dimensional geometry of the reactor
 primary circuit.  OpenFOAM \gls{CFD} has additionally been shown by Laureau et
 al. \cite{laureau_transient_2017} to couple well with Transient Fission Matrix
-neutronics within the \gls{MSFR}.  
+neutronics within the \gls{MSFR}.
 
 The present work introduces the open source simulation tool, Moltres
 \cite{lindsay_moltres_2017}, for simulating \glspl{MSR}.  By implementing
