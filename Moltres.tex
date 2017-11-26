@@ -148,9 +148,9 @@ The present work introduces the open source simulation tool, Moltres
 \cite{lindsay_moltres_2017}, for simulating \glspl{MSR}.  By implementing
 deterministic neutronics and thermal hydraulics in the context of the
 \gls{MOOSE} finite element modeling framework, Moltres solves arbitrary-group
-neutron diffusion, temperature, and precursor governing equations in anywhere
-from one to three dimensions and can be deployed on an arbitrary number of
-processing units.
+neutron diffusion, temperature, and precursor governing equations on a single 
+mesh in anywhere from one to three dimensions and can be deployed on an 
+arbitrary number of processing units.
 
 Moltres is an open source code licensed under \gls{LGPL} terms so the 
 \gls{MSR} community can freely use, interrogate, and improve it.  Its openness 
@@ -538,7 +538,7 @@ depression in the thermal flux in the \gls{MSRE} profile.
 \Cref{fig:axial_fluxes_compare} compares the axial flux profiles calculated by
 Moltres and the \gls{ORNL} \gls{MSRE} design model. The radii for the plots are
 chosen to correspond to the peak of the thermal flux in both cases; for the
-\gls{ORNL} calculations this is 8.4 inches from the core center-line because of
+\gls{ORNL} calculations this is 21.336 cm (8.4 inches) from the core center-line because of
 the effect of the control rod thimbles and extra fuel along the
 center-line. Once again, the plots are in decent agreement. The \gls{ORNL}
 calculations include the lower and upper plena which are not included in this
@@ -550,8 +550,8 @@ in the plena cause deviation of the thermal flux from a sinusoidal shape in the
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=\maxwidth{\textwidth}]{combined_msre_moltres_axial.eps}
-    \caption{Moltres axial flux profiles along core center line and \gls{MSRE}
-      design axial flux profiles 8.4 inches from core center line \cite[p. 91]{briggs_molten-salt_1964}.}
+    \caption{Moltres axial flux profiles along the core center line and \gls{MSRE}
+    design axial flux profiles 21.336 cm (8.4 inches) from the core center line \cite[p. 91]{briggs_molten-salt_1964}.}
     \label{fig:axial_fluxes_compare}
 \end{figure}
 

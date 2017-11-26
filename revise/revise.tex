@@ -296,7 +296,9 @@ would represent a significant contribution to the scientific community, since ma
 
 \question Are all equations solved on the same mesh? In this case, is this a strict requirement? Please clarify.
 \begin{solution}
-        <++>
+        This has now been clarified in the introductory text. The equations are 
+        solved on a single mesh. This is enabled by the underlying MOOSE 
+        framework, which also enables 'loose' coupling instead.
 \end{solution}
 
 \question The heat generation in the graphite is calculated as a fraction of that in the fuel. How exactly is this achieved considering that the two sources are spatially separated?
@@ -306,13 +308,13 @@ would represent a significant contribution to the scientific community, since ma
 
 \question It is not clear how the domain is discretized. Is there a radial discretization in graphite and channels? Was the mesh convergence checked? Please discuss.
 \begin{solution}
-        <++>
+       <++>
 \end{solution}
 
 \question The MSRE had Reynolds numbers very close to the laminar-turbulent transition. Did you use a laminar model? In case, did you encounter convergence problems ?
 Or did you include turbulence? More generally, is Moltres capable of turbulent simulations?
 \begin{solution}
-        <++>
+        These calculations were performed without including turbulence. However, a $k-\epsilon$ model is being implemented to support future simulations.
 \end{solution}
 
 \question The authors are required to use the international system of units (meters, Kelvin, etc).
