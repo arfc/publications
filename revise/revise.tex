@@ -319,12 +319,14 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The authors are required to use the international system of units (meters, Kelvin, etc).
 \begin{solution}
-        <++>
+        Thanks for catching this. The mention of inches has been converted to cm.
 \end{solution}
 
 \question The authors should briefly describe what ``MSRE design models'' are. Otherwise it is very difficult for the readers to assess the accuracy of the model.
 \begin{solution}
-        <++>
+        The paper has been clarified. That section is now careful to state that 
+        our comparison is made against the simple two-group calculation 
+        conducted to pinpoint the design of the MSRE. 
 \end{solution}
 
 \question Is the heat generation in the hottest channel the same for the Moltres and the MSRE model?
@@ -334,7 +336,7 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The authors claim an unprecedented accuracy of their model? How the results of their model compare with previous results from other authors? The presented results do not seem sufficient to support such claim.
 \begin{solution}
-        <++>
+        This claim has been removed entirely. Thank you.
 \end{solution}
 
 \question The differences between the MSRE and the Moltres model are significant and should be discussed in more details. In particular the difference between fast fluxes is suspicious.
@@ -344,7 +346,12 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The proposed scaling test is very limited. Proper scaling tests would require weak and strong scaling tests, an assessment on the impact of the size of problem per core, a separate assessment of intra-node and extra-node scaling, etc. In addition, information should be provided on the employed numerical algorithms and on the parallelization strategy. The authors should either extend significantly the section, or remove it completely.
 \begin{solution}
-        We are performed strong and weak scaling up to 768 cores separately for intra-node and extra-node cases. Parallelization implemented using LibMesh library (for automatical domain decomposition) and PetSc library which contains set of parallel solvers. Detailed information added in Section 4.3 introduction.
+        We performed strong and weak scaling up to 768 cores separately for 
+        intra-node and extra-node cases. Parallelization was implemented using 
+        LibMesh library (for automatical domain decomposition) and PetSc 
+        library which contains set of parallel solvers. Detailed information, 
+        including results of the scalind studies, has now been added in the 
+        Section 4.3 introduction.
 \end{solution}
 
 
