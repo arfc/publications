@@ -342,7 +342,11 @@ and disadvantages of a fully coupled solver are often a subject of discussion.
         use the computational resources at our disposal, so we elect to run our
         large problems as quickly as possible on Blue Waters. Additionally, the
         developers of PetSc recommend using approximately 20k degrees of freedom
-        per process, which is a rule of thumb we generally adhere to.
+        per process, which is a rule of thumb we generally adhere to. For the 3D
+        problem for which we report results (1.16 million DOFs), we are fairly
+        pleased with the 2.5 hour solution on 160 cores and do not consider this
+        performance as slow, at least in the context of a fully coupled, fully
+        implicit solution method.
 
         For coupling between neutrons and temperature, we performed a comparison
         between monolothic and segregated solution techniques. The results are
