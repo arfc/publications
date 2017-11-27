@@ -156,13 +156,11 @@ particular the authors should deepen their bibliographical research, and
 include a comparison either with experimental results or with other
 state-of-the-art tools.
 \begin{solution}
+        Thank you for your kind review.
         The statement concerning `unmatched' fidelity has been removed 
-        entirely.
+        entirely and the bibliography has been expanded significantly. See the 
+        responses below for more detail..
 \end{solution}
-
-
-\question <++>
-
 
 
 \question In the introduction, the authors mention that:
@@ -188,6 +186,8 @@ Matteo Zanetti, Antonio Cammi, Carlo Fiorina, Lelio Luzzi, A Geometric Multiscal
 A. Laureau, D. Heuer, E. Merle-Lucotte, P.R. Rubiolo, M. Allibert, M. Aufiero, Transient coupled calculations of the Molten Salt Fast Reactor using the Transient Fission Matrix approach, Nuclear Engineering and Design, Volume 316, 2017, Pages 112-124, ISSN 0029-5493, http://dx.doi.org/10.1016/j.nucengdes.2017.02.022.
 
 Other important works have been prepared in China in the frame of the Chinese MSR program.
+
+The authors should deepen the discussion on the current state of the art, mentioning at least the several efforts spent in the Evol project, and re-balancing their claims accordingly.
 \begin{solution}
         Thank you for the excellent recommendations. The new text reads thus:
 
@@ -246,7 +246,7 @@ Other important works have been prepared in China in the frame of the Chinese MS
         begun to
         approach transient simulations in the MSFR within the finite 
         volume
-        OpenFOAM multiphysics toolkit\cite{weller_tensorial_1998}.  This 
+        OpenFOAM multiphysics toolkit \cite{weller_tensorial_1998}.  This 
         approach
         benefits from pre-implemented turbulence models available in the 
         OpenFOAM
@@ -259,14 +259,13 @@ Other important works have been prepared in China in the frame of the Chinese MS
         neutronics within the MSFR.
 \end{solution}
 
-\question The authors should deepen the discussion on the current state of the art, mentioning at least the several efforts spent in the Evol project, and re-balancing their claims accordingly.
-
 \question The authors write:
 ``Moltres is devoted to previously unmatched fidelity in coupled neutronics and 
         thermal hydraulics MSR simulation.''
 This is an overstatement as codes with similar degree of fidelity have been written in the past. This is the case of the tools developed in the frame of the Evol project, as well as e.g. the work from Aufiero on the coupling between OpenFOAM and Serpent (that the authors mention earlier in the introduction). The authors are required to modify this sentence based on a better bibliographical research.
 \begin{solution}
-        <++>
+        That statement has been removed and the bibliography has been enriched 
+        (as discussed above).
 \end{solution}
 
 \question Concerning the openness of the code and the possibility to contribute to it, it should be noted that codes solving for neutron transport can be subject to export restrictions (following their potential dual use), and in principle all contributors should get an export control authorization from their own country. The authors are not strictly required to change the manuscript, but they may consider mentioning the fact that the openness of a nuclear code can be somewhat thwarted by national and international laws.
@@ -278,9 +277,9 @@ used for weapons proliferation.  Moltres requires that cross sections be
 provided by the user, implements a combination of algorithms that can be easily
 derived from open literature, is tailored to molten salt reactor physics.
 Accordingly, Moltres joins a veritable parade of open academic nuclear
-engineering software such as OpenMC\cite{romano_openmc:_2015},
-OpenMOC\cite{boyd_openmoc_2014}, and
-PyNE\cite{bates_pyne_2014,biondo_quality_2014}.'' 
+engineering software such as OpenMC \cite{romano_openmc:_2015},
+OpenMOC \cite{boyd_openmoc_2014}, and
+PyNE \cite{bates_pyne_2014,biondo_quality_2014}.'' 
 
 \end{solution}
 
@@ -296,7 +295,9 @@ would represent a significant contribution to the scientific community, since ma
 
 \question Are all equations solved on the same mesh? In this case, is this a strict requirement? Please clarify.
 \begin{solution}
-        <++>
+        This has now been clarified in the introductory text. The equations are 
+        solved on a single mesh. This is enabled by the underlying MOOSE 
+        framework, which also enables `loose' coupling instead.
 \end{solution}
 
 \question The heat generation in the graphite is calculated as a fraction of that in the fuel. How exactly is this achieved considering that the two sources are spatially separated?
@@ -306,23 +307,33 @@ would represent a significant contribution to the scientific community, since ma
 
 \question It is not clear how the domain is discretized. Is there a radial discretization in graphite and channels? Was the mesh convergence checked? Please discuss.
 \begin{solution}
-        <++>
+       <++>
 \end{solution}
 
 \question The MSRE had Reynolds numbers very close to the laminar-turbulent transition. Did you use a laminar model? In case, did you encounter convergence problems ?
 Or did you include turbulence? More generally, is Moltres capable of turbulent simulations?
 \begin{solution}
-        <++>
+        These calculations were performed without including turbulence. However, a $k-\epsilon$ model is being implemented to support future simulations.
 \end{solution}
 
 \question The authors are required to use the international system of units (meters, Kelvin, etc).
 \begin{solution}
-        <++>
+        Thanks for catching this. The mention of inches has been converted to cm.
 \end{solution}
 
 \question The authors should briefly describe what ``MSRE design models'' are. Otherwise it is very difficult for the readers to assess the accuracy of the model.
 \begin{solution}
-        <++>
+        The paper has been clarified. That section is now careful to state that 
+        our comparison is made against a 1963-1964 calculation conducted by ORNL 
+        to pinpoint the MSRE design. The text has been updated to refer to 
+        ``MSRE design models'' as ``MSRE design calculations'' and explains 
+        that the MSRE design calculations conducted in 1963 were 32-group 
+        calculations using legacy computing tools (GAM-I, MODRIC, and EQUIPOSE, 
+        and THERMOS). These calculations were conducted in two-dimensional R-Z 
+        geometry (a cylinder with angular symmetry), with 20 spatial regions. 
+        Notably, one limitation of the ORNL model was the control rod thimbles 
+        that, due to angular symmetry, were effectively a cylindrical shell of 
+        metal.  
 \end{solution}
 
 \question Is the heat generation in the hottest channel the same for the Moltres and the MSRE model?
@@ -332,7 +343,7 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The authors claim an unprecedented accuracy of their model? How the results of their model compare with previous results from other authors? The presented results do not seem sufficient to support such claim.
 \begin{solution}
-        <++>
+        This claim has been removed entirely. Thank you.
 \end{solution}
 
 \question The differences between the MSRE and the Moltres model are significant and should be discussed in more details. In particular the difference between fast fluxes is suspicious.
@@ -342,7 +353,12 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
 \question The proposed scaling test is very limited. Proper scaling tests would require weak and strong scaling tests, an assessment on the impact of the size of problem per core, a separate assessment of intra-node and extra-node scaling, etc. In addition, information should be provided on the employed numerical algorithms and on the parallelization strategy. The authors should either extend significantly the section, or remove it completely.
 \begin{solution}
-        We are performed strong and weak scaling up to 768 cores separately for intra-node and extra-node cases. Parallelization implemented using LibMesh library (for automatical domain decomposition) and PetSc library which contains set of parallel solvers. Detailed information added in Section 4.3 introduction.
+        We performed strong and weak scaling up to 768 cores separately for 
+        intra-node and extra-node cases. Parallelization was implemented using 
+        LibMesh library for automatic domain decomposition and PetSc 
+        library for parallel solution of systems of non-linear equations. 
+        Detailed information, including results of the scaling studies, has now 
+        been added in the Section 4.3 introduction.
 \end{solution}
 
 
