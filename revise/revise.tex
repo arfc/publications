@@ -171,10 +171,25 @@ However, the fissile inventory is not necessarily related to fuel burnup and
 fuel utilization. It can actually be very high in chloride-based fast-spectrum
 MSRs.
 \begin{solution}
-        We have edited this sentence to read ``Together these attributes can
-        result in significantly reduced spent fuel mass and, in the case of
-        fluoride salt reactors in particular, reduced core fissile
-        inventories'', recognizing that you're quite correct for the chloride salts.
+        This passage has been modified to read:
+
+        The key advantages of MSRs generally pertain to improved fuel
+        utilization and reactor safety. In contrast to legacy reactors, only
+        moderator fast neutron damage and fuel chemistry evolution limit
+        burnup. A clever configuration of moderator as in
+        \cite{engel_conceptual_1980} can enable reactor operation without
+        opening the vessel for thirty or more years. Further, several fission
+        products selectively precipitate onto nickel surfaces in fluoride salt,
+        as documented in \cite{engel_conceptual_1980}, thus reducing unwanted
+        neutron absorption. Lastly, the epithermal spectrum of
+        graphite-moderated salt reactors incinerates plutonium more efficiently,
+        thus reducing long-lived transuranic waste production
+        \cite{engel_conceptual_1980}.  The sum of these characteristics implies
+        the MSR uniqely ameliorates spent fuel burden whilst extending
+        nuclear fuel resources. To top all these benefits off, xenon transients
+        become moot in MSRs due to its insolubility in salt, thus
+        narrowing transient analysis focus to thermalhydraulic concerns.
+
 \end{solution}
 
 \question The introduction includes a review of previous work done on the
@@ -185,26 +200,21 @@ project, and the results have been published in several papers, including e.g.,:
 Manuele Aufiero, Antonio Cammi, Olivier Geoffroy, Mario Losa, Lelio Luzzi, Marco
 E. Ricotti, Hervé Rouch, Development of an OpenFOAM model for the Molten Salt
 Fast Reactor transient analysis, Chemical Engineering Science, Volume 111, 2014,
-Pages 390-401, ISSN 0009-2509, http://dx.doi.org/10.1016/j.ces.2014.03.003.
-(http://www.sciencedirect.com/science/article/pii/S0009250914001146)
+Pages 390-401, ISSN 0009-2509
 
 Carlo Fiorina, Danny Lathouwers, Manuele Aufiero, Antonio Cammi, Claudia
 Guerrieri, Jan Leen Kloosterman, Lelio Luzzi, Marco Enrico Ricotti, Modelling
 and analysis of the MSFR transient behaviour, Annals of Nuclear Energy, Volume
-64, 2014, Pages 485-498, ISSN 0306-4549,
-http://dx.doi.org/10.1016/j.anucene.2013.08.003.
-(http://www.sciencedirect.com/science/article/pii/S0306454913004118)
+64, 2014, Pages 485-498, ISSN 0306-4549
 
 Matteo Zanetti, Antonio Cammi, Carlo Fiorina, Lelio Luzzi, A Geometric
 Multiscale modelling approach to the analysis of MSR plant dynamics, Progress in
-Nuclear Energy, Volume 83, 2015, Pages 82-98, ISSN 0149-1970,
-http://dx.doi.org/10.1016/j.pnucene.2015.02.014.
+Nuclear Energy, Volume 83, 2015, Pages 82-98, ISSN 0149-1970
 
 A. Laureau, D. Heuer, E. Merle-Lucotte, P.R. Rubiolo, M. Allibert, M. Aufiero,
 Transient coupled calculations of the Molten Salt Fast Reactor using the
 Transient Fission Matrix approach, Nuclear Engineering and Design, Volume 316,
-2017, Pages 112-124, ISSN 0029-5493,
-http://dx.doi.org/10.1016/j.nucengdes.2017.02.022.
+2017, Pages 112-124, ISSN 0029-5493
 
 Other important works have been prepared in China in the frame of the Chinese MSR program.
 
@@ -251,11 +261,11 @@ re-balancing their claims accordingly.
         designed
         for coupled multi-physics simulation.  Fiorina, Lathouwers, and their
         colleagues conducted a benchmarking exercise
-        \cite{fiorina_modelling_2013} in
+        \cite{fiorina_modelling_2014} in
         which this Politecnico di Milano approach was expanded to a
         multi-channel model
         of the MSFR and compared to code from the University of Delft
-        \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach
+        \cite{de_zwaan_static_2007,van_der_linden_coupled_2012} based on the approach
         in
         \cite{kophazi_development_2009}. These models showed good agreement for
         multiple accident transients. Meanwhile, leveraging lessons learned
@@ -374,11 +384,11 @@ are spatially separated?
         heating with the moderator regions. We have added the following passage
         to clarify this point:
 
-        In this work, $Q_g = \gamma V_{\text{core}}^{-1} \int_{\text{core}}Q_f
-        \diff V$, where $\gamma$ is a factor representing heat dissipation by
+        In this work, $Q_g = \gamma V_{\text{core}}^{-1} \int_{\text{core}}Q_f dV$,
+        where $\gamma$ is a factor representing heat dissipation by
         gamma and neutron irradiation in the moderator, called the graphite to
         fuel power density ratio. Robertson's \cite{robertson_conceptual_1971}
-        original \gls{MSBR} analysis included a calculation of $\gamma$.
+        original MSBR analysis included a calculation of $\gamma$.
         \cite{krepel_dyn3d-msr_2007,zhang_development_2009,cammi_multi-physics_2011}
         all calculated gamma heating through such a factor. We follow
         \cite{cammi_multi-physics_2011} and set $\gamma=0.0144$. Notably, the
@@ -403,7 +413,7 @@ Please discuss.
        refinement (e.g. each element was split in half in both axial and radial directions,
        resulting in four new elements). The metric used to assess convergence was the integrated fast group
        flux. The result of the mesh convergence study is shown in
-       \cref{fig:mesh_convergence}. From refinement level 2 to 3 the metric changes by
+       figure []. From refinement level 2 to 3 the metric changes by
        only 1\%. We regard the results as sufficiently converged at level 2 for the
        purposes of our study; consequently, the results reported in the following
        section correspond to a radial element dimension of .1 cm and an axial element
@@ -462,13 +472,13 @@ fast fluxes is suspicious.
         to address this concern:
 
         Although the qualitative agreement is decent, there are discrepancies
-        between the \gls{MSRE} and Moltres calculations. As outlined above there
-        is an 11 K offset between \gls{MSRE} and Moltres calculations for the
+        between the MSRE and Moltres calculations. As outlined above there
+        is an 11 K offset between MSRE and Moltres calculations for the
         fuel temperature in the hottest channel. The peak graphite temperature
         is around 14 K larger in the Moltres calculation. Fast fluxes are larger
-        in the \gls{MSRE} calculation by roughly 20\%. These are not
+        in the MSRE calculation by roughly 20\%. These are not
         insignificant differences. However, given the differing nature of the
-        two models--no axial conduction in the \gls{MSRE} model, 2-group vs
+        two models--no axial conduction in the MSRE model, 2-group vs
         32-group neutronics, exclusion of the control rod thimbles in the
         Moltres calculation--we believe this variation in quantitative behavior
         is acceptable for the purpose of this work, which is to introduce
@@ -477,13 +487,13 @@ fast fluxes is suspicious.
         under active development. Trustworthy verification of Moltres results,
         such as spatial flux and temperature profiles, will require more
         detailed experimental measurements than those available in the
-        \gls{ORNL} technical reports, which contain only macroscopic data such
+        ORNL technical reports, which contain only macroscopic data such
         as steady-state power and heat-exchanger temperature
         drops. Additionally, detailed comparison with other modern modeling
         efforts such as that conducted in
         \cite{aufiero_development_2014,laureau_transient_2017} is desirable. In
         that vein, a collaboration is under way with the primary author of
-        \cite{aufiero_develoment_2014} to try and reproduce calculation results
+        \cite{aufiero_development_2014} to try and reproduce calculation results
         from OpenFOAM. We hope to publish the results of this comparison in a
         future work.
 \end{solution}
@@ -506,7 +516,7 @@ significantly the section, or remove it completely.
 
 \end{questions}
 \bibliographystyle{unsrt}
-\bibliography{Moltres}
+\bibliography{revise}
   \end{document}
 
   %
