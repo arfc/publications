@@ -81,13 +81,13 @@
 
 \begin{abstract}
 
-Moltres is a new physics application for modeling coupled physics in 
-fluid-fuelled, molten salt reactors. This paper describes its neutronics model, 
-thermal hydraulics model, and their coupling in the MOOSE framework. Neutron 
-and precursor equations are implemented using an Action system that allows use 
-of an arbitrary number of groups with no change in the input card. Results for 
-many-channel configurations in 2D-axisymmetric and 3D coordinates are presented 
-and compared against other coupled models as well as the Molten Salt Reactor 
+Moltres is a new physics application for modeling coupled physics in
+fluid-fuelled, molten salt reactors. This paper describes its neutronics model,
+thermal hydraulics model, and their coupling in the MOOSE framework. Neutron
+and precursor equations are implemented using an Action system that allows use
+of an arbitrary number of groups with no change in the input card. Results for
+many-channel configurations in 2D-axisymmetric and 3D coordinates are presented
+and compared against other coupled models as well as the Molten Salt Reactor
 Experiment.
 
 \end{abstract}
@@ -100,7 +100,7 @@ the inclusion of the \gls{MSR} among the Generation-IV reactor designs
 \cite{gif_generation_2008,gif_generation_2015}, this reactor concept has gained renewed research
 interest in the past decade, with many new nuclear companies proposing both
 fluid-fuelled and solid-fuelled commercial \gls{MSR} designs
-\cite{hyde_liquid_2015,leblanc_integral_2015,thorcon_-able_2017,scarlat_design_2014,transatomic_power_corporation_neutronics_2016}. 
+\cite{hyde_liquid_2015,leblanc_integral_2015,thorcon_-able_2017,scarlat_design_2014,transatomic_power_corporation_neutronics_2016}.
 The key advantages of \gls{MSR}s generally pertain to improved fuel utilization
 and reactor safety. In contrast to legacy reactors, only moderator fast neutron
 damage and fuel chemistry evolution limit burnup. A clever configuration of moderator
@@ -108,7 +108,7 @@ as in \cite{engel_conceptual_1980} can enable reactor operation without opening 
 for thirty or more years. Further, several fission products selectively precipitate onto
 nickel surfaces in fluoride salt, as documented in \cite{engel_conceptual_1980}, thus reducing
 unwanted neutron absorption. Lastly, the epithermal spectrum of graphite-moderated salt reactors
-incinerates plutonium more efficiently, thus reducing long-lived transuranic waste production \cite{engel_conceptual_1980}. 
+incinerates plutonium more efficiently, thus reducing long-lived transuranic waste production \cite{engel_conceptual_1980}.
 The sum of these characteristics implies the \gls{MSR} uniqely ameliorates spent fuel burden whilst
 extending nuclear fuel resources. To top all these benefits off, xenon transients become moot in
 \gls{MSR}s due to its insolubility in salt, thus narrowing transient analysis focus to thermalhydraulic
@@ -120,7 +120,7 @@ diffusion code DYN3D to consider drift of delayed neutron precursors alongside
 the reactor temperature profile, re-casting the extended code as
 DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. That work compared DYN3D-MSR against
 experimental \gls{MSRE} data and then used it to simulate local fuel channel
-blockages as well as local temperature perturbations. 
+blockages as well as local temperature perturbations.
 
 In a similar vein, Kophazi et al. used iterative coupling between in-house
 three-dimensional neutronic and one-dimensional heat conduction models DALTON
@@ -135,13 +135,13 @@ velocity field, used heterogeneous group constants in fuel and moderator
 regions, and employed the \gls{COMSOL} software package intrinsically designed
 for coupled multi-physics simulation.  Fiorina, Lathouwers, and their
 colleagues conducted a benchmarking exercise \cite{fiorina_modelling_2014} in
-which this Politecnico di Milano approach was expanded to a multi-channel model 
+which this Politecnico di Milano approach was expanded to a multi-channel model
 of the \gls{MSFR} and compared to code from the University of Delft
 \cite{de_zwaan_static_2007,van_der_linden_coupled_2012} based on the approach in
 \cite{kophazi_development_2009}. These models showed good agreement for
-multiple accident transients. Meanwhile, leveraging lessons learned from these 
-efforts has resulted in a multiscale approach from Zanetti et al. 
-\cite{zanetti_geometric_2015} successfully combines high and low geometric 
+multiple accident transients. Meanwhile, leveraging lessons learned from these
+efforts has resulted in a multiscale approach from Zanetti et al.
+\cite{zanetti_geometric_2015} successfully combines high and low geometric
 fidelity for graphite-moderated \glspl{MSR}.
 
 More recently, Aufiero et al. \cite{aufiero_development_2014} have begun to
@@ -157,12 +157,12 @@ The present work introduces the open source simulation tool, Moltres
 \cite{lindsay_moltres_2017}, for simulating \glspl{MSR}.  By implementing
 deterministic neutronics and thermal hydraulics in the context of the
 \gls{MOOSE} finite element modeling framework, Moltres solves arbitrary-group
-neutron diffusion, temperature, and precursor governing equations on a single 
-mesh in anywhere from one to three dimensions and can be deployed on an 
+neutron diffusion, temperature, and precursor governing equations on a single
+mesh in anywhere from one to three dimensions and can be deployed on an
 arbitrary number of processing units.
 
-Moltres is an open source code licensed under \gls{LGPL} terms so the 
-\gls{MSR} community can freely use, interrogate, and improve it.  Its openness 
+Moltres is an open source code licensed under \gls{LGPL} terms so the
+\gls{MSR} community can freely use, interrogate, and improve it.  Its openness
 is a defining characteristic and promotes
 quality through transparency and ease of peer review. In the era of
 GitHub \cite{github_build_2017} and international scientific collaboration,
@@ -171,21 +171,21 @@ engineering simulation capability to enable discovery and support the regulatory
 needs presented by new reactor designs. In that vein, Moltres uses
 \mintinline{latex}{git} for version control, integration testing to protect
 developed physics capabilities, and a C++ object-oriented design to
-enable extension and code reuse. While export control laws have the potential 
-to restrict openness of neutron transport software that is dual use, there is 
-no reason to believe that Moltres could be used for weapons proliferation. 
-Moltres requires that cross sections be provided by the user, implements a 
-combination of algorithms that can be easily derived from open literature, is 
-tailored to molten salt reactor physics. Accordingly, Moltres joins a veritable 
-parade of open academic nuclear engineering software such as 
-OpenMC \cite{romano_openmc:_2015}, OpenMOC \cite{boyd_openmoc_2014}, and 
-PyNE \cite{bates_pyne_2014,biondo_quality_2014}. 
+enable extension and code reuse. While export control laws have the potential
+to restrict openness of neutron transport software that is dual use, there is
+no reason to believe that Moltres could be used for weapons proliferation.
+Moltres requires that cross sections be provided by the user, implements a
+combination of algorithms that can be easily derived from open literature, is
+tailored to molten salt reactor physics. Accordingly, Moltres joins a veritable
+parade of open academic nuclear engineering software such as
+OpenMC \cite{romano_openmc:_2015}, OpenMOC \cite{boyd_openmoc_2014}, and
+PyNE \cite{bates_pyne_2014,biondo_quality_2014}.
 
-Moreover, Moltres depends on the \gls{MOOSE} 
-framework, \cite{gaston_physics-based_2015} another \gls{LGPL} code that itself 
+Moreover, Moltres depends on the \gls{MOOSE}
+framework, \cite{gaston_physics-based_2015} another \gls{LGPL} code that itself
 leans on LibMesh \cite{kirk_libmesh:_2006}, a
 \gls{LGPL} finite element library, and PetSc \cite{satish_balay_petsc_2015}, a
-\gls{BSD}-licensed toolkit for solving nonlinear equations yielded by 
+\gls{BSD}-licensed toolkit for solving nonlinear equations yielded by
 discretizing PDEs. \gls{MOOSE} and LibMesh translate weak PDE forms defined by
 applications (e.g. Moltres) into residual and Jacobian
 functions. These functions are the inputs into PetSc Newton-Raphson solution routines. All
@@ -194,7 +194,7 @@ massively-parallel cluster-computing platforms. \gls{MOOSE} applications by
 default use monolithic and implicit methods ideal for closely-coupled
 and multi-scale physics, such as the model problem described
 in this work. However, Moltres can also use explicit
-time-stepping routines as well as segregated solution methods, making it 
+time-stepping routines as well as segregated solution methods, making it
 extensible to myriad future modeling challenges.
 
 \section{Methods}
@@ -208,7 +208,7 @@ Jacobian contributions corresponding to individual pieces of governing
 equations. Developing the code-base in this way allows modular construction
 of equation systems; e.g. the kernel used to represent heat
 conduction can also represent generic chemical diffusion. Moltres
-also features neutron and precursor ``actions.'' These actions automatically 
+also features neutron and precursor ``actions.'' These actions automatically
 construct the systems of equations for an arbitrary number of neutron and
 precursor groups. Therefore, as long as group constants are provided in an appropriate
 tabular form, a user only has to modify a couple of lines in a Moltres input
@@ -295,7 +295,7 @@ In the moderator, the governing equation for temperature is given by:
 
 In this work, $Q_g = \gamma V_{\text{core}}^{-1} \int_{\text{core}}Q_f \diff V$, where $\gamma$ is a factor
 representing heat dissipation by gamma and neutron irradiation in the moderator,
-called the graphite to fuel power density ratio. \cite{robertson_conceptual_1971}'s
+called the graphite to fuel power density ratio. Robertson's \cite{robertson_conceptual_1971}
 original \gls{MSBR} analysis included a calculation of $\gamma$.
 \cite{krepel_dyn3d-msr_2007,zhang_development_2009,cammi_multi-physics_2011} all
 calculated gamma heating through such a factor. We follow \cite{cammi_multi-physics_2011}
@@ -306,7 +306,7 @@ Knowledge of fision heat rates, however, require knowledge of neutron fluxes, im
 group constants.
 
 Group constants are generated by the modeler with either Serpent
-\cite{leppanen_serpent_2015} or SCALE \cite{dehart_reactor_2011}. Moltres 
+\cite{leppanen_serpent_2015} or SCALE \cite{dehart_reactor_2011}. Moltres
 interpolates group constant temperature dependence from prepared tables, which must be
 constructed separately for fuel and moderator regions. For this report,
 we generated group constants with SCALE with
@@ -320,7 +320,7 @@ input files used for generating the group constants appear in the
 \subsection{Performance}
 
 Building on the massively parallelizable \gls{MOOSE} framework allows Moltres
-to run on super-computing platforms like the Blue Waters supercomputer at the 
+to run on super-computing platforms like the Blue Waters supercomputer at the
 \gls{NCSA}. For some
 three-dimensional simulations, the number of
 elements in the mesh and total number of degrees of freedom exceed one million
@@ -338,7 +338,18 @@ dimensional axisymmetric one for rapid proof of concept. To approximately simula
 structure of the \gls{MSRE} under 2D conditions, a geometry is constructed with 14 repeating
 fuel-moderator regions, as shown in \Cref{fig:geom}. The fuel and moderator
 radii are chosen such that the resulting area/volume fraction of fuel is 0.225 as
-for the \gls{MSRE}.
+for the \gls{MSRE}. The base 2D mesh has a characteristic size of 10 cm in the axial
+direction and .4 cm in the radial direction to capture the variation from moving
+between fuel and moderator subdomains. To determine whether results were
+converged, a mesh convergence study was conducted with up to three levels of isotropic
+refinement (e.g. each element was in half in both axial and radial directions,
+resulting in four new elements). The metric used to assess convergence was the integrated fast group
+flux. The result of the mesh convergence study is shown in
+\cref{fig:mesh_convergence}. From refinement level 2 to 3 the metric changes by
+only 1\%. We regard the results as sufficiently converged at level 2 for the
+purposes of our study; consequently, the results reported in the following
+section correspond to a radial element dimension of .1 cm and an axial element
+dimension of 2.5 cm.
 
 \begin{figure}[htpb]
   \centering
@@ -347,8 +358,15 @@ for the \gls{MSRE}.
   \caption{A sketch of the \gls{MSR} model geometry}
 \end{figure}
 
+\begin{figure}[htpb]
+  \centering
+  \includegraphics{mesh_convergence.eps}
+  \label{fig:mesh_convergence}
+  \caption{Plot of the integrated fast group flux as the mesh in isotropically refined.}
+\end{figure}
 
-The model fuel composition is the \gls{BOL} enriched uranium composition in the 
+
+The model fuel composition is the \gls{BOL} enriched uranium composition in the
 \gls{MSRE} and is given in \Cref{table:comp} \cite{robertson_msre_1965}.
 
 
@@ -373,7 +391,7 @@ The model fuel composition is the \gls{BOL} enriched uranium composition in the
 Other simulation inputs are outlined in \Cref{table:params}.
 We chose a reactor simulation height of 151.75 cm to produce an
 approximately critical reactor configuration corresponding to \gls{BOL}
-\gls{MSRE} composition. This differs from the actual \gls{MSRE} height, which 
+\gls{MSRE} composition. This differs from the actual \gls{MSRE} height, which
 was 162.56 cm.
 
 \begin{table}[htpb]
@@ -406,7 +424,7 @@ was 162.56 cm.
 
 \section{Results \& Discussion}
 
-Group fluxes are shown in \Cref{fig:group1,fig:group2}. The cosinusoidal shapes 
+Group fluxes are shown in \Cref{fig:group1,fig:group2}. The cosinusoidal shapes
 in radial and
 axial directions are caused by the vacuum boundary conditions. Both the fast and thermal fluxes are striated, with
 the fast group preferring the fuel and the thermal group preferring the moderator.
@@ -427,8 +445,8 @@ the fast group preferring the fuel and the thermal group preferring the moderato
   \label{fig:group2}
 \end{figure}
 
-In \Cref{fig:temp} the temperature rises along the reactor height because of 
-fuel advection. The temperature gradient is negative in the 
+In \Cref{fig:temp} the temperature rises along the reactor height because of
+fuel advection. The temperature gradient is negative in the
 radial direction, as expected.
 
 \begin{figure}[htpb]
@@ -512,21 +530,21 @@ cores.
 
 \Cref{fig:temp_compare} shows a comparison between Moltres predicted temperature
 profiles with cosinusoidal gamma heating and \gls{MSRE} design calculations
-\cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite. 
-The \gls{ORNL} \gls{MSRE} design calculations, conducted in 
-1963-1964,  were 32-group calculations using legacy computing tools (GAM-I, MODRIC, and 
-EQUIPOSE, and THERMOS). Those calculations were conducted in two-dimensional R-Z 
-geometry (a cylinder with angular symmetry), with 20 spatial regions. Notably, 
-one limitation of the \gls{ORNL} model was the control rod thimbles that, due to 
-angular symmetry, were effectively a cylindrical shell of metal. 
+\cite{briggs_molten-salt_1964} in the hottest channel and adjacent graphite.
+The \gls{ORNL} \gls{MSRE} design calculations, conducted in
+1963-1964,  were 32-group calculations using legacy computing tools (GAM-I, MODRIC, and
+EQUIPOSE, and THERMOS). Those calculations were conducted in two-dimensional R-Z
+geometry (a cylinder with angular symmetry), with 20 spatial regions. Notably,
+one limitation of the \gls{ORNL} model was the control rod thimbles that, due to
+angular symmetry, were effectively a cylindrical shell of metal.
 
 The profile shapes are in decent qualitative agreement with both Moltres and
 \gls{MSRE} calculations showing a peak in graphite temperature before the
 reactor outlet. Fuel temperature increases monotonically in both Moltres and
 \gls{MSRE} models. In the \gls{MSRE} design, the moderator
-temperature at the reactor inlet is about 20 degrees Fahrenheit larger than the
+temperature at the reactor inlet is about 11 K larger than the
 fuel temperature, whereas the temperatures are about the same in the Moltres
-model. This difference is likely because the \gls{MSRE} design model 
+model. This difference is likely because the \gls{MSRE} design model
 neglected axial heat conduction \cite[p. 99]{briggs_molten-salt_1964}.
 
 \begin{figure}[htpb]
@@ -570,7 +588,8 @@ calculations include the lower and upper plena which are not included in this
 report's Moltres model. Consequently, the \gls{MSRE} lines extend to lower and
 higher z-values than the Moltres lines. Additionally, absorption
 in the plena cause deviation of the thermal flux from a sinusoidal shape in the
-\gls{MSRE} design case.
+\gls{MSRE} design case. The peak power density from the \gls{MSRE} calculation
+is 31 kW/L; the corresponding value for Moltres is 29 kW/L.
 
 \begin{figure}[htpb]
     \centering
@@ -580,20 +599,45 @@ in the plena cause deviation of the thermal flux from a sinusoidal shape in the
     \label{fig:axial_fluxes_compare}
 \end{figure}
 
+Although the qualitative agreement is decent, there are discrepancies between
+the \gls{MSRE} and Moltres calculations. As outlined above there is an 11 K
+offset between \gls{MSRE} and Moltres calculations for the fuel temperature in
+the hottest channel. The peak graphite temperature is around 14 K larger in the
+Moltres calculation. Fast fluxes are larger in the \gls{MSRE} calculation by
+roughly 20\%. These are not insignificant differences. However, given the
+differing nature of the two models--no axial conduction in the \gls{MSRE} model,
+2-group vs 32-group neutronics, exclusion of the control rod thimbles in the
+Moltres calculation--we believe this variation in quantitative behavior is
+acceptable for the purpose of this work, which is to introduce Moltres as a
+simulation tool. One additional feature that could influence Moltres results is
+inclusion of precursor decay heat; this is under active development. Trustworthy
+verification of Moltres results, such as spatial flux and temperature profiles,
+will require more detailed experimental measurements than those available in the
+\gls{ORNL} technical reports, which contain only macroscopic data such as
+steady-state power and heat-exchanger temperature drops. Additionally, detailed
+comparison with other modern modeling efforts such as that conducted in
+\cite{aufiero_development_2014,laureau_transient_2017} is desirable. In that
+vein, a collaboration is under way with the primary author of
+\cite{aufiero_develoment_2014} to try and reproduce calculation results from
+OpenFOAM. Further, Collins from \cite{turner_virtual_2016} has expressed interest
+in comparing Moltres results against MSR-VERA in order to quantify errors resulting
+from usage of multigroup diffusion in comparison to 2D-1D method of characteristics fine group solutions.
+We hope to publish the results of these comparisons in a future work.
+
 \subsection{Scaling performance}
 
 Parallelization in Moltres is implemented via LibMesh, which includes a set of
 utilities for massively parallel finite element based computations, including
 mesh input/output, a finite element library, and an interface for connections with
-solver packages. Employing LibMesh provides Moltres
+solver packages. Employing LibMesh provides Moltres with
 significant flexibility including the ability to swap out solver libraries
 such as PetSc, which includes an expanding suite of parallel linear and
 nonlinear solvers. Problem domain decomposition relies on LibMesh mesh
 adaptation capabilities for running on a specific number of processors and
 can either be performed manually before the start of the simulation or
-automatically at the parameters of computation. 
+automatically at the parameters of computation.
 
-We conducted strong and weak scaling studies to characterize parallel 
+We conducted strong and weak scaling studies to characterize parallel
 performance in Moltres.
 In case of strong scaling, the problem size remains fixed but the number of
 processors is increased. Strong scaling studies seek to identify an
@@ -602,34 +646,34 @@ rapid and power-efficient computation for a given problem. We measured
 Moltres strong scaling with a simple 2D axisymmetric
 case for various problem sizes separately for intra-node (2,820; 5,640;
 11,280 and 28,200 elements) and extra-node (86,655; 173,310; 317,735;
-664,355 elements) setup on Blue Waters' XK7 nodes (two AMD 6276 Interlagos 
+664,355 elements) setup on Blue Waters' XK7 nodes (two AMD 6276 Interlagos
 CPU per node, 16 floating-point bulldozer core units per node or 32 "integer"
-cores per node, nominal clock speed is 2.45 GHz). 
+cores per node, nominal clock speed is 2.45 GHz).
 
 \Cref{fig:intra_strong_scaling} shows the simulation speed in seconds
-per element vs. the number of cores on 1 node (maximum 32 cores). Up to 8 
+per element vs. the number of cores on 1 node (maximum 32 cores). Up to 8
 cores, larger problems required considerably more time per
 element because of cache overhead. However, beyond 8 cores, scaling demonstrates
 asymptotic dependence on the number of processors due to increasing
 communication costs. The best parallel efficiency for the intra-node study
 is approximately 89\% and has been achieved for the largest problem
-(28,200 elements). 
+(28,200 elements).
 
 \begin{figure}[htpb]
   \centering
   \includegraphics[width=\maxwidth{\textwidth}]{intra-node_strong.png}
-  \caption{Moltres intra-node strong scaling efficiency for various problem 
+  \caption{Moltres intra-node strong scaling efficiency for various problem
         sizes, for $n_{cores} \in [1,32]$.}
   \label{fig:intra_strong_scaling}
 \end{figure}
 
 \Cref{fig:extra_strong_scaling} shows Moltres strong scaling up to 768
 processors. This takes into account communication costs between nodes.
-Similar to the intra-node study, when fewer than 128 cores were used, 
-cache overhead causes performance slow down for larger problems. However, 
+Similar to the intra-node study, when fewer than 128 cores were used,
+cache overhead causes performance slow down for larger problems. However,
 beyond 256 cores, the simulation time per element remains almost constant
-for small cases (86,655 and 173,310 elements) and slighly decreases for the 
-two larger problems. For extra-node scaling, parallel efficiency also grows 
+for small cases (86,655 and 173,310 elements) and slighly decreases for the
+two larger problems. For extra-node scaling, parallel efficiency also grows
 with the problem size and reaches an optimal value of 73\% for 664,355 elements.
 
 \begin{figure}[htpb]
@@ -650,8 +694,8 @@ weak-scaling tests on Blue Waters, keeping the workload constant at
 581, 985, 1970 and 3940 elements per core. \Cref{fig:intra_weak} shows
 Moltres weak scaling performance measured for $n_{cores} \in [1,32]$ within
 one Blue Waters node and \Cref{fig:extra_weak} demonstrates performance
-for $n_{cores} \in [32,128]$. As expected, the largest drop in performance 
-occurs when the number of cores increases from one to $\approx$ 8, which 
+for $n_{cores} \in [32,128]$. As expected, the largest drop in performance
+occurs when the number of cores increases from one to $\approx$ 8, which
 corresponds to switching from no communication to a 2-D domain
 decomposition. The further reduction in performance of only about 50\%
 over a range of 32 cores is likely caused by increased communication
@@ -666,7 +710,7 @@ bandwidth costs.
   \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
         per processor, and $n_{cores}\in[1,32]$.}
   \label{fig:intra_weak}
-\end{figure} 
+\end{figure}
 
 \begin{figure}[htpb]
   \centering
@@ -674,19 +718,52 @@ bandwidth costs.
   \caption{Weak scaling performance of Moltres on Blue Waters, in seconds per element vs. number of processors, for a constant number of elements
         per processor, for and $n_{cores}\in[32,128]$.}
   \label{fig:extra_weak}
-\end{figure} 
+\end{figure}
 
 Moltres scalability study results clearly indicate that parallelization
 using LibMesh's automatic domain decomposition is good, but not perfectly
-efficient. This scaling performance is satisfactory for \gls{MSR} simulations 
+efficient. This scaling performance is satisfactory for \gls{MSR} simulations
 approached thus far and improved parallel performance would require further optimization
 within LibMesh.  Moreover, Moltres is memory-bound and therefore very sensitive to host memory and memory
 bandwidth. Consequently, if improved performance is needed, one could consider a transition from CPUs
-computing to GPU-accelerated computing because GPUs operate on the fly with 
+computing to GPU-accelerated computing because GPUs operate on the fly with
 global memory, avoiding CPU cache storage issues. Another way
 to improve parallel performance is to force the solver to use
-``older'' information from previous iterations. However, this has been shown to 
-slow convergence in terms of iterations and increased workload \cite{satish_balay_petsc_2015}.
+``older'' information from previous iterations. However, this has been shown to
+slow convergence in terms of iterations and increased workload
+\cite{satish_balay_petsc_2015}.
+
+\subsection{Monolithic vs. Segregated Solution}
+
+Relative performance of monolithic vs. segregated solution methods for large
+systems of equations is an active area of research. Monolithic solvers are
+generally regarded to be more robust than their segregated counterparts but are
+often perceived as being too expensive for large-scale problems. Work conducted
+by Heil et. al. \cite{heil2008solvers} demonstrates that monolithic solvers are
+competitive with segregated techniques for weakly coupled physics; moreover, for
+strongly coupled problems the segregated methods struggle to achieve
+convergence. It is noted by the authors that use of monolithic solvers
+on large 3D problems requires efficient preconditioning to be effective.
+
+Monolithic and segregated solution techniques were compared in Moltres using the
+2D-axisymmetric problem but with delayed neutron precursors removed. In this
+case starting from arbitrary initial conditions the neutron multiplication
+exhibits damped oscillation around the critical state. Feedback between the
+power deposition by neutrons and temperature modification of neutron macroscopic
+group constants make this a very tightly coupled problem. Using adaptive time
+stepping based on the number of non-linear iterations at each time step,
+steady-state neutron fluxes and temperature profiles are achieved in 358 time
+steps and in 4 minutes of compute time on a single core using full-coupling
+(e.g. neutron fluxes and temperature in the same matrix). Alternatively,
+a solution was also attempted splitting neutron and temperature solves and
+performing Picard iterations until convergence. Ultimately, a steady-state
+solution could not be achieved using the segregated method. After 670
+time steps, the Picard solve hits the maximum number of allowed iterations (100)
+after only halving the neutronics residual. Before reaching the fail-point, the
+segregated solution required numerous Picard iterations to converge (68, 37, 22
+for the previous three time-steps for example), resulting in a total compute
+time of 37 minutes before failure. These results suggest that for solving tight coupling
+between neutronics and temperature, a monololithic solve approach is more effective.
 
 \section{Conclusion}
 
@@ -723,14 +800,14 @@ All figures in this paper were generated using the python package yt
 rasterized \gls{MSRE} line plots into point data for plotting alongside Moltres
 data.
 
-This work was supported by the University of Illinois Department of Nuclear, 
-Plasma, and Radiological Engineering, the National Center for Supercomputing 
-Applications, and the University of Illinois Blue Waters Professors program. 
-Undergraduate researcher Gavin Ridley was supported through NSF REU Site award 
-1659702, ``INCLUSION - Incubating a New Community of Leaders Using Software, 
+This work was supported by the University of Illinois Department of Nuclear,
+Plasma, and Radiological Engineering, the National Center for Supercomputing
+Applications, and the University of Illinois Blue Waters Professors program.
+Undergraduate researcher Gavin Ridley was supported through NSF REU Site award
+1659702, ``INCLUSION - Incubating a New Community of Leaders Using Software,
 Inclusion, Innovation, Interdisciplinary and OpeN-Science.''
 
-Finally, the authors would like to thank Matthew Turk and the Data Exploration 
+Finally, the authors would like to thank Matthew Turk and the Data Exploration
 Lab for co-supporting Dr. Lindsay during his postdoctoral appointment.
 
 \clearpage
