@@ -332,7 +332,24 @@ significant contribution to the scientific community, since many of the
 currently available tools employ segregated solvers, and since the advantages
 and disadvantages of a fully coupled solver are often a subject of discussion.
 \begin{solution}
- <++>
+        It is definitely true that for many problems an operator-splitting or
+        segregated solution method will be faster and require less
+        computational resources. A fully-coupled Newton's method is
+        computationally expensive. We could in theory use fewer cores to solve
+        our million DOF problems and have the problem run longer. However,
+        particularly in our department and with our collaboration with Illinois's
+        National Center for Supercomputing Applications, we are encouraged to
+        use the computational resources at our disposal, so we elect to run our
+        large problems as quickly as possible on Blue Waters. Additionally, the
+        developers of PetSc recommend using approximately 20k degrees of freedom
+        per process, which is a rule of thumb we generally adhere to.
+
+        For coupling between neutrons and temperature, we performed a comparison
+        between monolothic and segregated solution techniques. The results are
+        outlined in a new results subsection placed immediately before the
+        Conclusion section. In brief, for this problem which exhibits such strong
+        feedback between physics, we were unable to achieve convergence using the
+        segregated method.
 \end{solution}
 
 

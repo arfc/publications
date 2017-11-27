@@ -681,7 +681,40 @@ computing to GPU-accelerated computing because GPUs operate on the fly with
 global memory, avoiding CPU cache storage issues. Another way
 to improve parallel performance is to force the solver to use
 ``older'' information from previous iterations. However, this has been shown to
-slow convergence in terms of iterations and increased workload \cite{satish_balay_petsc_2015}.
+slow convergence in terms of iterations and increased workload
+\cite{satish_balay_petsc_2015}.
+
+\subsection{Monolithic vs. Segregated Solution}
+
+Relative performance of monolithic vs. segregated solution methods for large
+systems of equations is an active area of research. Monolithic solvers are
+generally regarded to be more robust than their segregated counterparts but are
+often perceived as being too expensive for large-scale problems. Work conducted
+by Heil et. al. \cite{heil2008solvers} demonstrates that monolithic solvers are
+competitive with segregated techniques for weakly coupled physics; moreover, for
+strongly coupled problems the segregated methods struggle to achieve
+convergence. It is noted by the authors that use of monolithic solvers
+on large 3D problems requires efficient preconditioning to be effective.
+
+Monolithic and segregated solution techniques were compared in Moltres using the
+2D-axisymmetric problem but with delayed neutron precursors removed. In this
+case starting from arbitrary initial conditions the neutron multiplication
+exhibits damped oscillation around the critical state. Feedback between the
+power deposition by neutrons and temperature modification of neutron macroscopic
+group constants make this a very tightly coupled problem. Using adaptive time
+stepping based on the number of non-linear iterations at each time step,
+steady-state neutron fluxes and temperature profiles are achieved in 358 time
+steps and in 4 minutes of compute time on a single core using full-coupling
+(e.g. neutron fluxes and temperature in the same matrix). Alternatively,
+a solution was also attempted splitting neutron and temperature solves and
+performing Picard iterations until convergence. Ultimately, a steady-state
+solution could not be achieved using the segregated method. After 670
+time-steps, the Picard solve hits the maximum number of allowed iterations (100)
+after only halving the neutronics residual. Before reaching the fail-point, the
+segregated solution required numerous Picard iterations to converge (68, 37, 22
+for the previous three time-steps for example), resulting in a total compute
+time of 37 minutes before failure. These results suggest that for solving tight coupling
+between neutronics and temperature, a monololithic solve approach is more effective.
 
 \section{Conclusion}
 
