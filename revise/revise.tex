@@ -119,7 +119,7 @@
    % \address{Address\fnref{label3}}
    % \fntext[label3]{}
 
-\title{Introduction to Moltres: an Application for Simulation of Molten Salt 
+\title{Introduction to Moltres: an Application for Simulation of Molten Salt
         Reactors}
 
    % use optional labels to link authors explicitly to addresses:
@@ -137,8 +137,8 @@
 % \end{frontmatter}
 
 \section*{Review General Response}
-We would like to again thank the reviewers for their detailed assessment of 
-this paper. 
+We would like to again thank the reviewers for their detailed assessment of
+this paper.
 
 
 \section*{Reviewer 1}
@@ -157,118 +157,146 @@ include a comparison either with experimental results or with other
 state-of-the-art tools.
 \begin{solution}
         Thank you for your kind review.
-        The statement concerning `unmatched' fidelity has been removed 
-        entirely and the bibliography has been expanded significantly. See the 
+        The statement concerning `unmatched' fidelity has been removed
+        entirely and the bibliography has been expanded significantly. See the
         responses below for more detail..
 \end{solution}
 
 
 \question In the introduction, the authors mention that:
-``Two key advantages offered by the fluid-fuelled MSR are improved fuel 
-        utilization and no radiation damage constraint on attainable fuel 
-        burn-up. Together, these attributes result in significantly reduced 
+``Two key advantages offered by the fluid-fuelled MSR are improved fuel
+        utilization and no radiation damage constraint on attainable fuel
+        burn-up. Together, these attributes result in significantly reduced
         core fissile inventories and spent nuclear fuel mass''
 However, the fissile inventory is not necessarily related to fuel burnup and fuel utilization. It can actually be  very high in chloride-based fast-spectrum MSRs.
 \begin{solution}
         <++>
 \end{solution}
 
-\question The introduction includes a review of previous work done on the subject. However, few important (and recent) works have not been mentioned. In particular, significant efforts have been spent in the frame of the Euratom Evol project, and the results have been published in several papers, including e.g.,:
+\question The introduction includes a review of previous work done on the
+subject. However, few important (and recent) works have not been mentioned. In
+particular, significant efforts have been spent in the frame of the Euratom Evol
+project, and the results have been published in several papers, including e.g.,:
 
-Manuele Aufiero, Antonio Cammi, Olivier Geoffroy, Mario Losa, Lelio Luzzi, Marco E. Ricotti, Hervé Rouch, Development of an OpenFOAM model for the Molten Salt Fast Reactor transient analysis, Chemical Engineering Science, Volume 111, 2014, Pages 390-401, ISSN 0009-2509, http://dx.doi.org/10.1016/j.ces.2014.03.003.
+Manuele Aufiero, Antonio Cammi, Olivier Geoffroy, Mario Losa, Lelio Luzzi, Marco
+E. Ricotti, Hervé Rouch, Development of an OpenFOAM model for the Molten Salt
+Fast Reactor transient analysis, Chemical Engineering Science, Volume 111, 2014,
+Pages 390-401, ISSN 0009-2509, http://dx.doi.org/10.1016/j.ces.2014.03.003.
 (http://www.sciencedirect.com/science/article/pii/S0009250914001146)
 
-Carlo Fiorina, Danny Lathouwers, Manuele Aufiero, Antonio Cammi, Claudia Guerrieri, Jan Leen Kloosterman, Lelio Luzzi, Marco Enrico Ricotti, Modelling and analysis of the MSFR transient behaviour, Annals of Nuclear Energy, Volume 64, 2014, Pages 485-498, ISSN 0306-4549, http://dx.doi.org/10.1016/j.anucene.2013.08.003.
+Carlo Fiorina, Danny Lathouwers, Manuele Aufiero, Antonio Cammi, Claudia
+Guerrieri, Jan Leen Kloosterman, Lelio Luzzi, Marco Enrico Ricotti, Modelling
+and analysis of the MSFR transient behaviour, Annals of Nuclear Energy, Volume
+64, 2014, Pages 485-498, ISSN 0306-4549,
+http://dx.doi.org/10.1016/j.anucene.2013.08.003.
 (http://www.sciencedirect.com/science/article/pii/S0306454913004118)
 
-Matteo Zanetti, Antonio Cammi, Carlo Fiorina, Lelio Luzzi, A Geometric Multiscale modelling approach to the analysis of MSR plant dynamics, Progress in Nuclear Energy, Volume 83, 2015, Pages 82-98, ISSN 0149-1970, http://dx.doi.org/10.1016/j.pnucene.2015.02.014.
+Matteo Zanetti, Antonio Cammi, Carlo Fiorina, Lelio Luzzi, A Geometric
+Multiscale modelling approach to the analysis of MSR plant dynamics, Progress in
+Nuclear Energy, Volume 83, 2015, Pages 82-98, ISSN 0149-1970,
+http://dx.doi.org/10.1016/j.pnucene.2015.02.014.
 
-A. Laureau, D. Heuer, E. Merle-Lucotte, P.R. Rubiolo, M. Allibert, M. Aufiero, Transient coupled calculations of the Molten Salt Fast Reactor using the Transient Fission Matrix approach, Nuclear Engineering and Design, Volume 316, 2017, Pages 112-124, ISSN 0029-5493, http://dx.doi.org/10.1016/j.nucengdes.2017.02.022.
+A. Laureau, D. Heuer, E. Merle-Lucotte, P.R. Rubiolo, M. Allibert, M. Aufiero,
+Transient coupled calculations of the Molten Salt Fast Reactor using the
+Transient Fission Matrix approach, Nuclear Engineering and Design, Volume 316,
+2017, Pages 112-124, ISSN 0029-5493,
+http://dx.doi.org/10.1016/j.nucengdes.2017.02.022.
 
 Other important works have been prepared in China in the frame of the Chinese MSR program.
 
-The authors should deepen the discussion on the current state of the art, mentioning at least the several efforts spent in the Evol project, and re-balancing their claims accordingly.
+The authors should deepen the discussion on the current state of the art,
+mentioning at least the several efforts spent in the Evol project, and
+re-balancing their claims accordingly.
 \begin{solution}
         Thank you for the excellent recommendations. The new text reads thus:
 
 
-        Simulation tools developed by many authors successfully describe 
+        Simulation tools developed by many authors successfully describe
         steady-state and
-        transient behavior of myriad MSR concepts. Krepel et al. extended 
+        transient behavior of myriad MSR concepts. Krepel et al. extended
         the in-house LWR
-        diffusion code DYN3D to consider drift of delayed neutron precursors 
+        diffusion code DYN3D to consider drift of delayed neutron precursors
         alongside
         the reactor temperature profile, re-casting the extended code as
-        DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. That work compared DYN3D-MSR 
+        DYN3D-MSR \cite{krepel_dyn3d-msr_2007}. That work compared DYN3D-MSR
         against
-        experimental MSRE data and then used it to simulate local fuel 
+        experimental MSRE data and then used it to simulate local fuel
         channel
-        blockages as well as local temperature perturbations. 
+        blockages as well as local temperature perturbations.
 
-        In a similar vein, Kophazi et al. used iterative coupling between 
+        In a similar vein, Kophazi et al. used iterative coupling between
         in-house
-        three-dimensional neutronic and one-dimensional heat conduction models 
+        three-dimensional neutronic and one-dimensional heat conduction models
         DALTON
         and THERM to analyze normal MSRE operation as well as
-        channel-blocking-incident transients \cite{kophazi_development_2009}. 
+        channel-blocking-incident transients \cite{kophazi_development_2009}.
         The
-        Kophazi model added entrance effects of heat transfer coefficients as 
+        Kophazi model added entrance effects of heat transfer coefficients as
         well as
-        thermal coupling between fuel channels through moderator heat 
+        thermal coupling between fuel channels through moderator heat
         conduction. More
-        recently, Cammi et al. performed a 2D-axisymmetric single-channel 
+        recently, Cammi et al. performed a 2D-axisymmetric single-channel
         analysis of
-        the MSBR using the commercial finite element package COMSOL 
+        the MSBR using the commercial finite element package COMSOL
         Multiphysics
-        \cite{cammi_multi-physics_2011}. That work directly solved the fuel 
+        \cite{cammi_multi-physics_2011}. That work directly solved the fuel
         salt
-        velocity field, used heterogeneous group constants in fuel and 
+        velocity field, used heterogeneous group constants in fuel and
         moderator
-        regions, and employed the COMSOL software package intrinsically 
+        regions, and employed the COMSOL software package intrinsically
         designed
         for coupled multi-physics simulation.  Fiorina, Lathouwers, and their
-        colleagues conducted a benchmarking exercise 
+        colleagues conducted a benchmarking exercise
         \cite{fiorina_modelling_2013} in
-        which this Politecnico di Milano approach was expanded to a 
-        multi-channel model 
+        which this Politecnico di Milano approach was expanded to a
+        multi-channel model
         of the MSFR and compared to code from the University of Delft
-        \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach 
+        \cite{de_zwaan_static_2007,van_der_linden_2012} based on the approach
         in
         \cite{kophazi_development_2009}. These models showed good agreement for
-        multiple accident transients. Meanwhile, leveraging lessons learned 
-        from these 
-        efforts has resulted in a multiscale approach from Zanetti et al. 
-        \cite{zanetti_geometric_2015} successfully combines high and low 
-        geometric 
+        multiple accident transients. Meanwhile, leveraging lessons learned
+        from these
+        efforts has resulted in a multiscale approach from Zanetti et al.
+        \cite{zanetti_geometric_2015} successfully combines high and low
+        geometric
         fidelity for graphite-moderated MSRs.
 
-        More recently, Aufiero et al. \cite{aufiero_development_2014} have 
+        More recently, Aufiero et al. \cite{aufiero_development_2014} have
         begun to
-        approach transient simulations in the MSFR within the finite 
+        approach transient simulations in the MSFR within the finite
         volume
-        OpenFOAM multiphysics toolkit \cite{weller_tensorial_1998}.  This 
+        OpenFOAM multiphysics toolkit \cite{weller_tensorial_1998}.  This
         approach
-        benefits from pre-implemented turbulence models available in the 
+        benefits from pre-implemented turbulence models available in the
         OpenFOAM
-        library and captures the full-core three-dimensional geometry of the 
+        library and captures the full-core three-dimensional geometry of the
         reactor
-        primary circuit.  OpenFOAM CFD has additionally been shown by 
+        primary circuit.  OpenFOAM CFD has additionally been shown by
         Laureau et
-        al. \cite{laureau_transient_2017} to couple well with Transient Fission 
+        al. \cite{laureau_transient_2017} to couple well with Transient Fission
         Matrix
         neutronics within the MSFR.
 \end{solution}
 
-\question The authors write:
-``Moltres is devoted to previously unmatched fidelity in coupled neutronics and 
-        thermal hydraulics MSR simulation.''
-This is an overstatement as codes with similar degree of fidelity have been written in the past. This is the case of the tools developed in the frame of the Evol project, as well as e.g. the work from Aufiero on the coupling between OpenFOAM and Serpent (that the authors mention earlier in the introduction). The authors are required to modify this sentence based on a better bibliographical research.
+\question The authors write: ``Moltres is devoted to previously unmatched
+fidelity in coupled neutronics and thermal hydraulics MSR simulation.''  This is
+an overstatement as codes with similar degree of fidelity have been written in
+the past. This is the case of the tools developed in the frame of the Evol
+project, as well as e.g. the work from Aufiero on the coupling between OpenFOAM
+and Serpent (that the authors mention earlier in the introduction). The authors
+are required to modify this sentence based on a better bibliographical research.
 \begin{solution}
-        That statement has been removed and the bibliography has been enriched 
+        That statement has been removed and the bibliography has been enriched
         (as discussed above).
 \end{solution}
 
-\question Concerning the openness of the code and the possibility to contribute to it, it should be noted that codes solving for neutron transport can be subject to export restrictions (following their potential dual use), and in principle all contributors should get an export control authorization from their own country. The authors are not strictly required to change the manuscript, but they may consider mentioning the fact that the openness of a nuclear code can be somewhat thwarted by national and international laws.
+\question Concerning the openness of the code and the possibility to contribute
+to it, it should be noted that codes solving for neutron transport can be
+subject to export restrictions (following their potential dual use), and in
+principle all contributors should get an export control authorization from their
+own country. The authors are not strictly required to change the manuscript, but
+they may consider mentioning the fact that the openness of a nuclear code can be
+somewhat thwarted by national and international laws.
 \begin{solution}
 	Excellent point. We have added the following text: ``While export
 control laws have the potential to restrict openness of neutron transport
@@ -279,41 +307,59 @@ derived from open literature, is tailored to molten salt reactor physics.
 Accordingly, Moltres joins a veritable parade of open academic nuclear
 engineering software such as OpenMC \cite{romano_openmc:_2015},
 OpenMOC \cite{boyd_openmoc_2014}, and
-PyNE \cite{bates_pyne_2014,biondo_quality_2014}.'' 
+PyNE \cite{bates_pyne_2014,biondo_quality_2014}.''
 
 \end{solution}
 
-\question It's somehow interesting that ``For some three-dimensional 
-simulations, the number of elements in the mesh and total number of degrees of 
-freedom exceed one million and ten million respectively. To handle problems of 
-this size, we ran Moltres on up to 608 cores.'' Normally problems of few million degrees of freedom can be handled with few tens of cores. The authors should discuss more extensively the performances of their code in order to give the reader the possibility to compare them with those of other tools. In particular, it is possible that slow performances may derive from trying to achieve a fully coupled solution (i.e., all the equations in the same matrix), which seems to be the case in this work. In this sense and to better support the claims of the paper, it would be important to compare the performances of a segregated and a fully coupled  solver, both in terms of accuracy and computational time. In addition to helping supporting the claims of the paper, this
-would represent a significant contribution to the scientific community, since many of the currently available tools employ segregated solvers, and since the advantages and disadvantages of a fully coupled solver are often a subject of discussion.
+\question It's somehow interesting that ``For some three-dimensional
+simulations, the number of elements in the mesh and total number of degrees of
+freedom exceed one million and ten million respectively. To handle problems of
+this size, we ran Moltres on up to 608 cores.'' Normally problems of few million
+degrees of freedom can be handled with few tens of cores. The authors should
+discuss more extensively the performances of their code in order to give the
+reader the possibility to compare them with those of other tools. In particular,
+it is possible that slow performances may derive from trying to achieve a fully
+coupled solution (i.e., all the equations in the same matrix), which seems to be
+the case in this work. In this sense and to better support the claims of the
+paper, it would be important to compare the performances of a segregated and a
+fully coupled solver, both in terms of accuracy and computational time. In
+addition to helping supporting the claims of the paper, this would represent a
+significant contribution to the scientific community, since many of the
+currently available tools employ segregated solvers, and since the advantages
+and disadvantages of a fully coupled solver are often a subject of discussion.
 \begin{solution}
-        <++>
+
 \end{solution}
 
 
 \question Are all equations solved on the same mesh? In this case, is this a strict requirement? Please clarify.
 \begin{solution}
-        This has now been clarified in the introductory text. The equations are 
-        solved on a single mesh. This is enabled by the underlying MOOSE 
+        This has now been clarified in the introductory text. The equations are
+        solved on a single mesh. This is enabled by the underlying MOOSE
         framework, which also enables `loose' coupling instead.
 \end{solution}
 
-\question The heat generation in the graphite is calculated as a fraction of that in the fuel. How exactly is this achieved considering that the two sources are spatially separated?
+\question The heat generation in the graphite is calculated as a fraction of
+that in the fuel. How exactly is this achieved considering that the two sources
+are spatially separated?
 \begin{solution}
         <++>
 \end{solution}
 
-\question It is not clear how the domain is discretized. Is there a radial discretization in graphite and channels? Was the mesh convergence checked? Please discuss.
+\question It is not clear how the domain is discretized. Is there a radial
+discretization in graphite and channels? Was the mesh convergence checked?
+Please discuss.
 \begin{solution}
        <++>
 \end{solution}
 
-\question The MSRE had Reynolds numbers very close to the laminar-turbulent transition. Did you use a laminar model? In case, did you encounter convergence problems ?
-Or did you include turbulence? More generally, is Moltres capable of turbulent simulations?
+\question The MSRE had Reynolds numbers very close to the laminar-turbulent
+transition. Did you use a laminar model? In case, did you encounter convergence
+problems ?  Or did you include turbulence? More generally, is Moltres capable of
+turbulent simulations?
 \begin{solution}
-        These calculations were performed without including turbulence. However, a $k-\epsilon$ model is being implemented to support future simulations.
+        These calculations were performed without including turbulence. However,
+        a $k-\epsilon$ model is being implemented to support future simulations.
 \end{solution}
 
 \question The authors are required to use the international system of units (meters, Kelvin, etc).
@@ -321,19 +367,21 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
         Thanks for catching this. The mention of inches has been converted to cm.
 \end{solution}
 
-\question The authors should briefly describe what ``MSRE design models'' are. Otherwise it is very difficult for the readers to assess the accuracy of the model.
+\question The authors should briefly describe what ``MSRE design models''
+are. Otherwise it is very difficult for the readers to assess the accuracy of
+the model.
 \begin{solution}
-        The paper has been clarified. That section is now careful to state that 
-        our comparison is made against a 1963-1964 calculation conducted by ORNL 
-        to pinpoint the MSRE design. The text has been updated to refer to 
-        ``MSRE design models'' as ``MSRE design calculations'' and explains 
-        that the MSRE design calculations conducted in 1963 were 32-group 
-        calculations using legacy computing tools (GAM-I, MODRIC, and EQUIPOSE, 
-        and THERMOS). These calculations were conducted in two-dimensional R-Z 
-        geometry (a cylinder with angular symmetry), with 20 spatial regions. 
-        Notably, one limitation of the ORNL model was the control rod thimbles 
-        that, due to angular symmetry, were effectively a cylindrical shell of 
-        metal.  
+        The paper has been clarified. That section is now careful to state that
+        our comparison is made against a 1963-1964 calculation conducted by ORNL
+        to pinpoint the MSRE design. The text has been updated to refer to
+        ``MSRE design models'' as ``MSRE design calculations'' and explains
+        that the MSRE design calculations conducted in 1963 were 32-group
+        calculations using legacy computing tools (GAM-I, MODRIC, and EQUIPOSE,
+        and THERMOS). These calculations were conducted in two-dimensional R-Z
+        geometry (a cylinder with angular symmetry), with 20 spatial regions.
+        Notably, one limitation of the ORNL model was the control rod thimbles
+        that, due to angular symmetry, were effectively a cylindrical shell of
+        metal.
 \end{solution}
 
 \question Is the heat generation in the hottest channel the same for the Moltres and the MSRE model?
@@ -341,23 +389,32 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
         <++>
 \end{solution}
 
-\question The authors claim an unprecedented accuracy of their model? How the results of their model compare with previous results from other authors? The presented results do not seem sufficient to support such claim.
+\question The authors claim an unprecedented accuracy of their model? How the
+results of their model compare with previous results from other authors? The
+presented results do not seem sufficient to support such claim.
 \begin{solution}
         This claim has been removed entirely. Thank you.
 \end{solution}
 
-\question The differences between the MSRE and the Moltres model are significant and should be discussed in more details. In particular the difference between fast fluxes is suspicious.
+\question The differences between the MSRE and the Moltres model are significant
+and should be discussed in more details. In particular the difference between
+fast fluxes is suspicious.
 \begin{solution}
         <++>
 \end{solution}
 
-\question The proposed scaling test is very limited. Proper scaling tests would require weak and strong scaling tests, an assessment on the impact of the size of problem per core, a separate assessment of intra-node and extra-node scaling, etc. In addition, information should be provided on the employed numerical algorithms and on the parallelization strategy. The authors should either extend significantly the section, or remove it completely.
+\question The proposed scaling test is very limited. Proper scaling tests would
+require weak and strong scaling tests, an assessment on the impact of the size
+of problem per core, a separate assessment of intra-node and extra-node scaling,
+etc. In addition, information should be provided on the employed numerical
+algorithms and on the parallelization strategy. The authors should either extend
+significantly the section, or remove it completely.
 \begin{solution}
-        We performed strong and weak scaling up to 768 cores separately for 
-        intra-node and extra-node cases. Parallelization was implemented using 
-        LibMesh library for automatic domain decomposition and PetSc 
-        library for parallel solution of systems of non-linear equations. 
-        Detailed information, including results of the scaling studies, has now 
+        We performed strong and weak scaling up to 768 cores separately for
+        intra-node and extra-node cases. Parallelization was implemented using
+        LibMesh library for automatic domain decomposition and PetSc
+        library for parallel solution of systems of non-linear equations.
+        Detailed information, including results of the scaling studies, has now
         been added in the Section 4.3 introduction.
 \end{solution}
 
@@ -369,5 +426,3 @@ Or did you include turbulence? More generally, is Moltres capable of turbulent s
 
   %
   % End of file `elsarticle-template-num.tex'.
-
-
