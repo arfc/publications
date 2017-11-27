@@ -394,16 +394,20 @@ are spatially separated?
 discretization in graphite and channels? Was the mesh convergence checked?
 Please discuss.
 \begin{solution}
-       The following passage has been added:
+       The following passage and a corresponding figure have been added:
 
-       The 2D mesh has a characteristic size of 10 cm in the axial
+       The base 2D mesh has a characteristic size of 10 cm in the axial
        direction and .4 cm in the radial direction to capture the variation from moving
-       between fuel and moderator subdomains. Solution time on the resulting 1960
-       element, 8697 DOF problem is a couple minutes on a single core. Solving on a
-       mesh uniformly refined three times yields the same qualitative behavior
-       described in the results that follow for the coarse mesh. Additionally the 3x
-       refinement yielded only a 1 K change in the average reactor temperature; thus,
-       the coarse mesh results are regarded as sufficiently converged.
+       between fuel and moderator subdomains. To determine whether results were
+       converged, a mesh convergence study was conducted with up to three levels of isotropic
+       refinement (e.g. each element was split in half in both axial and radial directions,
+       resulting in four new elements). The metric used to assess convergence was the integrated fast group
+       flux. The result of the mesh convergence study is shown in
+       \cref{fig:mesh_convergence}. From refinement level 2 to 3 the metric changes by
+       only 1\%. We regard the results as sufficiently converged at level 2 for the
+       purposes of our study; consequently, the results reported in the following
+       section correspond to a radial element dimension of .1 cm and an axial element
+       dimension of 2.5 cm.
 \end{solution}
 
 \question The MSRE had Reynolds numbers very close to the laminar-turbulent
