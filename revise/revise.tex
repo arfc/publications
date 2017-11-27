@@ -394,7 +394,16 @@ are spatially separated?
 discretization in graphite and channels? Was the mesh convergence checked?
 Please discuss.
 \begin{solution}
-       <++>
+       The following passage has been added:
+
+       The 2D mesh has a characteristic size of 10 cm in the axial
+       direction and .4 cm in the radial direction to capture the variation from moving
+       between fuel and moderator subdomains. Solution time on the resulting 1960
+       element, 8697 DOF problem is a couple minutes on a single core. Solving on a
+       mesh uniformly refined three times yields the same qualitative behavior
+       described in the results that follow for the coarse mesh. Additionally the 3x
+       refinement yielded only a 1 K change in the average reactor temperature; thus,
+       the coarse mesh results are regarded as sufficiently converged.
 \end{solution}
 
 \question The MSRE had Reynolds numbers very close to the laminar-turbulent
