@@ -333,7 +333,14 @@ dimensional axisymmetric one for rapid proof of concept. To approximately simula
 structure of the \gls{MSRE} under 2D conditions, a geometry is constructed with 14 repeating
 fuel-moderator regions, as shown in \Cref{fig:geom}. The fuel and moderator
 radii are chosen such that the resulting area/volume fraction of fuel is 0.225 as
-for the \gls{MSRE}.
+for the \gls{MSRE}. The 2D mesh has a characteristic size of 10 cm in the axial
+direction and .4 cm in the radial direction to capture the variation from moving
+between fuel and moderator subdomains. Solution time on the resulting 1960
+element, 8697 DOF problem is a couple minutes on a single core. Solving on a
+mesh uniformly refined three times yields the same qualitative behavior
+described in the results that follow for the coarse mesh. Additionally the 3x
+refinement yielded only a 1 K change in the average reactor temperature; thus,
+the coarse mesh results are regarded as sufficiently converged.
 
 \begin{figure}[htpb]
   \centering
