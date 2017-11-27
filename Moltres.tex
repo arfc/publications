@@ -619,7 +619,10 @@ comparison with other modern modeling efforts such as that conducted in
 \cite{aufiero_development_2014,laureau_transient_2017} is desirable. In that
 vein, a collaboration is under way with the primary author of
 \cite{aufiero_develoment_2014} to try and reproduce calculation results from
-OpenFOAM. We hope to publish the results of this comparison in a future work.
+OpenFOAM. Further, Dr. Collins from \cite{turner_virtual_2016} has expressed interest
+in comparing Moltres results against MSR-VERA in order to quantify errors resulting
+from usage of multigroup diffusion in comparison to 2D-1D method of characteristics fine group solutions.
+We hope to publish the results of these comparisons in a future work.
 
 \subsection{Scaling performance}
 
@@ -755,7 +758,7 @@ steps and in 4 minutes of compute time on a single core using full-coupling
 a solution was also attempted splitting neutron and temperature solves and
 performing Picard iterations until convergence. Ultimately, a steady-state
 solution could not be achieved using the segregated method. After 670
-time-steps, the Picard solve hits the maximum number of allowed iterations (100)
+time steps, the Picard solve hits the maximum number of allowed iterations (100)
 after only halving the neutronics residual. Before reaching the fail-point, the
 segregated solution required numerous Picard iterations to converge (68, 37, 22
 for the previous three time-steps for example), resulting in a total compute
